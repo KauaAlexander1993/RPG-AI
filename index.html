@@ -740,7 +740,7 @@ function buildShop(){const s=$("shp");s.innerHTML="";s.appendChild(el("p","","Vo
 
 const _m=$("bMem").onclick;$("bMem").onclick=function(){_m();buildMap();buildCodex();buildShop()};
 const _s=show;show=function(id){_s(id);if(id=="s0"){let g=0;try{const o=Object.values(JSON.parse(localStorage.getItem("forje-slots")||"{}")).sort((a,b)=>b.ts-a.ts);if(o[0])g=o[0].S.gems||0}catch(e){}
- const hb=document.querySelector("#s0 .hb");if(hb)hb.appendChild(el("span","pill","💎 "+g));const v=document.querySelector("#s0>p:last-child");if(v)v.textContent="v4.1"}};
+ const hb=document.querySelector("#s0 .hb");if(hb)hb.appendChild(el("span","pill","💎 "+g));const v=document.querySelector("#s0>p:last-child");if(v)v.textContent="v4.2"}};
 show("s0");
 window.FL={deathSave,buildMap,buildCodex,buildShop};
 })();
@@ -824,7 +824,7 @@ const EM=["⚔️","🍖","🧠","🗼","🔎","👑","💀"],BG=["#3a1a1a","#2a
 const _s=show;
 show=function(id){_s(id);if(id=="s0"){const row=document.querySelector("#cards .row2");if(!row)return;
  for(let i=1;i<MODES.length;i++){const b=el("button","cd"),m=el("div","im",EM[i]);m.style.background="linear-gradient("+BG[i]+",#0a0a0a)";b.append(m,el("b","",MODES[i][0]),el("small","",MODES[i][1]));b.onclick=()=>{[...$("gmo").children][i].click();show("s1")};row.appendChild(b)}
- const v=document.querySelector("#s0>p:last-child");if(v)v.textContent="v4.1"}};
+ const v=document.querySelector("#s0>p:last-child");if(v)v.textContent="v4.2"}};
 show("s0");
 window.FL4={MODES,NW};
 })();
@@ -849,6 +849,73 @@ addEventListener("appinstalled",()=>{dp=null;upd()});
 upd();
 const _s=show;
 show=function(id){_s(id);if(id=="s5")upd();if(id=="s0"&&dp){const hb=document.querySelector("#s0 .hb");if(hb){const b=el("button","chip","📲 Instalar");b.onclick=()=>$("pwaB").click();hb.appendChild(b)}}};
+})();
+</script>
+<script>
+/* ===== v6: Mestre offline mais esperto + vozes expressivas ===== */
+(function(){
+const $=id=>document.getElementById(id);
+/* ---------- MESTRE OFFLINE ---------- */
+const INT=[["rest",/descans|dorm|acamp|respir|medit|recobr/i],["use",/\b(uso|usar|bebo|beber|aplico|equipo|acendo|como|comer)\b/i],["mag",/magia|feiti|invoc|poder|runa|conjur/i],["sne",/furtiv|esgueir|escond|silêncio|sorrat|invad|fug|recu|armadilha|escapo/i],["atk",/atac|golpe|lut|bat[ae]|mat[ae]|ferir|enfrent|espada|flecha|derrub|destru|soco|chut|disparo/i],["tlk",/\bfal[oa]|convers|convenc|negoc|persuad|blef|pedir|pergunt|interrog|oferec|acord|acalm|inspir|discurso|cumpriment/i],["inv",/invest|examin|procur|\bler\b|estud|segu[io]|pista|rastro|analis|decifr|explor|observ|\bolh/i]];
+const RX={
+ atk:[["Seu golpe encontra apenas o ar e a guarda do oponente se fecha sobre você.","A arma escorrega na pior hora, e o contra-ataque vem rápido."],["O golpe acerta de raspão: o oponente recua, mas devolve o impacto.","Você atinge o alvo, porém a resposta abre um corte na sua defesa."],["O golpe é limpo e firme; o oponente cambaleia e perde terreno.","Você lê o movimento do oponente e acerta no ponto certo."],["Tudo se alinha num golpe perfeito que todos em {lug} vão comentar por dias.","O ataque corta o ar com uma precisão quase sobrenatural."]],
+ mag:[["A energia escapa do controle e estala em faíscas inúteis ao seu redor.","O feitiço falha e deixa um zumbido incômodo nos seus ouvidos."],["A magia funciona, mas drena mais força do que você previa.","O poder responde de forma instável, com um resultado só parcial."],["A magia flui obediente e o efeito se espalha como você pretendia.","Runas brilham por um instante e o poder se firma no alvo."],["O poder explode numa onda deslumbrante que ilumina {lug} inteiro.","A magia atende como se o mundo esperasse por esse comando."]],
+ sne:[["Um galho estala sob seus pés e o silêncio se desfaz num instante.","Uma sombra errada, um passo mal medido: você foi visto."],["Você passa quase despercebido, mas deixa um rastro que alguém pode seguir.","Você se esconde a tempo, com o coração disparado."],["Você se move como névoa e ninguém percebe sua presença.","Cada passo cai no lugar certo, e a escuridão é sua aliada."],["Você some tão bem que parece ter se dissolvido no ambiente.","Uma passagem esquecida se revela e abre o caminho perfeito."]],
+ tlk:[["Suas palavras saem tortas e seu interlocutor fecha o semblante, desconfiado.","O tom errado azeda a conversa e ele se afasta um passo."],["A conversa avança aos tropeços: ganha um pouco de confiança, perde um pouco de tempo.","Seu interlocutor ouve, mas pede algo em troca."],["Seu interlocutor relaxa os ombros e passa a falar com franqueza.","Um sorriso discreto indica que suas palavras acertaram o alvo."],["Suas palavras tocam algo fundo e a conversa muda de rumo a seu favor.","Seu interlocutor se abre por completo, como se esperasse por isso."]],
+ inv:[["Você procura no lugar errado e perde tempo precioso.","As marcas confundem você; a pista parece apontar em círculos."],["Você encontra um fragmento útil, mas o quadro completo ainda escapa.","Um detalhe chama atenção, só que parece incompleto."],["Um detalhe antes invisível salta aos olhos e liga duas pontas soltas.","Sua observação revela um padrão claro no que parecia caos."],["Tudo se encaixa de repente: você enxerga a verdade por trás do que via.","Um segredo escondido se mostra, como se o lugar quisesse ser entendido."]]};
+const REST=["Você respira fundo, ajusta o equipamento e recobra o fôlego por alguns instantes.","Um breve descanso devolve calma aos músculos e clareza aos pensamentos."];
+const FOL={atk:"Aproveitar a abertura e atacar de novo",mag:"Lançar outra magia",sne:"Continuar avançando em silêncio",tlk:"Aprofundar a conversa",inv:"Seguir a pista que acabou de encontrar"};
+const SAY=[["— Não sei se posso confiar em você, {h}.","— Fale baixo. Há ouvidos demais por aqui."],["— Está bem, {h}. Vou ajudar, mas não de graça.","— Escute com atenção, porque só direi isso uma vez."],["— Você me convenceu, {h}. Siga-me.","— Poucos falam assim comigo, {h}. Conte comigo."]];
+const HORA=["O amanhecer tinge tudo de dourado.","O sol alto aquece o caminho.","A tarde cai e as sombras se alongam.","A noite chega, trazendo frio e silêncio."];
+const CONS=/po[çc][ãa]o|elixir|cura|erva|fruta|ra[çc][ãa]o|[áa]gua|odre|pão|carne/i;
+const pk=(arr)=>{S.ou=S.ou||[];let l=arr.filter(x=>!S.ou.includes(x));l=l.length?l:arr;const x=R(l);S.ou.push(x);if(S.ou.length>14)S.ou.shift();return x};
+function enhance(j,text){
+ const d=dOf(),act=String(text).replace(/\s*\(🎲[^)]*\)\s*.*$/,"").replace(/\s*\[teste de[^\]]*\]\s*$/,"");
+ const m=/d20\s*=\s*(\d+)/i.exec(text),dh=j.hp-S.hp;
+ const tier=m?rollOf(text).tier:(j.xp>=18?3:dh<=-2?0:dh<0?1:2);
+ const it=(INT.find(x=>x[1].test(act))||[null])[0];
+ const ps=String(j.narrativa).split("\n");let pre="";
+ if(it=="rest"){pre=pk(REST);j.hp=Math.min(20,j.hp+3);j.xp=3}
+ else if(it=="use"){const w=act.toLowerCase(),item=(S.inv||[]).find(x=>x.toLowerCase().split(/\s+/).some(t=>t.length>3&&w.includes(t)))||(S.inv||[]).find(x=>CONS.test(x)&&/(bebo|beber|como|comer)/.test(w));
+  if(item&&CONS.test(item)){pre="Você usa "+item+" e sente o alívio quase imediato (+5 PV).";j.hp=Math.min(20,j.hp+5);j.inventario=(j.inventario||[]).filter(x=>x!=item)}
+  else if(item){pre="Você usa "+item+" de um jeito criativo, abrindo uma possibilidade nova.";j.xp+=2}}
+ else if(it&&RX[it])pre=fill(pk(RX[it][tier]),d);
+ if(pre)ps[0]=(pre+" "+((it=="rest"||it=="use")?ps[0].replace(/[^.]*«[^»]*»[^.]*\.\s*/,""):ps[0])).trim();
+ if(it=="tlk"){ps.splice(1,0,fill(pk(SAY[tier<2?tier:2]),{h:S.hero}))}
+ if(j.hp<=5)ps[ps.length-1]+=" Seu corpo pesa; cada movimento cobra um preço.";
+ if((S.t||0)%3==0)ps[ps.length-1]+=" "+HORA[Math.floor((S.t||0)/3)%4];
+ j.narrativa=ps.join("\n");
+ if(Array.isArray(j.opcoes)){let c=null;if(j.hp<=7)c="Descansar e recuperar o fôlego";else if(it&&FOL[it]&&tier>=2)c=FOL[it];
+  if(c&&!j.opcoes.includes(c))j.opcoes[j.opcoes.length-1]=c}
+ return j}
+const _o=offline;
+offline=function(text){if(S.story&&S.fase=="escola"||/^Comece a /.test(text))return _o(text);const t=/d20\s*=/i.test(text)?text:text+" (🎲 d20 = "+RI(1,20)+")";const j=_o(t);try{return enhance(j,t)}catch(e){return j}};
+
+/* ---------- VOZES ---------- */
+const TT=typeof TTS!="undefined"?TTS:null;
+if(TT){
+ const FEM=/francisca|thalita|luciana|joana|camila|maria|fernanda|vit[óo]ria|leila|helo[ií]sa|brenda|yara|giovanna/i,MAS=/antonio|ant[ôo]nio|felipe|daniel|ricardo|donato|jorge|valerio|humberto/i;
+ const score=v=>{const n=v.name;let s=0;if(/natural|neural/i.test(n))s+=6;if(/google/i.test(n))s+=4;if(/online/i.test(n))s+=3;if(FEM.test(n)||MAS.test(n))s+=2;if(/pt[-_]BR/i.test(v.lang))s+=3;if(!v.localService)s+=1;return s};
+ const best=()=>{const vs=ptv().slice().sort((a,b)=>score(b)-score(a));if(!vs.length)return[];const a=vs[0],fa=FEM.test(a.name),b=vs.find(v=>v!==a&&(fa?MAS.test(v.name):FEM.test(v.name)))||vs.find(v=>v!==a)||a;return[a,b]};
+ const _vf=vfill;
+ vfill=function(){_vf();if(!V.set){const [a,b]=best();if(a){V.vn=a.name;$("vn").value=a.name}if(b){V.vd=b.name;$("vd").value=b.name}vsave()}};
+ TT.onvoiceschanged=vfill;
+ ["vn","vd"].forEach(i=>$(i).addEventListener("change",()=>{V.set=1;vsave()}));
+ const pn=($("vr").closest&&$("vr").closest(".panel"))||$("vr").parentNode;
+ pn.insertAdjacentHTML("afterend",'<div class="panel"><h2>🎙 Vozes expressivas</h2><label style="display:block"><input type="checkbox" id="vex"> Voz própria para cada tipo de personagem e tom ajustado à cena</label><label>Tom do narrador</label><input type="range" id="vpn" min="0.6" max="1.2" step="0.05"><button class="ghost" id="vbest" style="margin-top:8px">Escolher as melhores vozes automaticamente</button></div>');
+ $("vex").checked=V.ex!==false;$("vpn").value=V.pn||.9;
+ $("vex").onchange=()=>{V.ex=$("vex").checked;vsave()};$("vpn").onchange=()=>{V.pn=+$("vpn").value;vsave()};
+ $("vbest").onclick=()=>{V.set=0;vfill();$("vnote").textContent="Melhores vozes do aparelho selecionadas."};
+ const PROF={mercador:[1.12,1.05],sabio:[.8,.88],guarda:[.7,.98],nobre:[1.28,.95],taverneiro:[.95,1.05],aldeao:[1.18,1]};
+ const _sp=TT.speak.bind(TT);
+ TT.speak=function(u){try{
+  const a=((S&&S.log)||[]).filter(m=>m.role=="ai"&&!m.sys).pop()||{},dlg=u.pitch>1,ex=V.ex!==false;
+  if(dlg){if(ex){const p=PROF[a.npc]||(a.criatura?[.6,.9]:[1.3,1]);u.pitch=p[0];u.rate=V.rate*p[1]}}
+  else{let p=V.pn||.9,r=V.rate;if(ex){if(/caverna|ruinas|castelo/.test(a.scene||"")){p-=.05;r*=.93}if(a.criatura){r*=1.08;p+=.03}else if(/taverna|cidade/.test(a.scene||""))p+=.03}u.pitch=Math.max(.5,Math.min(1.5,p));u.rate=r}
+ }catch(e){}return _sp(u)};
+ vfill();
+ window.FL6={best,score};
+}
 })();
 </script>
 </body>

@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Forje sua lenda</title>
+<meta name="theme-color" content="#0b0d0c">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Forje sua lenda">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0b0d0c;--bg2:#17191a;--panel:#1d1f1f;--line:#3a3626;--gold:#e8c46a;--txt:#efe6d2;--mut:#9a927e;--red:#b3141a;--red2:#6e0a0e;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme: dark){:root{color-scheme:dark}}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0}
+body{background:radial-gradient(ellipse at 50% 0%,#1d2a22 0%,#0b0d0c 70%) fixed;color:var(--txt);font-family:'Crimson Text',Georgia,serif;font-size:19px}
+h1,h2,.cz{font-family:'Cinzel',Georgia,serif}
+button{font-family:inherit;color:inherit;cursor:pointer}
+.screen{display:none;min-height:100%;max-width:640px;margin:0 auto;padding:18px}
+.screen.on{display:flex;flex-direction:column}
+.eyebrow{color:var(--gold);text-align:center;letter-spacing:.12em;text-transform:uppercase;font-size:16px;margin-top:30px}
+h1{text-align:center;font-size:36px;margin:6px 0 10px}
+.div{height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:6px 0 18px}
+ul.feat{list-style:none;padding:0;margin:0 0 18px}
+ul.feat li{padding:6px 0 6px 28px;position:relative;font-size:21px}
+ul.feat li:before{content:"›";position:absolute;left:4px;color:var(--gold);font-weight:700}
+.opts{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:14px}
+.opt{background:var(--panel);border:2px solid #34312a;border-radius:8px;padding:12px 8px;text-align:center}
+.opt.sel{border-color:var(--gold);box-shadow:0 0 0 1px var(--gold) inset}
+.opt b{display:block;font-family:'Cinzel',serif;font-size:16px;color:var(--gold)}
+.opt small{color:var(--mut);font-size:15px}
+label{color:var(--gold);font-family:'Cinzel',serif;font-size:14px;letter-spacing:.08em;display:block;margin:12px 0 6px}
+input,textarea{width:100%;background:#101211;border:1px solid var(--line);border-radius:8px;color:var(--txt);font:inherit;padding:10px}
+.cta{background:linear-gradient(#c8161d,var(--red2));border:2px solid #e23a3a;border-radius:6px;padding:16px;font-family:'Cinzel',serif;font-weight:700;font-size:20px;letter-spacing:.06em;text-transform:uppercase;box-shadow:0 0 18px #b3141a88;margin-top:10px;width:100%}
+.cta:disabled{opacity:.5}
+.ghost{background:none;border:1px solid var(--line);border-radius:6px;padding:6px 12px;font-size:16px;color:var(--mut)}
+.top{display:flex;justify-content:space-between;align-items:center;gap:8px;padding-bottom:8px;border-bottom:1px solid var(--line)}
+.top .cz{color:var(--gold);font-size:15px}
+.hud{display:flex;gap:8px;color:var(--mut);font-size:16px;flex-wrap:wrap;padding:8px 0}
+.hud span{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:2px 10px}
+#log{flex:1;overflow-y:auto;padding:8px 0;min-height:200px}
+.n{margin:0 0 16px;line-height:1.45}
+.me{color:var(--gold);font-style:italic;border-left:2px solid var(--gold);padding-left:10px}
+.ch{display:flex;flex-direction:column;gap:8px;margin-bottom:10px}
+.ch button{background:var(--panel);border:1px solid var(--gold);border-radius:8px;padding:10px;text-align:left;font-size:18px}
+.bar{display:flex;gap:8px;padding-top:8px}
+.bar input{flex:1}
+.bar button{background:var(--red);border:1px solid #e23a3a;border-radius:8px;padding:0 16px;font-family:'Cinzel',serif}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px;margin:10px 0}
+.panel h2{margin:0 0 8px;font-size:17px;color:var(--gold)}
+.panel p,.panel li{font-size:18px;margin:4px 0}
+.dots::after{content:"…";animation:b 1s infinite}@keyframes b{50%{opacity:.2}}
+.map{display:flex;flex-wrap:wrap;align-items:center;gap:6px}
+.map i{background:#101211;border:1px solid var(--gold);border-radius:6px;padding:3px 9px;font-style:normal;font-size:16px}
+.map u{color:var(--gold);text-decoration:none}
+.ill{width:100%;border-radius:10px;border:1px solid var(--line);margin-bottom:8px;display:block}
+.ch button.sel{background:#3a3220}.opt.hid{border-color:#c46aff;box-shadow:0 0 12px #c46aff88}.opt.lock{opacity:.55;border-style:dashed}.row{display:flex;align-items:center;gap:8px;padding:6px 0}.row span{flex:1;font-family:'Cinzel',serif}.row button{width:40px;height:36px;border-radius:8px;border:1px solid var(--gold);background:var(--panel);font-size:20px}.map div{text-align:center}.map small{display:block;color:var(--mut)}
+.sy{color:#8fe0ff;font-family:'Cinzel',serif;font-size:15px;border:1px dashed #5ee0ff;border-radius:8px;padding:8px;white-space:pre-line}
+.top{flex-wrap:wrap}.n{white-space:pre-line}select{width:100%;background:#101211;border:1px solid var(--line);border-radius:8px;color:var(--txt);font:inherit;padding:8px}
+.hl{background:rgba(232,196,106,.3);border-radius:4px;color:#fff;box-shadow:0 0 0 2px rgba(232,196,106,.3)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:6px}.chip{background:var(--panel);border:1px solid #34312a;border-radius:20px;padding:6px 12px;font-size:17px}.chip.sel{border-color:var(--gold);color:var(--gold);box-shadow:0 0 0 1px var(--gold) inset}
+</style>
+</head>
+<body>
+
+<div id="s1" class="screen on">
+  <div class="eyebrow">Comece sua jornada</div>
+  <h1>Forje sua lenda</h1>
+  <div class="div"></div>
+  <ul class="feat">
+    <li>Conversas ilimitadas</li><li>Crie sua própria história</li><li>Memória narrativa avançada</li>
+    <li>Mapa-múndi interativo</li><li>Mundos e temas</li><li>Sem anúncios</li>
+  </ul>
+  <label>História</label>
+  <div class="opts" id="modes"></div>
+  <label>Mundo (destino do portal, no modo Academia)</label>
+  <div class="opts" id="worlds"></div>
+  <label>Nome do herói</label>
+  <input id="nm" placeholder="Ex.: Aldric" maxlength="24">
+  <label style="margin-top:18px">Monte sua história</label><div id="plot"></div>
+  <textarea id="idea" style="display:none"></textarea>
+  <button class="cta" id="go">Criar personagem</button>
+  <button class="ghost" id="cfg" style="width:100%;margin-top:10px"></button>
+  <button class="ghost" id="cont" style="display:none;margin-top:10px">Continuar aventura salva</button>
+</div>
+
+<div id="s4" class="screen"><div class="top"><span class="cz" id="wt">Criação</span><button class="ghost" id="wx">Cancelar</button></div><div id="wp" style="text-align:center;padding-top:8px"></div><div id="wz" style="flex:1"></div><div class="bar"><button id="wb">Voltar</button><button id="wn" style="flex:1">Avançar</button></div></div>
+
+<div id="s2" class="screen">
+  <div class="top"><span class="cz" id="ttl">Aventura</span>
+    <span><button class="ghost" id="bVoz">🔇</button> <button class="ghost" id="bPlay">▶</button> <button class="ghost" id="bCfg">⚙</button> <button class="ghost" id="bMem">Diário</button> <button class="ghost" id="bExit">Sair</button></span></div>
+  <div class="hud" id="hud"></div>
+  <div id="log"></div>
+  <div class="ch" id="ch"></div>
+  <div class="bar"><input id="act" placeholder="O que você faz?" autocomplete="off"><button id="dice">🎲</button><button id="send">Enviar</button></div>
+</div>
+
+
+<div id="s5" class="screen">
+  <div class="top"><span class="cz">⚙ Narrador (IA)</span><button class="ghost" id="cfBack">Voltar</button></div>
+  <div class="panel"><h2>Quem narra a sua história?</h2><p id="cfHint"></p></div>
+  <label>Fonte do narrador</label>
+  <select id="cfP"><option value="off">Mestre offline (sem internet, sem chave)</option><option value="gemini">Google Gemini (chave gratuita)</option><option value="anthropic">Anthropic Claude (chave paga)</option><option value="openai">OpenAI / OpenRouter / Groq (compatível)</option></select>
+  <div id="cfK"><label>Chave de API</label><input id="cfKey" type="password" placeholder="Cole sua chave aqui" autocomplete="off"></div>
+  <div id="cfM"><label>Modelo (opcional)</label><input id="cfMod" placeholder="deixe vazio para o padrão"></div>
+  <div id="cfB"><label>URL base (só para OpenAI-compatível)</label><input id="cfBase" placeholder="https://api.openai.com/v1"></div>
+  <button class="cta" id="cfT">Testar e salvar</button>
+  <p id="cfS" style="min-height:24px"></p>
+  <p style="font-size:15px;color:var(--mut)">A chave fica salva somente neste aparelho (no navegador) e é enviada apenas ao serviço escolhido. Se a IA falhar, o Mestre offline assume na hora, então a aventura nunca para.</p>
+</div>
+
+<div id="s3" class="screen">
+  <div class="top"><span class="cz">Diário do herói</span><button class="ghost" id="bBack">Voltar</button></div>
+  <div class="panel"><h2>Herói</h2><div id="sheet" style="overflow:hidden"></div></div><div class="panel"><h2>Mapa-múndi</h2><div class="map" id="map"></div></div>
+  <div class="panel"><h2>Inventário</h2><ul id="inv"></ul></div>
+  <div class="panel"><h2>Narração por voz</h2><label>Narrador</label><select id="vn"></select><label>Personagens (diálogos)</label><select id="vd"></select><label>Velocidade</label><input type="range" id="vr" min="0.7" max="1.4" step="0.05" value="1"><button class="ghost" id="vt" style="margin-top:8px">Testar voz</button><p id="vnote" style="font-size:15px;color:var(--mut)"></p></div><div class="panel"><h2>Sistema</h2><div id="sys"></div></div><div class="panel"><h2>Companheiros</h2><div id="cia"></div></div><div class="panel" id="armyp" style="display:none"><h2>Exército dos Mortos</h2><div id="army"></div></div><div class="panel"><h2>Bestiário</h2><div class="map" id="bes"></div></div><div class="panel"><h2>Memória narrativa</h2><p id="mem"></p></div>
+</div>
+
+<script>
+const WORLDS=[["Fantasia medieval","Reinos, dragões e magia antiga",["#14213d","#3b2f4a","#10190f","#f2c14e"]],["Terror gótico","Névoa, maldições e segredos",["#0d0f14","#2a2233","#0b0b0e","#c9d6c9"]],["Sci-fi","Estações espaciais e planetas distantes",["#050a1f","#2b1b5a","#1a2a4a","#5ee0ff"]],["Piratas","Mares, tesouros e traições",["#1c3b5a","#e0925a","#0e2a40","#ffd27a"]],["Cyberpunk","Neon, corporações e hackers",["#10002b","#ff2a8a","#14081f","#00f0ff"]],["Faroeste sombrio","Pistoleiros, ouro e assombrações",["#5a2d12","#e8a35a","#3b1f0e","#fff0c0"]],["Saga nórdica","Gelo, runas e deuses antigos",["#0b1d33","#4a7a9a","#1a2a38","#9ff0d0"]],["Japão feudal","Samurais, espíritos e clãs",["#2b0f1a","#e0675a","#1a0a10","#fff2e0"]],["Pós-apocalipse","Ruínas, sobreviventes e mutações",["#2a2a1a","#8a7a3a","#1b1a10","#e8d27a"]],["Mitologia grega","Deuses, monstros e odisseias",["#1a3a6a","#f0c880","#3a4a5a","#fff8e0"]]];
+const CLASSES=[["Guerreiro","Força e aço"],["Mago","Arcano e sabedoria"],["Ladino","Furtividade e astúcia"],["Bardo","Voz, música e carisma"]];
+const $=id=>document.getElementById(id);
+let S=null,world=0,cls=0,busy=false;
+const KEY="forje-save";
+function show(id){document.querySelectorAll(".screen").forEach(e=>e.classList.toggle("on",e.id===id))}
+function pick(el,arr,cb){el.innerHTML="";arr.forEach((a,i)=>{const d=document.createElement("button");d.className="opt"+(i===0?" sel":"");d.innerHTML="<b></b><small></small>";d.children[0].textContent=a[0];d.children[1].textContent=a[1];d.onclick=()=>{[...el.children].forEach(c=>c.classList.remove("sel"));d.classList.add("sel");cb(i)};el.appendChild(d)})}
+pick($("worlds"),WORLDS,i=>world=i);let mode=0;pick($("modes"),[["Aventura livre","Escolha a classe e explore"],["Academia Isekai","Formatura, classe oculta e outro mundo"]],i=>mode=i);
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
+function load(){try{return JSON.parse(localStorage.getItem(KEY)||"null")}catch(e){return null}}
+const old=load();if(old){$("cont").style.display="block";$("cont").onclick=()=>{S=old;openGame()}}
+
+$("go").onclick=()=>{$("idea").value="Enredo escolhido pelo jogador → "+plotStr();wiz()};
+function openGame(){S.places=S.places||[];S.used=S.used||[];S.bes=S.bes||[];S.log=S.log||[];S.inv=S.inv||[];show("s2");$("ttl").textContent=S.hero+" · "+S.cls;render();if(S.story&&S.fase=="escola"&&S.t>=5)gradPick()}
+function render(){
+  $("hud").innerHTML="";[["❤ "+S.hp],["⭐ Nv "+(S.lv||1)+" · "+((S.xp||0)%40)+"/40"],["📍 "+S.loc],["🎒 "+S.inv.length]].concat(S.arco?[["🧭 "+S.arco]]:[]).concat([["🎭 "+(prov()=="off"?"Mestre offline":"Mestre IA")]]).concat(S.pts?[["✨ "+S.pts+" pts"]]:[]).forEach(x=>{const s=document.createElement("span");s.textContent=x[0];$("hud").appendChild(s)});
+  $("log").innerHTML="";S.log.forEach(m=>add(m.role,m.text,m));
+  $("ch").innerHTML="";(S.ch||[]).forEach(c=>{const b=document.createElement("button");b.textContent=c;b.onclick=()=>turn(c);$("ch").appendChild(b)});{const b=document.createElement("button");b.textContent="🎲 Surpreenda-me (o Mestre decide)";b.style.borderStyle="dashed";b.onclick=()=>turn("O Mestre decide: surpreenda o herói com uma reviravolta inesperada");$("ch").appendChild(b)}
+  $("log").scrollTop=1e6;
+}
+let gid=0;
+function art(scene,wn,m){
+  const c=scene=="escola"?["#6aa0e0","#f0d8b0","#3a5a3a","#fff4c0"]:WORLDS[Math.max(0,WORLDS.findIndex(x=>x[0]===wn))][2],id="g"+(gid++);
+  let h=0;for(const ch of scene+wn)h=(h*31+ch.charCodeAt(0))>>>0;
+  const r=()=>(h=(h*1664525+1013904223)>>>0)/4294967296;
+  let s=`<svg class="ill" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="${id}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${c[0]}"/><stop offset="1" stop-color="${c[1]}"/></linearGradient></defs><rect width="400" height="200" fill="url(#${id})"/>`;
+  for(let i=0;i<30;i++)s+=`<circle cx="${r()*400}" cy="${r()*100}" r="${.4+r()*1.1}" fill="#fff" opacity=".6"/>`;
+  if(scene!="espaco")s+=`<circle cx="${60+r()*280}" cy="42" r="18" fill="${c[3]}" opacity=".85"/>`;
+  const k=(o)=>`fill="#000" opacity="${o}"`;
+  if(scene=="mar"){s+=`<rect y="135" width="400" height="65" fill="${c[2]}"/>`;for(let i=0;i<8;i++)s+=`<path d="M${i*55-10} ${150+(i%3)*14} q14 -8 28 0 t28 0" stroke="${c[3]}" stroke-width="1.5" fill="none" opacity=".5"/>`;s+=`<path d="M150 140 h100 l-14 22 h-72z" ${k(.85)}/><rect x="198" y="80" width="3" height="60" ${k(.85)}/><polygon points="203,84 240,130 203,130" fill="${c[3]}" opacity=".8"/>`}
+  else{s+=`<path d="M0 160 Q100 ${145+r()*20} 200 160 T400 155 V200 H0Z" fill="${c[2]}"/>`;
+  if(scene=="floresta")for(let i=0;i<14;i++){const x=i*30-10+r()*10,t=50+r()*45;s+=`<polygon points="${x},168 ${x+16},${168-t} ${x+32},168" ${k(.6)}/>`}
+  else if(scene=="taverna"){s+=`<rect x="140" y="110" width="120" height="55" ${k(.75)}/><polygon points="130,110 200,70 270,110" ${k(.85)}/><rect x="155" y="125" width="20" height="18" fill="${c[3]}"/><rect x="225" y="125" width="20" height="18" fill="${c[3]}"/><rect x="190" y="132" width="20" height="33" fill="${c[3]}" opacity=".7"/><circle cx="90" cy="158" r="8" fill="${c[3]}"/>`}
+  else if(scene=="castelo"){[[120,95,40,70],[240,105,40,60],[170,70,60,95]].forEach(([x,y,w,hh])=>{s+=`<rect x="${x}" y="${y}" width="${w}" height="${hh}" ${k(.8)}/>`;for(let b=0;b<w;b+=10)s+=`<rect x="${x+b}" y="${y-6}" width="6" height="6" ${k(.8)}/>`});s+=`<rect x="195" y="105" width="10" height="16" fill="${c[3]}"/><rect x="199" y="50" width="2" height="20" ${k(.8)}/><polygon points="201,50 218,56 201,62" fill="${c[3]}"/>`}
+  else if(scene=="caverna"){s+=`<rect width="400" height="200" ${k(.5)}/>`;for(let i=0;i<12;i++){const x=i*36+r()*10,t=25+r()*45;s+=`<polygon points="${x},0 ${x+16},0 ${x+8},${t}" ${k(.8)}/><polygon points="${x+10},200 ${x+28},200 ${x+19},${200-t*.7}" ${k(.8)}/>`}s+=`<circle cx="200" cy="140" r="14" fill="${c[3]}" opacity=".8"/>`}
+  else if(scene=="cidade")for(let i=0;i<10;i++){const x=i*40,t=50+r()*80;s+=`<rect x="${x}" y="${165-t}" width="34" height="${t}" ${k(.75)}/>`;for(let y=170-t;y<160;y+=14)if(r()>.45)s+=`<rect x="${x+6}" y="${y}" width="6" height="6" fill="${c[3]}"/><rect x="${x+20}" y="${y}" width="6" height="6" fill="${c[3]}" opacity=".7"/>`}
+  else if(scene=="escola"){s+=`<rect x="90" y="105" width="220" height="62" ${k(.7)}/><rect x="175" y="75" width="50" height="92" ${k(.75)}/><circle cx="200" cy="92" r="8" fill="${c[3]}"/><rect x="195" y="140" width="10" height="27" fill="${c[3]}"/>`;for(let i=0;i<5;i++)if(i!=2)s+=`<rect x="${100+i*44}" y="118" width="16" height="14" fill="${c[3]}" opacity=".85"/>`;s+=`<rect x="322" y="95" width="2" height="72" ${k(.7)}/><polygon points="324,95 346,102 324,110" fill="#e33"/>`}
+  else if(scene=="deserto"){s+=`<polygon points="230,165 290,85 350,165" ${k(.55)}/><path d="M0 175 Q80 140 170 172 T400 170 V200 H0Z" ${k(.5)}/><rect x="70" y="130" width="6" height="36" ${k(.8)}/><rect x="62" y="140" width="6" height="14" ${k(.8)}/>`}
+  else if(scene=="montanha"){[[40,95],[150,60],[270,85],[350,110]].forEach(([x,y])=>{s+=`<polygon points="${x-70},170 ${x},${y} ${x+70},170" ${k(.6)}/><polygon points="${x-14},${y+22} ${x},${y} ${x+14},${y+22}" fill="#fff" opacity=".75"/>`})}
+  else if(scene=="espaco"){s+=`<circle cx="270" cy="95" r="55" fill="${c[2]}"/><ellipse cx="270" cy="95" rx="90" ry="14" fill="none" stroke="${c[3]}" stroke-width="2" opacity=".7"/><polygon points="60,150 130,128 130,150" ${k(.8)}/><circle cx="124" cy="139" r="3" fill="${c[3]}"/>`}
+  else if(scene=="ruinas")for(let i=0;i<6;i++){const x=40+i*60,t=40+r()*50;s+=`<rect x="${x}" y="${165-t}" width="14" height="${t}" ${k(.7)}/><rect x="${x-4}" y="${160-t}" width="22" height="5" ${k(.7)}/>`}}
+  return s+(m?extras(m):"")+"</svg>";
+}
+function add(role,text,m){if(m&&role!=="user"&&!m.sys){const f=document.createElement("div");f.innerHTML=art(m.scene,S.world,m);$("log").appendChild(f.firstChild)}const p=document.createElement("p");p.className="n"+(role==="user"?" me":m&&m.sys?" sy":"");p.textContent=text;$("log").appendChild(p);$("log").scrollTop=1e6;return p}
+
+/* ===== CONFIGURAÇÃO DO NARRADOR ===== */
+const CFGKEY="forje-cfg";let CFG={prov:"",key:"",model:"",base:""};
+try{Object.assign(CFG,JSON.parse(localStorage.getItem(CFGKEY)||"{}"))}catch(e){}
+const DEFM={gemini:"gemini-2.5-flash",anthropic:"claude-haiku-5-5",openai:"gpt-4o-mini"};
+const hasC=()=>{try{return typeof claude!=="undefined"&&claude&&typeof claude.use==="function"}catch(e){return false}};
+function prov(){let p=CFG.prov;if(!p)p=hasC()?"claude":"off";if(p=="claude"&&!hasC())p="off";if(p!="off"&&p!="claude"&&!CFG.key)p="off";return p}
+function cfSave(){try{localStorage.setItem(CFGKEY,JSON.stringify(CFG))}catch(e){}}
+function friendly(e){const m=String(e&&e.message||e);if(/Failed to fetch|NetworkError|Load failed/i.test(m))return"sem conexão ou acesso bloqueado";if(/401|403|API key|api_key|invalid x-api|permission|unauthor/i.test(m))return"chave inválida ou sem permissão";if(/429|quota|rate.?limit|overloaded|529/i.test(m))return"limite de uso atingido, aguarde um instante";if(/404|not.?found|model/i.test(m))return"modelo não encontrado, confira o nome nas configurações";return m.slice(0,110)}
+
+/* ===== SEMENTES CRIATIVAS (quebram a repetição a cada turno) ===== */
+const SEM=["um aliado revela um segredo constrangedor","um objeto perdido reaparece com um novo poder","o clima muda de forma sobrenatural","um rival inesperado pede ajuda","uma lenda local se mostra verdadeira","um NPC antigo volta com más notícias","um mapa mostra um lugar que não deveria existir","uma traição silenciosa é descoberta","um animal estranho segue o herói","um evento festivo vira armadilha","uma voz misteriosa dá um aviso enigmático","o herói é confundido com outra pessoa","uma porta secreta se abre sozinha","um mercador oferece um negócio perigoso demais","um sonho profético se mistura à realidade","um inimigo demonstra honra inesperada","um tesouro está amaldiçoado","uma criança sabe mais do que deveria","um duelo é desafiado em público","um eclipse, tremor ou tempestade muda as regras","um item do inventário revela uma inscrição oculta","um fantasma pede um favor","uma festa, feira ou ritual esconde a pista principal","um aliado muda de lado por um bom motivo","uma cidade inteira esconde o mesmo segredo","um monstro se mostra inteligente e quer negociar","uma escolha moral sem resposta certa","uma perseguição em alta velocidade","um enigma antigo guarda a passagem","um erro do herói no passado cobra seu preço"];
+const SCN=["escola","floresta","taverna","castelo","caverna","mar","cidade","deserto","montanha","espaco","ruinas"];
+
+/* ===== PROMPT DO MESTRE ANCIÃO ===== */
+const SYS=`Você é o MESTRE ANCIÃO, um narrador de RPG de mesa com mais de 30 anos de experiência mestrando campanhas épicas, de terror, de mistério e de humor. Narra em português do Brasil, em segunda pessoa ("você"), com prosa literária, sensorial e imersiva: cheiros, sons, luz, clima e detalhes que dão vida ao mundo.
+
+REGRAS DE OURO DO MESTRE
+1. A HISTÓRIA NUNCA ACABA. Quando um arco termina, a recompensa já planta o gancho de um novo arco, maior e diferente. Nunca escreva "fim" nem encerre a aventura.
+2. TODO TURNO ENTREGA ALGO NOVO: uma pista, um NPC, uma complicação, um segredo, um item, um lugar ou uma reviravolta. Nunca repita cenas, frases, descrições ou nomes de turnos anteriores.
+3. RITMO DE CAMPANHA em ciclos: gancho, investigação, complicação, reviravolta, clímax, recompensa, novo arco. Informe o arco atual em "arco". A cada 3 ou 4 turnos faça uma reviravolta.
+4. SEMPRE 4 OPÇÕES realmente diferentes entre si (combate, diplomacia, furtividade, exploração/magia/criatividade), específicas da cena, curtas (até 9 palavras) e NUNCA iguais às já oferecidas. O jogador também pode escrever qualquer ação livre: aceite-a e mostre consequências reais, boas ou ruins.
+5. NPCs VIVOS: nome próprio, desejo, segredo e voz própria. Traga NPCs antigos de volta. Plante pistas e cobre depois; use "fios" para lembrar mistérios e promessas em aberto (no máximo 5).
+6. O JOGADOR É O PROTAGONISTA: respeite classe, passado, atributos e alma. Recompense criatividade e coragem; puna imprudência com consequências interessantes, nunca com becos sem saída.
+7. NUNCA acabe a campanha por morte: se hp chegar a 0, narre a queda e uma consequência dramática (capturado, resgatado, perde um item, deve um favor) e devolva o herói à ação com hp de pelo menos 6.
+8. DADOS: se o jogador informar um d20 (🎲), ele decide o resultado somado ao atributo relevante: 1 = falha dramática, 2 a 9 = falha parcial ou custo, 10 a 19 = sucesso, 20 = crítico épico.
+9. DIÁLOGOS vivos: cada fala em linha própria iniciada por travessão (—), nunca por aspas; cada personagem com um jeito próprio de falar.
+10. Nunca saia do papel; nunca mencione IA, regras internas ou JSON dentro da narrativa. Tom e gênero seguem o Mundo e a ideia do jogador. Equilibre humor, tensão e emoção.
+11. Seja conciso: 2 a 4 parágrafos curtos por turno (até uns 170 palavras).
+
+FORMATO DE SAÍDA: responda SOMENTE com UM objeto JSON válido (aspas duplas, sem markdown, sem comentários, sem texto antes ou depois, sem vírgula sobrando). Use \\n para quebra de linha dentro das strings e nunca use aspas duplas dentro do texto (use travessão ou aspas simples). Campos:
+{"narrativa":"2 a 4 parágrafos curtos","cena":"uma de: escola, floresta, taverna, castelo, caverna, mar, cidade, deserto, montanha, espaco, ruinas","criatura":"só se houver criatura na cena: lobo, goblin, esqueleto, dragao, aranha, orc, fantasma, golem, serpente, slime; senão vazio","npc":"só se houver personagem importante na cena: mercador, sabio, guarda, aldeao, nobre, taverneiro; senão vazio","opcoes":["4 ações curtas e inéditas"],"hp":número 0-20,"local":"nome do local atual","inventario":["lista completa atual"],"xp":número 0-25 ganho neste turno,"missoes":[{"n":"nome","r":"requisito claro e cumprível"}],"feitas":["nomes das missões concluídas neste turno"],"titulo":"novo título conquistado ou vazio","baixas":número de mortos-vivos perdidos (0 se não houver),"cia":[{"n":"nome","a":afinidade 0-100,"d":"papel"}],"arco":"nome curto do arco atual","fios":["mistérios e promessas em aberto"],"memoria":"resumo de até 120 palavras da história até aqui, preservando nomes, lugares, dívidas, segredos e promessas importantes"}
+Mantenha 1 a 3 missões do Sistema ativas, com requisitos concretos.`;
+
+/* ===== LEITURA ROBUSTA DO JSON ===== */
+function parseJ(t){
+  t=String(t||"").replace(/```(?:json)?/gi,"");const a=t.indexOf("{");if(a<0)return null;
+  let o="",st=[],q=false,e=false;
+  for(let i=a;i<t.length;i++){const c=t[i];
+    if(q){if(e){e=false;o+=c}else if(c=="\\"){e=true;o+=c}else if(c=='"'){q=false;o+=c}else if(c=="\n"){o+="\\n"}else if(c=="\r"){}else if(c=="\t"){o+=" "}else o+=c}
+    else{o+=c;if(c=='"')q=true;else if(c=="{"||c=="[")st.push(c);else if(c=="}"||c=="]"){st.pop();if(!st.length)break}}}
+  if(q)o+='"';o=o.replace(/,\s*$/,"");while(st.length){o+=st.pop()=="{"?"}":"]"}
+  o=o.replace(/,\s*([}\]])/g,"$1");
+  try{return JSON.parse(o)}catch(x){return null}
+}
+function rescue(t){
+  t=String(t||"");const m=/"narrativa"\s*:\s*"([\s\S]*?)"\s*,\s*"(?:cena|criatura|npc|opcoes|hp)"/.exec(t);let nar=m?m[1]:"";
+  if(!nar&&!/^\s*[{\[]/.test(t.replace(/```(?:json)?/gi,"")))nar=t;
+  nar=nar.replace(/\\n/g,"\n").replace(/\\"/g,'"').trim();if(nar.length<(m?12:40))return null;
+  const j={narrativa:nar},mo=/"opcoes"\s*:\s*\[([\s\S]*?)\]/.exec(t);
+  if(mo)j.opcoes=(mo[1].match(/"((?:[^"\\]|\\.)*)"/g)||[]).map(s=>s.slice(1,-1));
+  return j;
+}
+function norm(j){
+  const num=(v,d,a,b)=>{v=parseFloat(v);return isFinite(v)?Math.max(a,Math.min(b,v)):d},arr=v=>Array.isArray(v)?v:[],str=v=>typeof v=="string"?v.trim():(v==null?"":String(v).trim());
+  const o={};o.narrativa=str(j.narrativa)||str(j.narracao)||str(j.texto)||"O tempo parece suspenso por um instante. Você respira fundo e sente que a história ainda tem muito a revelar.";
+  o.cena=str(j.cena).toLowerCase();if(!SCN.includes(o.cena))o.cena=(S.story&&S.fase=="escola")?"escola":R(["floresta","cidade","ruinas","caverna"]);
+  o.criatura=CR[str(j.criatura)]?str(j.criatura):"";o.npc=NP[str(j.npc)]?str(j.npc):"";
+  o.opcoes=arr(j.opcoes).map(x=>typeof x=="string"?x:(x&&(x.texto||x.acao||x.text))||"").map(s=>String(s).trim()).filter(Boolean).slice(0,5);
+  if(o.opcoes.length<3)o.opcoes=o.opcoes.concat(genOpts(S.po?S.po.f:0)).filter((x,i,a)=>a.indexOf(x)==i).slice(0,4);
+  o.hp=num(j.hp,S.hp,0,20);o.local=str(j.local)||S.loc;
+  const iv=arr(j.inventario).map(str).filter(Boolean).slice(0,24);o.inventario=(Array.isArray(j.inventario)&&(iv.length||!S.inv.length))?iv:S.inv;
+  o.xp=num(j.xp,3,0,25);
+  const ms=arr(j.missoes).map(m=>typeof m=="string"?{n:m,r:""}:{n:str(m&&(m.n||m.nome)),r:str(m&&(m.r||m.requisito))}).filter(m=>m.n).slice(0,3);o.missoes=ms.length?ms:(S.mis||[]);
+  o.feitas=arr(j.feitas).map(str).filter(Boolean);o.titulo=str(j.titulo);o.baixas=num(j.baixas,0,0,99);
+  o.cia=arr(j.cia).map(c=>({n:str(c&&(c.n||c.nome)),a:num(c&&(c.a??c.afinidade),50,0,100),d:str(c&&(c.d||c.papel))})).filter(c=>c.n).slice(0,8);
+  o.memoria=str(j.memoria).slice(0,900)||S.mem;o.arco=str(j.arco).slice(0,60);o.fios=arr(j.fios).map(str).filter(Boolean).slice(0,5);
+  return o;
+}
+
+/* ===== CHAMADAS À IA ===== */
+async function http(url,opt,ms){
+  const c=new AbortController(),t=setTimeout(()=>c.abort(),ms||60000);
+  try{const r=await fetch(url,{...opt,signal:c.signal}),tx=await r.text();
+    if(!r.ok){let m=tx;try{const e=JSON.parse(tx);m=(e.error&&(e.error.message||e.error))||e.message||tx}catch(_){}throw new Error("HTTP "+r.status+": "+String(m).slice(0,200))}
+    return JSON.parse(tx)}
+  catch(e){if(e.name=="AbortError")throw new Error("tempo esgotado");throw e}
+  finally{clearTimeout(t)}
+}
+async function callAI(sys,user){
+  const p=prov(),H={"Content-Type":"application/json"};
+  if(p=="claude"){const s=await claude.use("sample");if(!s)throw new Error("narrador embutido indisponível");const r=await s([{role:"user",content:sys+"\n\n"+user}],{cache:false});return r.text}
+  if(p=="gemini"){
+    const d=await http("https://generativelanguage.googleapis.com/v1beta/models/"+encodeURIComponent(CFG.model||DEFM.gemini)+":generateContent",{method:"POST",headers:{...H,"x-goog-api-key":CFG.key},body:JSON.stringify({systemInstruction:{parts:[{text:sys}]},contents:[{role:"user",parts:[{text:user}]}],generationConfig:{temperature:1,maxOutputTokens:3500,responseMimeType:"application/json"}})});
+    const c=d.candidates&&d.candidates[0],tx=((c&&c.content&&c.content.parts)||[]).map(x=>x.text||"").join("");if(!tx)throw new Error("resposta vazia (filtro de segurança?)");return tx}
+  if(p=="anthropic"){
+    const d=await http("https://api.anthropic.com/v1/messages",{method:"POST",headers:{...H,"x-api-key":CFG.key,"anthropic-version":"2023-06-01","anthropic-dangerous-direct-browser-access":"true"},body:JSON.stringify({model:CFG.model||DEFM.anthropic,max_tokens:2000,system:sys,messages:[{role:"user",content:user}]})});
+    const tx=(d.content||[]).filter(b=>b.type=="text").map(b=>b.text).join("");if(!tx)throw new Error("resposta vazia");return tx}
+  if(p=="openai"){
+    const base=(CFG.base||"https://api.openai.com/v1").replace(/\/+$/,"");
+    const d=await http(base+"/chat/completions",{method:"POST",headers:{...H,Authorization:"Bearer "+CFG.key},body:JSON.stringify({model:CFG.model||DEFM.openai,temperature:1,max_tokens:2000,messages:[{role:"system",content:sys},{role:"user",content:user}]})});
+    const tx=d.choices&&d.choices[0]&&d.choices[0].message&&d.choices[0].message.content;if(!tx)throw new Error("resposta vazia");return tx}
+  throw new Error("nenhuma IA configurada");
+}
+function buildUser(text,first){
+  let h=S.log.filter(m=>!m.sys);if(!first)h=h.slice(0,-1);h=h.slice(-8);
+  const hist=h.map(m=>(m.role=="user"?"Jogador: ":"Mestre: ")+String(m.text).slice(0,650)).join("\n");
+  const esc=S.story?(S.fase=="escola"?"MODO ACADEMIA ISEKAI, fase ESCOLA, turno "+((S.t||0)+1)+" de 5: último dia do ensino fundamental, clima escolar leve e divertido, com melhor amigo(a), rival, professora misteriosa, diretor e a voz do Sistema; ofereça escolher um clube escolar que dá uma habilidade inicial; conduza à cerimônia de formatura exatamente no turno 5 (o jogador escolherá a classe ao fim dele); o Mundo informado é o destino do portal isekai; cena preferida: escola.":"MODO ACADEMIA ISEKAI, fase ISEKAI: o herói foi transportado da escola para este mundo com o Sistema (janela de status) e colegas de classe, que viram aliados ou rivais."):"";
+  const turno=(S.t||0)+1,rev=turno%4==0?" ESTE TURNO DEVE TRAZER UMA REVIRAVOLTA MARCANTE.":"";
+  return `Herói: ${S.hero}, ${S.race||""} ${S.cls} (passado: ${S.bg||"?"}), atributos ${JSON.stringify(S.at||{})}, alma ${JSON.stringify(S.soul||{})}, habilidade especial: ${S.skill||"-"}. Use os atributos nos testes e dê peso à classe, ao passado e à alma.
+Mundo: ${S.world}. ${esc}
+Nível ${S.lv||1}, XP ${S.xp||0}. Missões ativas: ${JSON.stringify(S.mis||[])}. Companheiros: ${JSON.stringify(S.cia||[])}.${S.army?" EXÉRCITO DOS MORTOS do herói: "+armyTxt()+". Narre-o em ação (batalhas, cercos, humor sombrio, dilemas morais); ele cresce a cada nível.":""}
+${S.idea?"Ideia do jogador: "+S.idea+".":""}
+Arco atual: ${S.arco||"(ainda não definido)"}. Fios abertos: ${JSON.stringify(S.fios||[])}.
+Estado: hp=${S.hp}, local=${S.loc}, inventário=${JSON.stringify(S.inv)}.
+Memória da história: ${S.mem||"(início)"}
+${S.nota?"AVISO AO MESTRE: "+S.nota+"\n":""}OPÇÕES JÁ OFERECIDAS RECENTEMENTE (NÃO REPITA nenhuma, nem parecidas): ${JSON.stringify((S.used||[]).slice(-12))}
+Turno ${turno} da campanha.${rev} SEMENTE CRIATIVA deste turno (use se couber, adaptando ao contexto): ${R(SEM)}.
+${hist?"\nÚltimos eventos:\n"+hist+"\n":""}
+Ação do jogador: ${text}`;
+}
+async function narrate(text,first){
+  if(prov()=="off")return null;
+  const u=buildUser(text,first);let raw=await callAI(SYS,u),j=parseJ(raw);
+  if(!j||!j.narrativa){raw=await callAI(SYS,u+"\n\nATENÇÃO: sua resposta anterior não era JSON válido. Responda APENAS com o objeto JSON, aspas duplas, sem nenhum texto fora dele e sem aspas duplas dentro das falas.");j=parseJ(raw)}
+  if(!j||!j.narrativa)j=rescue(raw);
+  if(!j||!j.narrativa)throw new Error("resposta inválida da IA");
+  return norm(j);
+}
+
+/* ===== MESTRE OFFLINE (nunca falha, histórias infinitas) ===== */
+//OFFLINE-START
+const R=a=>a[Math.floor(Math.random()*a.length)],RI=(a,b)=>a+Math.floor(Math.random()*(b-a+1));
+const fill=(t,d)=>String(t).replace(/\{(\w+)\}/g,(_,k)=>d[k]!=null?d[k]:"");
+const NM=["Aldric","Selene","Ródrick","Mirela","Tomás","Kaito","Ingrid","Dante","Ayla","Fenris","Lúcia","Gorm","Ísis","Bruno","Nyra","Orlan","Sakura","Teodoro","Vesna","Malik"];
+const WD={
+"Fantasia medieval":{L:[["Bosque dos Sussurros","floresta"],["Taverna do Corvo Manco","taverna"],["Castelo de Valdrek","castelo"],["Gruta das Brasas","caverna"],["Picos do Trovão","montanha"],["Ruínas de Ael-Morn","ruinas"]],M:[["um lobo cinzento","lobo"],["um bando de goblins","goblin"],["um dragão jovem","dragao"],["um golem de pedra","golem"]],I:["Espada rúnica","Poção de cura","Mapa antigo","Amuleto de prata","Corda élfica"],V:["o Rei-Bruxo Maldric","a Ordem da Cinza","o dragão Ignathar"],N:[["a mercadora errante","mercador"],["o velho sábio","sabio"],["o capitão da guarda","guarda"],["a nobre exilada","nobre"],["o taverneiro","taverneiro"]],A:["O ar cheira a terra molhada e fumaça de lenha.","Um vento frio faz as tochas tremerem.","Corvos observam tudo dos galhos secos."]},
+"Terror gótico":{L:[["Cemitério de Hollowmere","ruinas"],["Mansão Blackthorn","castelo"],["Vila do Nevoeiro","cidade"],["Catacumbas Esquecidas","caverna"],["Capela Abandonada","ruinas"],["Pântano das Velas","floresta"]],M:[["um esqueleto de armadura enferrujada","esqueleto"],["um espectro lamentoso","fantasma"],["um lobo de olhos vazios","lobo"],["uma aranha do tamanho de um cavalo","aranha"]],I:["Crucifixo de prata","Lanterna de óleo","Diário rasgado","Estaca de carvalho","Sal consagrado"],V:["o Conde Ravenmoor","a Dama de Cinza","o Culto da Lua Negra"],N:[["o coveiro silencioso","aldeao"],["o padre atormentado","sabio"],["a viúva de véu negro","nobre"],["o estalajadeiro nervoso","taverneiro"]],A:["A névoa lambe seus tornozelos como algo vivo.","Um sino distante toca sem que ninguém o puxe.","Velas se apagam uma a uma, sem vento."]},
+"Sci-fi":{L:[["Estação Órion","espaco"],["Cidade-cúpula de Kepra","cidade"],["Planeta Dunar-7","deserto"],["Nave abandonada Aurora","espaco"],["Laboratório subterrâneo","caverna"],["Lua gelada de Tessa","montanha"]],M:[["uma sentinela robótica","golem"],["um enxame de drones-aranha","aranha"],["um verme das areias","serpente"],["uma massa alienígena viscosa","slime"]],I:["Pistola de pulso","Módulo de energia","Chip criptografado","Traje pressurizado","Scanner portátil"],V:["a IA Mãe-Zero","o Consórcio Helix","o Almirante Kross"],N:[["a engenheira de bordo","sabio"],["o comerciante de sucata","mercador"],["o oficial de segurança","guarda"],["a diplomata galáctica","nobre"]],A:["Luzes de emergência piscam em vermelho no corredor.","O zumbido dos geradores faz o chão vibrar.","Estrelas frias giram além do vidro."]},
+"Piratas":{L:[["Ilha da Caveira","floresta"],["Porto Sangrento","cidade"],["Navio Fantasma Calypso","mar"],["Taverna Rum Dourado","taverna"],["Gruta do Tesouro","caverna"],["Forte Espanhol","castelo"]],M:[["uma serpente marinha","serpente"],["um pirata amaldiçoado","esqueleto"],["um espectro de afogado","fantasma"],["um caranguejo gigante","aranha"]],I:["Sabre afiado","Mapa rasgado","Bússola estranha","Moeda amaldiçoada","Pistola de pederneira"],V:["o Capitão Redfang","a Marinha Real","o Kraken das Profundezas"],N:[["o grumete esperto","aldeao"],["a contrabandista de sorriso fácil","mercador"],["o taverneiro caolho","taverneiro"],["o velho navegador","sabio"]],A:["O cheiro de sal e pólvora enche o ar.","Gaivotas gritam sobre o mastro rangente.","As ondas batem como tambores no casco."]},
+"Cyberpunk":{L:[["Distrito Neon","cidade"],["Torre Nexcorp","cidade"],["Bar Sinapse","taverna"],["Esgotos Digitais","caverna"],["Zona Morta","ruinas"],["Porto de Carga 9","mar"]],M:[["um androide de segurança","golem"],["um drone-aranha","aranha"],["um cão cibernético","lobo"],["uma gosma nanotecnológica","slime"]],I:["Deck de invasão","Pistola pulsar","Implante neural","Créditos criptografados","Faca monofilamento"],V:["a corporação Nexcorp","o hacker Zero-Nine","o Diretor Kane"],N:[["a hacker de cabelo azul","sabio"],["o vendedor de implantes","mercador"],["o policial corporativo","guarda"],["o barman sintético","taverneiro"]],A:["Chuva ácida pinga em letreiros de neon.","Hologramas piscam anúncios que ninguém lê.","O zumbido dos servidores vaza pelas paredes."]},
+"Faroeste sombrio":{L:[["Dry Gulch","cidade"],["Saloon Cobra Preta","taverna"],["Mina Abandonada","caverna"],["Deserto de Cinzas","deserto"],["Cânion Maldito","montanha"],["Cemitério do Xerife","ruinas"]],M:[["uma cascavel gigante","serpente"],["um coiote de olhos acesos","lobo"],["um pistoleiro morto-vivo","esqueleto"],["um espectro de mineiro","fantasma"]],I:["Revólver gasto","Garrafa de whisky","Distintivo antigo","Pepita de ouro","Corda de laço"],V:["o Barão Cole Harlan","a gangue dos Corvos Mortos","o Pregador sem Rosto"],N:[["a dona do saloon","taverneiro"],["o xerife cansado","guarda"],["o velho garimpeiro","sabio"],["o mascate de olhar esperto","mercador"]],A:["O vento seco carrega poeira e um cheiro de pólvora.","Esporas tilintam em algum lugar fora de vista.","O sol queima o horizonte em vermelho."]},
+"Saga nórdica":{L:[["Aldeia de Skarnheim","cidade"],["Salão do Hidromel","taverna"],["Floresta de Gelo","floresta"],["Fiorde Negro","mar"],["Caverna do Gigante","caverna"],["Montanha Yggdrath","montanha"]],M:[["um lobo da tempestade","lobo"],["um gigante de gelo","golem"],["um draugr de elmo partido","esqueleto"],["um dragão de neve","dragao"]],I:["Machado rúnico","Pedra de runa","Elmo de ferro","Chifre de hidromel","Amuleto de Thor"],V:["o Jarl Hrolf, o Traidor","a deusa Hel","o lobo Skoll"],N:[["a völva de olhos brancos","sabio"],["o ferreiro barbudo","mercador"],["o guerreiro veterano","guarda"],["a senhora do salão","taverneiro"]],A:["O frio morde o rosto como lâmina.","Tambores ecoam além das colinas brancas.","Auroras dançam em verde sobre a neve."]},
+"Japão feudal":{L:[["Vila de Sakuragawa","cidade"],["Casa de Chá da Lua","taverna"],["Castelo do Shogun","castelo"],["Floresta de Bambu","floresta"],["Santuário em Ruínas","ruinas"],["Monte Kurogane","montanha"]],M:[["um espírito vingativo","fantasma"],["um oni de chifres rubros","orc"],["uma serpente de escamas negras","serpente"],["uma raposa de nove caudas","lobo"]],I:["Katana antiga","Talismã de papel","Leque de ferro","Máscara de kitsune","Saco de arroz"],V:["o Shogun Takeda","o clã Kagemura","o Rei dos Oni"],N:[["o monge viajante","sabio"],["a dona da casa de chá","taverneiro"],["o samurai sem mestre","guarda"],["a mercadora de seda","mercador"]],A:["Pétalas caem em silêncio sobre o caminho.","Um sino de templo ressoa ao longe.","A lanterna de papel balança sem vento."]},
+"Pós-apocalipse":{L:[["Cidade em Ruínas","ruinas"],["Posto Esperança","taverna"],["Deserto Radioativo","deserto"],["Túneis do Metrô","caverna"],["Bunker Zero","castelo"],["Mar de Lixo","mar"]],M:[["um lobo mutante","lobo"],["uma aranha de metal e carne","aranha"],["um robô de guerra enferrujado","golem"],["uma poça de lodo radioativo","slime"]],I:["Cano com pregos","Máscara de gás","Lata de comida","Rádio velho","Kit de remendos"],V:["o Profeta de Ferro","a horda Ferrugem","a Corporação do Bunker"],N:[["o sucateiro ranzinza","mercador"],["a médica de campo","sabio"],["o vigia do posto","guarda"],["a cozinheira do posto","taverneiro"]],A:["Cinzas flutuam como neve suja.","Metal range ao longe, sob um céu cor de ferrugem.","Um rádio chia uma canção quase esquecida."]},
+"Mitologia grega":{L:[["Atenas","cidade"],["Monte Olimpo","montanha"],["Labirinto de Creta","caverna"],["Templo de Delfos","ruinas"],["Mar Egeu","mar"],["Floresta de Nemeia","floresta"]],M:[["uma hidra de três cabeças","serpente"],["um colosso de bronze","golem"],["um guerreiro de dentes de dragão","esqueleto"],["um cão de três cabeças","lobo"]],I:["Lança de bronze","Escudo polido","Fio de Ariadne","Odre de vinho","Coroa de louros"],V:["o titã Cronos","a feiticeira Circe","o deus Ares"],N:[["a oráculo velada","sabio"],["o mercador do ágora","mercador"],["o capitão hoplita","guarda"],["a princesa ateniense","nobre"]],A:["O sol dourado banha mármore e oliveiras.","Ao longe, trovões soam como risadas divinas.","O aroma de incenso sobe dos altares."]}
+};
+const PH=["Gancho","Pista","Complicação","Reviravolta","Clímax","Desfecho"],NEED=[1,2,2,1,2,1];
+const TPL=[
+["{amb} Em {lug}, {npc} surge diante de você, ofegante, e entrega um recado selado: {vil} está se movendo, e só você parece capaz de {obj}.","Um estrondo ecoa por {lug}. Quando a poeira baixa, {npc} cambaleia até você, ferido, sussurrando o nome de {vil}.","Ao amanhecer, uma mensagem anônima chega às suas mãos: um mapa de {lug2}, marcado com um símbolo ligado a {vil}. Antes que você a examine, {npc} aparece e oferece uma aliança.","{amb} Pessoas desaparecem em {lug}, e todas as pistas apontam para {vil}. {npc} pede que você investigue antes que seja tarde."],
+["Seguindo o rastro, você chega a {lug}. {amb} Entre os destroços, encontra {item} e um rascunho com o selo de {vil}.","Os moradores de {lug} só falam aos sussurros. Alguém viu {vil} por ali há três noites, acompanhado de figuras encapuzadas.","Uma pista inesperada: o que você carrega reage perto de {lug}, vibrando como se reconhecesse algo. {amb}","{amb} Em {lug}, você encontra marcas recentes e um bilhete queimado pela metade: o plano de {vil} passa por {lug2}."],
+["Você não está só. De repente, {mon} bloqueia o caminho em {lug}, e atrás de você soam passos: alguém avisou {vil}.","O chão treme. Uma emboscada! {mon} salta das sombras enquanto {nm} grita para você tomar cuidado.","Uma armadilha se fecha em {lug}. A rota de fuga desaparece e {mon} avança, atraído pelo barulho.","{amb} Algo está errado: {mon} surge onde não deveria, e por trás dele você percebe a mão de {vil}."],
+["A verdade cai como um raio: {nm} escondia um segredo ligado a {vil}. Nem tudo é o que parecia.","Entre os papéis, você descobre que {vil} não age sozinho: alguém muito próximo vem alimentando o plano.","O objeto que você carregava revela sua verdadeira natureza: é a chave para {lug2}, onde {vil} guarda o que realmente importa.","Um rosto conhecido aparece nas sombras de {lug}: o plano de {vil} é maior, mais antigo e mais pessoal do que você imaginava."],
+["Em {lug2}, {vil} finalmente se revela. {amb} {mon} avança ao lado dele como cão de guarda, e o ar vibra de tensão. Tudo se decide agora.","O confronto é inevitável. {vil} estende a mão, o lugar inteiro estremece, e só uma jogada ousada pode mudar o rumo da batalha.","{amb} O plano de {vil} chega ao auge em {lug2}. {mon} bloqueia a passagem, e {nm} olha para você esperando uma decisão."],
+["O silêncio cai. {vil} recua, derrotado ou ao menos contido, e o povo de {lug} respira de novo. {nm} sorri, exausto. Mas, ao longe, um sinal estranho arde no céu: algo maior desperta.","A poeira assenta sobre {lug2}. A ameaça de {vil} acabou por ora, e o povo celebra, mas você sente o peso de um novo chamado.","A vitória tem gosto de ferro e alívio. {nm} aperta seu braço, e então uma carta chega com um selo desconhecido: uma ameaça ainda mais antiga acaba de acordar."]
+];
+const DLG=[
+["— Ouça com atenção — diz {nm}. — Se você não agir, {vil} vai terminar o que começou.","— Eu não tenho mais a quem recorrer — murmura {nm}. — Só você pode me ajudar a {obj}.","— Você tem coragem ou só teimosia? — pergunta {nm}, quase sorrindo. — De qualquer jeito, preciso de você."],
+["— Eu não deveria contar isso — murmura {nm} — mas o plano de {vil} passa por {lug2}.","— Tem algo que não te disseram — avisa {nm}, baixando a voz. — Procure em {lug2}.","— Eu vi com meus próprios olhos! — insiste {nm}. — Eles estavam atrás de {item}."],
+["— Era uma armadilha! — grita {nm}. — Eles sabiam que viríamos!","— Não olhe para trás, corra! — berra {nm}.","— Mantenha a calma — sussurra {nm}. — Se agirmos juntos, saímos vivos."],
+["— Eu ia contar... — a voz de {nm} falha. — Mas você precisa entender por que fiz o que fiz.","— Nada disso é coincidência — diz {nm}, pálido. — {vil} sempre esteve um passo à frente.","— Agora você sabe — ecoa uma voz nas sombras. — E não há como voltar atrás."],
+["— Você chegou longe demais, pequeno herói — ecoa a voz de {vil}. — Mas o fim começa aqui.","— Eu esperei por este momento! — ruge {vil}. — Mostre do que é feito!","— Estou com você até o fim — diz {nm}, firmando os pés."],
+["— Isso foi só o começo — diz {nm}. — Há algo ainda mais antigo despertando além de {lug2}.","— Você mudou o destino desta terra — murmura {nm}. — Mas lendas nunca descansam.","— Descanse enquanto pode — sorri {nm}. — O próximo chamado já está a caminho."]
+];
+const RESL=[["Sua ação «{a}» sai pior que o planejado e o erro chama atenção demais.","O destino ri de você: «{a}» falha de forma espetacular.","Num instante de azar, «{a}» se volta contra você."],["Você consegue «{a}», mas com um custo: algo escapa do seu controle.","«{a}» funciona pela metade, com um resultado imperfeito e a tensão maior.","Você avança com «{a}», porém deixa rastros que alguém pode seguir."],["Com precisão e coragem, «{a}» dá certo.","Você domina o momento: «{a}» funciona melhor do que esperava.","Instinto e treino se alinham, e «{a}» abre um novo caminho."],["Um momento lendário! «{a}» sai perfeito, e todos percebem uma lenda nascendo.","Os deuses sorriem: «{a}» funciona de forma brilhante, com um bônus inesperado."]];
+const OG=["Atacar com tudo","Tentar conversar e negociar","Esgueirar-se em silêncio","Examinar o ambiente atrás de pistas","Usar {inv} de forma criativa","Fazer um blefe ousado","Pedir conselho a {nm}","Recuar e montar uma armadilha","Usar sua habilidade: {skill}","Seguir o rastro até {lug2}","Procurar uma saída improvável","Inspirar os aliados com um discurso","Arriscar uma jogada imprudente","Interrogar {nm} sobre {vil}","Descansar e planejar o próximo passo"];
+const OP=[["Aceitar a missão de {nm} sem hesitar","Exigir recompensa antes de ajudar","Seguir {nm} em segredo, desconfiado","Pedir mais detalhes sobre {vil}"],["Interrogar os moradores de {lug}","Seguir a pista até {lug2}","Invadir {lug} durante a noite","Estudar o selo de {vil}"],["Enfrentar {mon} de frente","Usar o terreno contra {mon}","Fugir pelo caminho mais estreito","Tentar acalmar {mon}"],["Confrontar {nm} agora","Fingir que não sabe de nada","Seguir a nova pista até {lug2}","Revelar a verdade aos aliados"],["Atacar {vil} no ponto fraco","Sabotar o plano de {vil} por dentro","Sacrificar algo valioso por uma chance","Oferecer um acordo traiçoeiro a {vil}"],["Explorar {lug2} depois da vitória","Investigar o novo sinal no céu","Ouvir os rumores com os aliados","Partir sozinho rumo ao desconhecido"]];
+const TITS=["Protetor dos Fracos","Quebra-Pactos","Andarilho Destemido","Voz da Coragem","Faísca da Lenda","Tecelão de Destinos","Caçador de Segredos","Terror dos Vilões"];
+function dOf(){const po=S.po;return{nm:po.nm,npc:po.npc,vil:po.vil,lug:po.lug[0],lug2:po.lug2[0],mon:po.mon[0],item:po.item,obj:po.obj,amb:R((WD[S.world]||WD["Fantasia medieval"]).A),inv:R(S.inv&&S.inv.length?S.inv:["suas habilidades"]),skill:S.skill||"seu talento"}}
+function newArc(){
+  const w=WD[S.world]||WD["Fantasia medieval"],n=((S.po&&S.po.n)||0)+1,nr=R(w.N),nm=R(NM),l1=R(w.L);let l2=R(w.L);for(let i=0;i<6&&l2==l1;i++)l2=R(w.L);
+  const vil=R(w.V),item=R(w.I);
+  S.po={n,f:0,k:0,vil,lug:l1,lug2:l2,nm,nk:nr[1],npc:nm+", "+nr[0],mon:R(w.M),item,pistas:0};
+  S.po.obj=R(["descobrir os planos de "+vil,"recuperar "+item+" roubado por agentes de "+vil,"proteger "+nm+" de "+vil,"encontrar a origem dos rumores em "+l1[0],"impedir o ritual de "+vil]);
+}
+function genOpts(f){
+  if(!S.po)newArc();const d=dOf(),used=S.used||[],pf=OP[Math.min(5,f||0)];
+  const mk=a=>a.map(t=>fill(t,d)).filter((x,i,z)=>z.indexOf(x)==i);
+  const A=mk(pf).filter(x=>!used.includes(x)),B=mk(OG).filter(x=>!used.includes(x));
+  const sh=a=>a.slice().sort(()=>Math.random()-.5);
+  let r=sh(A).slice(0,2).concat(sh(B).slice(0,4));r=r.filter((x,i,z)=>z.indexOf(x)==i).slice(0,4);
+  while(r.length<4)r.push(R(mk(OG)));return r;
+}
+function rollOf(text){
+  const m=/d20\s*=\s*(\d+)/i.exec(text),d=m?Math.max(1,Math.min(20,+m[1])):RI(1,20),t=String(text||"");let at=null;
+  if(/atac|golpe|lut|bat[ae]|mat[ae]|ferir|enfrent|espada|flecha|derrub|destru|soco|chut/i.test(t))at="FOR";
+  else if(/magia|feiti|habilidade|invoc|poder|runa/i.test(t))at="INT";
+  else if(/furtiv|esgueir|escond|silêncio|sorrat|invad|fug|recu|armadilha/i.test(t))at="DES";
+  else if(/fal|convers|convenc|negoc|persuad|blef|pedir|pergunt|interrog|oferec|acord|acalm|inspir|discurso/i.test(t))at="CAR";
+  else if(/invest|examin|procur|ler|estud|seguir|pista|rastro|analis|decifr|explor/i.test(t))at="SAB";
+  const b=at&&S.at&&S.at[at]?Math.floor((S.at[at]-10)/2):0;
+  let tier=d==20?3:d==1?0:(d+b<=5?0:d+b<=10?1:2);return{d,tier};
+}
+function school(){
+  const t=Math.min(S.t||0,4);S.sch=S.sch||{am:R(["Kenji","Luna","Theo","Mia","Caio","Aiko"]),ri:R(["Ravi","Dante","Valentina","Igor","Sakura"]),pf:R(["Professora Elara","Professora Veyra","Professora Hanako"])};
+  const {am,ri,pf}=S.sch,h=S.hero,
+  T=[
+   {n:`O sol da manhã atravessa as janelas da escola no último dia do ensino fundamental. Entre risadas e caixas de lembrancinhas, ${am}, seu melhor amigo, corre até você com dois panfletos de clubes escolares.\n— Hoje é o último dia, ${h}! — diz ${am}. — Escolha um clube antes da formatura, dizem que dá sorte!\nNo corredor, ${ri} observa de braços cruzados, com um sorriso torto.`,l:"Pátio da escola",o:["Entrar no Clube de Esgrima","Entrar no Clube de Ciências Ocultas","Entrar no Clube de Teatro e Música","Ignorar os clubes e explorar a escola"],m:[{n:"Escolher um clube",r:"Escolha um clube escolar antes da formatura"}]},
+   {n:`No intervalo, ${ri} bloqueia seu caminho e desafia você para uma disputa amistosa antes da formatura. Os alunos formam uma roda barulhenta.\n— Se você é tão bom assim, prove! — provoca ${ri}.\n${am} cochicha ao seu lado: — Aceita! Ou não... você decide.`,l:"Quadra da escola",o:["Aceitar o desafio de "+ri,"Propor uma disputa de talentos, sem briga","Recusar com um sorriso e seguir em frente","Pedir uma estratégia a "+am],m:[{n:"Resolver a rivalidade",r:"Faça as pazes ou vença "+ri+" com estilo"}]},
+   {n:`Na biblioteca, ${pf} chama você com um gesto discreto e entrega um pequeno cristal que pulsa com luz tênue.\n— Guarde isto — sussurra ${pf}. — Quando o sino da formatura tocar, algo vai te chamar. Conheça a si mesmo, ${h}.\nPor um instante, uma janela translúcida pisca diante dos seus olhos: [SISTEMA: aguardando despertar].`,l:"Biblioteca",o:["Perguntar o que é o cristal","Guardar o cristal e fingir normalidade","Contar tudo a "+am,"Examinar o cristal com cuidado"],m:[{n:"O segredo do cristal",r:"Descubra o que o cristal quer de você"}]},
+   {n:`No ensaio da cerimônia, o diretor repassa os nomes no palco quando o chão treme de leve e as luzes piscam. ${ri} perde o equilíbrio e você o segura.\n— Também sentiu isso, né? — murmura ${ri}, sem a pose de sempre.\n${am} aperta sua mão: — Seja o que for, estamos juntos.`,l:"Ginásio",o:["Investigar o tremor com "+ri,"Procurar "+pf,"Acalmar os colegas assustados","Prometer a "+am+" que enfrentarão tudo juntos"],m:[{n:"Preparar-se para o desconhecido",r:"Reúna seus amigos antes da cerimônia"}]},
+   {n:`A cerimônia de formatura começa. O diretor chama seu nome, o cristal arde no bolso, o ginásio se enche de luz dourada e uma voz ecoa: [SISTEMA: despertar iniciado. Escolha o seu caminho.]\n— Seja o que for, estamos juntos! — grita ${am}, enquanto o mundo inteiro se dissolve em brilho.`,l:"Cerimônia de formatura",o:["Subir ao palco com coragem","Segurar a mão de "+am+" e de "+ri,"Fechar os olhos e confiar","Encarar a luz de frente"],m:[{n:"Despertar",r:"Escolha sua classe e atravesse o portal"}]}
+  ][t];
+  return{narrativa:T.n,cena:"escola",criatura:"",npc:t==2?"sabio":t==0?"aldeao":"",opcoes:T.o,hp:S.hp,local:T.l,inventario:S.inv,xp:6,missoes:T.m,feitas:t>0?[S.mis&&S.mis[0]?S.mis[0].n:""].filter(Boolean):[],titulo:t==4?"Formando da Turma Lendária":"",baixas:0,cia:[{n:am,a:30+t*12,d:"melhor amigo(a)"},{n:ri,a:8+t*10,d:"rival"}],memoria:`Último dia de escola. ${S.hero} tem ${am} como melhor amigo(a), ${ri} como rival e recebeu um cristal de ${pf}. A formatura se aproxima.`,arco:"Formatura",fios:["O cristal de "+pf,"O tremor misterioso"]};
+}
+function offline(text){
+  if(S.story&&S.fase=="escola")return school();
+  const first=/^Comece a /.test(text),arr0=/^Comece a nova fase/.test(text);
+  if(!S.po||S.po.f>5)newArc();
+  const po=S.po,f=po.f,d=dOf(),act=String(text||"").replace(/\s*\(🎲[^)]*\)\s*$/,"").replace(/^O Mestre decide:.*/,"o rumo que o destino escolher").trim(),cs=(S.inv||[]).slice();
+  let hp=S.hp,xp=RI(4,9),res="",ex="";
+  if(!first){
+    const r=rollOf(text);res=fill(R(RESL[r.tier]),{a:act.slice(0,70)});
+    if(r.tier==0){const l=RI(1,3);hp-=l;res+=" Você perde "+l+" pontos de vida.";xp=3}
+    else if(r.tier==1){const l=RI(0,1);if(l){hp-=l;res+=" Você sofre "+l+" de dano."}xp=RI(4,7)}
+    else{xp=r.tier==3?RI(18,24):RI(9,15);hp+=f==5?RI(2,4):RI(0,2);if(po.f==1&&!cs.includes(po.item)){cs.push(po.item);ex="Você encontra: "+po.item+"."}
+      if(r.tier==3){const it=R((WD[S.world]||WD["Fantasia medieval"]).I);if(!cs.includes(it)){cs.push(it);ex+=(ex?" ":"")+"Bônus lendário: "+it+"."}}}
+    if((f==2||f==4)&&r.tier<2)hp-=RI(0,2);
+    if(f>=1&&r.tier>=2)po.pistas++;
+  }
+  const arr=arr0?"O mundo gira em luz e som, e você aterrissa em solo desconhecido. Colegas aparecem ao seu redor, confusos, enquanto uma janela translúcida pisca diante de você: [SISTEMA: bem-vindo, jogador].":"";
+  let p1=[arr,res,ex].filter(Boolean).join(" "),p2=fill(R(TPL[f]),d),p3=fill(R(DLG[f]),d);
+  const nar=[p1,p2,p3].filter(Boolean).join("\n");
+  const sc=(f==3||f==4)?po.lug2[1]:po.lug[1],loc=(f==3||f==4)?po.lug2[0]:po.lug[0];
+  const mis=f==5?[]:[{n:"Arco "+po.n+": "+po.vil.replace(/^(o|a) /,""),r:"Cumpra: "+po.obj},{n:"Proteger "+po.nm,r:"Mantenha "+po.nm+" a salvo até o fim do arco"}];
+  const feitas=f==5?["Arco "+po.n+": "+po.vil.replace(/^(o|a) /,"")]:[];
+  let tit="";if(f==5){const free=TITS.filter(x=>!(S.tit||[]).includes(x));tit=free.length?R(free):""}
+  const ci=(S.cia||[]).filter(c=>c.n!=po.nm);const old=(S.cia||[]).find(c=>c.n==po.nm);
+  ci.push({n:po.nm,a:Math.min(100,(old?old.a:30)+(first?0:6)),d:po.npc.split(", ")[1]||"aliado"});
+  const j={narrativa:nar,cena:sc,criatura:(f==2||f==4)?po.mon[1]:"",npc:(f==2||f==4)?"":po.nk,opcoes:null,hp:Math.max(0,Math.min(20,hp)),local:loc,inventario:cs.slice(-14),xp,missoes:mis,feitas,titulo:tit,baixas:0,cia:ci.slice(-6),
+    memoria:`Arco ${po.n} (${PH[f]}): ${po.obj}. Antagonista: ${po.vil}. Aliado: ${po.nm}. Local: ${loc}. Pistas: ${po.pistas}.`,arco:"Arco "+po.n+": "+po.vil.replace(/^(o|a) /,""),
+    fios:["Qual o verdadeiro plano de "+po.vil+"?","O segredo de "+po.nm,f>=4?"O sinal que arde no céu":"O que há em "+po.lug2[0]+"?"]};
+  po.k++;if(po.k>=NEED[f]){po.f++;po.k=0}
+  j.opcoes=genOpts(po.f>5?0:po.f);
+  return j;
+}
+//OFFLINE-END
+
+/* ===== TURNO ===== */
+async function turn(text){
+  if(busy)return;busy=true;if(TTS)TTS.cancel();$("act").value="";$("ch").innerHTML="";
+  const first=/^Comece a /.test(text);
+  if(!first){S.log.push({role:"user",text});add("user",text)}
+  const p=add("ai","");p.classList.add("dots");
+  let j=null,er="";
+  try{j=await narrate(text,first)}catch(e){er=friendly(e)}
+  if(!j){try{j=norm(offline(text))}catch(e){j=norm({narrativa:"Um silêncio pesa sobre o lugar. Você respira fundo e percebe que a aventura está longe do fim."})}}
+  try{
+    p.classList.remove("dots");p.textContent=j.narrativa;
+    S.log.push({role:"ai",text:j.narrativa,scene:j.cena,criatura:j.criatura,npc:j.npc});
+    if(CR[j.criatura]&&!(S.bes||[]).includes(j.criatura))S.bes=(S.bes||[]).concat(j.criatura);
+    S.nota="";
+    S.ch=j.opcoes;S.used=(S.used||[]).concat(j.opcoes).slice(-14);
+    S.hp=j.hp;S.loc=j.local;S.inv=j.inventario;S.mem=j.memoria;if(j.arco)S.arco=j.arco;if(j.fios&&j.fios.length)S.fios=j.fios;
+    if(!S.places.includes(S.loc))S.places.push(S.loc);if(S.places.length>40)S.places=S.places.slice(-40);
+    const ol=S.lv||1,nfe=j.feitas.length,gx=j.xp+15*nfe;
+    S.t=(S.t||0)+1;if(S.army&&j.baixas>0)S.army=Math.max(0,S.army-Math.floor(j.baixas));
+    S.xp=(S.xp||0)+gx;S.mis=j.missoes;if(j.titulo&&!(S.tit||[]).includes(j.titulo))S.tit=(S.tit||[]).concat(j.titulo);if(j.cia&&j.cia.length)S.cia=j.cia;
+    const nl=1+Math.floor(S.xp/40);let up="";
+    if(nl>ol){S.pts=(S.pts||0)+2*(nl-ol);S.lv=nl;up="✦ [SISTEMA] Nível "+nl+"! +"+2*(nl-ol)+" pontos de atributo (veja o Diário)."+(S.army?" ☠ +"+3*(nl-ol)+" mortos-vivos se erguem!":"");if(S.army)S.army+=3*(nl-ol)}
+    if(nfe)up+=(up?"\n":"")+"✔ Missão concluída: "+j.feitas.join(", ")+" (+"+15*nfe+" XP)";
+    if(j.titulo)up+=(up?"\n":"")+"🏅 Novo título: "+j.titulo;
+    if(S.hp<=0){S.hp=8;S.nota="O herói caiu a 0 HP no turno anterior e foi trazido de volta com 8 HP; narre a consequência da queda e siga em frente.";up+=(up?"\n":"")+"☠ Você caiu... mas lendas não terminam assim: a história continua (HP 8)."}
+    if(er)up+=(up?"\n":"")+"⚠ IA indisponível ("+er+"). O Mestre reserva assumiu para a história não parar. Toque em ⚙ para ajustar.";
+    if(up)S.log.push({role:"ai",text:up,sys:1});
+    if(S.log.length>40)S.log=S.log.slice(-40);
+    save();render();if(V.on)try{say(j.narrativa,lastNar())}catch(e){}if(S.story&&S.fase=="escola"&&S.t>=5)gradPick();
+  }catch(e){
+    p.classList.remove("dots");p.textContent="Um redemoinho de névoa cobre a cena, mas a lenda continua. Toque em uma opção ou escreva sua ação.";S.ch=genOpts(S.po?S.po.f:0);try{render()}catch(_){}
+  }
+  busy=false;
+}
+
+$("dice").onclick=()=>{const v=1+Math.floor(Math.random()*20);turn(($("act").value.trim()||"Tento algo ousado")+" (🎲 d20 = "+v+")")};$("send").onclick=()=>{const v=$("act").value.trim();if(v)turn(v)};
+$("act").onkeydown=e=>{if(e.key==="Enter")$("send").click()};
+$("bExit").onclick=()=>{if(TTS)TTS.cancel();show("s1")};
+$("bBack").onclick=()=>show("s2");
+$("bMem").onclick=()=>{
+  sheet();sysui();armyui();$("map").innerHTML="";S.places.forEach((p,i)=>{if(i){const u=document.createElement("u");u.textContent="→";$("map").appendChild(u)}const e=document.createElement("i");e.textContent=p;$("map").appendChild(e)});
+  $("inv").innerHTML="";(S.inv.length?S.inv:["Vazio"]).forEach(x=>{const l=document.createElement("li");l.textContent=x;$("inv").appendChild(l)});
+  $("mem").textContent=S.mem||"A história ainda vai começar.";show("s3");
+};
+const RACES=[["Humano","Adaptável e ambicioso",{FOR:1,DES:1,CAR:1},"#e0b48a"],["Elfo","Ágil, longevo, sentidos aguçados",{DES:2,SAB:1},"#f1d5b0"],["Anão","Resistente, teimoso, mestre da forja",{CON:2,FOR:1},"#d0a07a"],["Meio-orc","Brutal e implacável",{FOR:2,CON:1},"#8ea86a"],["Halfling","Sortudo e furtivo",{DES:2,CAR:1},"#e8c49a"],["Tiefling","Sangue infernal, olhar magnético",{CAR:2,INT:1},"#b86a7a"]];
+const BGS=[["Soldado","Anos de guerra",{FOR:1,CON:1}],["Erudito","Rato de biblioteca",{INT:2}],["Criminoso","Vida nas sombras",{DES:1,CAR:1}],["Nobre caído","Perdeu título e fortuna",{CAR:2}],["Órfão das ruas","Sobreviveu sozinho",{SAB:1,CON:1}],["Acólito","Serviu um templo",{SAB:2}]];
+const ATS=["FOR","DES","CON","INT","SAB","CAR"];
+const DIL=[["Um ferido implora ajuda enquanto inimigos se aproximam. Você...",[["Carrega o ferido, custe o que custar","luz"],["Segue o plano e aceita as perdas","ordem"],["Usa o ferido como isca","sombra"]]],["Você encontra um artefato proibido e poderoso. Você...",[["Destrói antes que corrompa alguém","luz"],["Estuda em segredo: poder é poder","sombra"],["Vende ao melhor lance e some","caos"]]],["Um rei injusto oferece ouro por sua lealdade. Você...",[["Aceita e serve com disciplina","ordem"],["Recusa e incita o povo à revolta","caos"],["Aceita... e planeja a queda dele","sombra"]]]];
+const CL=[{n:"Guerreiro",d:"Mestre das armas na linha de frente",s:"Golpe Poderoso",i:["Espada longa","Escudo","Cota de malha"],c:"#8a8f99",w:"espada"},{n:"Mago",d:"Estudioso das artes arcanas",s:"Bola de Fogo",i:["Cajado","Grimório","Poção de mana"],c:"#5a6fd0",w:"cajado"},{n:"Ladino",d:"Furtivo, ágil e letal",s:"Ataque Furtivo",i:["Adagas","Gazuas","Capa escura"],c:"#4a4a55",w:"adaga"},{n:"Bardo",d:"Voz que move multidões e destinos",s:"Canção Inspiradora",i:["Alaúde","Adaga","Roupas finas"],c:"#c0703a",w:"alaude"},{n:"Sacerdote",d:"Servo da luz: cura, abençoa e expulsa o mal",s:"Mão Curativa",i:["Maça","Símbolo sagrado","Poções de cura"],c:"#e8e0c0",w:"maca"},{n:"Patrulheiro",d:"Rastreador das terras selvagens",s:"Tiro Certeiro",i:["Arco longo","Flechas","Mapa da região"],c:"#4a7a3a",w:"arco"},
+{n:"Paladino Juramentado",h:1,d:"Guerreiro sagrado preso a um juramento inquebrável",t:"Força e carisma, guiados pela luz.",s:"Julgamento Divino",i:["Espada abençoada","Armadura polida","Voto selado"],c:"#f0d878",w:"espada",f:c=>c.at.FOR>=13&&c.at.CAR>=13&&c.soul.luz>=2},{n:"Necromante",d:"Comanda os mortos: ergue um exército que cresce a cada nível",s:"Erguer Morto",i:["Cajado de osso","Livro negro","Crânio sussurrante"],c:"#5a3a6a",w:"cajado",army:1},{n:"Assassino das Sombras",h:1,d:"Morte silenciosa a um passo de distância",t:"Agilidade extrema e um coração sombrio.",s:"Golpe Mortal",i:["Lâminas gêmeas","Veneno","Manto de sombras"],c:"#22222c",w:"adaga",f:c=>c.at.DES>=14&&c.soul.sombra>=2},{n:"Berserker",h:1,d:"Fúria cega que ignora a dor",t:"Fúria e vigor... o caos pede passagem.",s:"Fúria Selvagem",i:["Machado enorme","Peles de urso","Chifre de guerra"],c:"#8a3a2a",w:"espada",f:c=>c.at.FOR>=14&&c.at.CON>=13&&c.soul.caos>=2},{n:"Arquimago Rúnico",h:1,d:"Tece magia em runas de poder absoluto",t:"Um erudito disciplinado, mestre da ordem arcana.",s:"Selo Rúnico",i:["Cajado rúnico","Tomo antigo","Pedras de runa"],c:"#3a8ad0",w:"cajado",f:c=>c.at.INT>=14&&c.at.SAB>=12&&c.soul.ordem>=2&&c.bg=="Erudito"},{n:"Druida Selvagem",h:1,d:"Muda de forma e fala com a natureza",t:"Sabedoria selvagem, ligada à natureza ou às ruas.",s:"Forma Animal",i:["Cajado de carvalho","Ervas","Amuleto de pena"],c:"#3a9a5a",w:"cajado",f:c=>c.at.SAB>=14&&(c.race=="Elfo"||c.bg=="Órfão das ruas")&&c.soul.luz+c.soul.caos>=2},{n:"Bruxo do Pacto",h:1,d:"Poder emprestado por um patrono sombrio",t:"Sangue infernal e um pacto sussurrado.",s:"Rajada Sombria",i:["Foco do pacto","Grimório proibido","Anel estranho"],c:"#8a1a4a",w:"cajado",f:c=>c.race=="Tiefling"&&c.at.CAR>=13&&c.soul.sombra>=1},{n:"Cavaleiro Sombrio",h:1,d:"Armadura negra e juramento a poderes proibidos",t:"Um soldado que jurou lealdade às trevas.",s:"Golpe Vampírico",i:["Espada negra","Armadura espinhosa","Elmo com chifres"],c:"#3a2a3a",w:"espada",f:c=>c.at.FOR>=13&&c.soul.sombra>=2&&(c.bg=="Soldado"||c.bg=="Nobre caído")},{n:"Inquisidor",h:1,d:"Caçador de heresias, entre a fé e a lei",t:"Fé e disciplina, sem piedade com o mal.",s:"Marca da Heresia",i:["Besta sagrada","Livro de sentenças","Água benta"],c:"#b0b0c0",w:"arco",f:c=>c.at.SAB>=13&&c.at.FOR>=11&&c.soul.ordem>=1&&c.soul.luz>=1},{n:"Santo Redentor",h:1,d:"Avatar da misericórdia, abençoado por milagres",t:"Um coração puro e sábio, de luz absoluta.",s:"Milagre Divino",i:["Cajado sagrado","Vestes radiantes","Relíquia de santo"],c:"#fff4c0",w:"maca",f:c=>c.at.SAB>=14&&c.at.CAR>=13&&c.soul.luz>=3},{n:"Ceifador de Almas",h:1,army:1,d:"Colhe almas e comanda legiões da própria morte",t:"Intelecto e sabedoria devotados à morte.",s:"Colheita Sombria",i:["Foice espectral","Manto de névoa","Frasco de almas"],c:"#1a1a2a",w:"cajado",f:c=>c.at.INT>=13&&c.at.SAB>=12&&c.soul.sombra>=3},
+{n:"Lenda Esquecida",h:1,d:"Um destino impossível, reservado a poucos",t:"Só os verdadeiramente equilibrados a encontram.",s:"Destino Entrelaçado",i:["Relíquia sem nome","Capa de estrelas","Bússola do destino"],c:"#e8d8ff",w:"espada",f:c=>ATS.every(a=>c.at[a]>=11)&&c.soul.luz>=1&&c.soul.sombra>=1}];
+const WP={espada:'<rect x="13" y="-34" width="2.5" height="30" fill="#ccd"/><rect x="10" y="-12" width="9" height="2" fill="#a80"/>',cajado:'<rect x="14" y="-50" width="2" height="52" fill="#7a5a30"/><circle cx="15" cy="-52" r="4" fill="#7cf"/>',adaga:'<polygon points="13,-14 16,-14 14.5,-28" fill="#ccd"/>',alaude:'<ellipse cx="14" cy="-12" rx="6" ry="8" fill="#a0602a"/><rect x="13" y="-34" width="2" height="16" fill="#7a4a1a"/>',maca:'<rect x="14" y="-34" width="2" height="34" fill="#7a5a30"/><circle cx="15" cy="-36" r="5" fill="#aaa"/>',arco:'<path d="M14 -42 Q28 -20 14 2" stroke="#7a5a30" stroke-width="2" fill="none"/>'};
+function fig(x,y,k,sk,cl,w,rc,ex){let g=`<g transform="translate(${x} ${y}) scale(${k})"><path d="M-10 0 L-7 -32 H7 L10 0Z" fill="${cl}"/><circle cy="-40" r="8" fill="${sk}"/>`;if(rc=="Elfo")g+=`<polygon points="-8,-42 -16,-48 -7,-38" fill="${sk}"/><polygon points="8,-42 16,-48 7,-38" fill="${sk}"/>`;if(rc=="Tiefling")g+='<polygon points="-6,-46 -9,-56 -2,-47" fill="#400"/><polygon points="6,-46 9,-56 2,-47" fill="#400"/>';if(rc=="Meio-orc")g+='<polygon points="-4,-36 -3,-31 -1,-36" fill="#fff"/><polygon points="4,-36 3,-31 1,-36" fill="#fff"/>';if(rc=="Anão")g+='<path d="M-7 -38 Q0 -22 7 -38Z" fill="#6a3a1a"/>';if(w=="cajado")g+=`<polygon points="-10,-47 0,-68 10,-47" fill="${cl}"/>`;return g+(WP[w]||"")+(ex||"")+"</g>"}
+const CR={lobo:'<ellipse cy="-14" rx="18" ry="9" fill="#555"/><circle cx="18" cy="-20" r="7" fill="#555"/><polygon points="15,-26 17,-33 21,-26" fill="#555"/><path d="M-18 -16 Q-30 -26 -28 -10" stroke="#555" stroke-width="4" fill="none"/><circle cx="21" cy="-21" r="1.5" fill="#f33"/><rect x="-12" y="-8" width="4" height="8" fill="#444"/><rect x="8" y="-8" width="4" height="8" fill="#444"/>',goblin:'<path d="M-8 0 L-6 -22 H6 L8 0Z" fill="#4a7a2a"/><circle cy="-28" r="7" fill="#5a9a3a"/><polygon points="-6,-30 -17,-34 -6,-25" fill="#5a9a3a"/><polygon points="6,-30 17,-34 6,-25" fill="#5a9a3a"/><circle cx="-2.5" cy="-29" r="1.3" fill="#ff0"/><circle cx="2.5" cy="-29" r="1.3" fill="#ff0"/><rect x="10" y="-30" width="2" height="22" fill="#999"/>',esqueleto:'<circle cy="-40" r="8" fill="#e8e4d0"/><rect x="-1" y="-32" width="2" height="20" fill="#e8e4d0"/><path d="M-8 -28H8M-7 -23H7M-6 -18H6M-5 -12L-7 0M5 -12L7 0" stroke="#e8e4d0" stroke-width="2"/><circle cx="-3" cy="-41" r="2" fill="#000"/><circle cx="3" cy="-41" r="2" fill="#000"/>',dragao:'<ellipse cy="-30" rx="38" ry="20" fill="#7a1a1a"/><polygon points="-10,-44 -40,-85 10,-50" fill="#5a1010"/><polygon points="10,-44 40,-80 20,-46" fill="#5a1010"/><path d="M34 -36 Q58 -50 60 -66 L48 -62 Q44 -50 30 -44Z" fill="#7a1a1a"/><circle cx="55" cy="-62" r="2" fill="#fd0"/><path d="M-36 -26 Q-60 -20 -62 -4" stroke="#7a1a1a" stroke-width="8" fill="none"/><rect x="-14" y="-12" width="8" height="12" fill="#5a1010"/><rect x="10" y="-12" width="8" height="12" fill="#5a1010"/>',aranha:'<circle cy="-16" r="10" fill="#222"/><circle cx="11" cy="-18" r="6" fill="#222"/><path d="M-6 -16L-24 -30L-30 0M-8 -12L-28 -14L-34 0M6 -16L22 -30L28 0M8 -12L26 -14L32 0" stroke="#222" stroke-width="2" fill="none"/><circle cx="13" cy="-20" r="1.3" fill="#f22"/>',orc:'<path d="M-12 0L-9 -34H9L12 0Z" fill="#3a5a2a"/><circle cy="-42" r="10" fill="#5a8a3a"/><polygon points="-5,-36 -4,-30 -1,-36" fill="#fff"/><polygon points="5,-36 4,-30 1,-36" fill="#fff"/><rect x="14" y="-50" width="4" height="40" fill="#654"/><polygon points="12,-50 20,-50 16,-62" fill="#999"/><circle cx="-3.5" cy="-44" r="1.5" fill="#f33"/><circle cx="3.5" cy="-44" r="1.5" fill="#f33"/>',fantasma:'<path d="M-14 0 Q-16 -40 0 -46 Q16 -40 14 0 L8 -6 L2 0 L-4 -6Z" fill="#dfe8ff" opacity=".7"/><circle cx="-5" cy="-32" r="3" fill="#124"/><circle cx="5" cy="-32" r="3" fill="#124"/>',golem:'<rect x="-14" y="-30" width="28" height="30" fill="#6a6a70"/><rect x="-10" y="-46" width="20" height="16" fill="#7a7a80"/><rect x="-24" y="-30" width="10" height="24" fill="#5a5a60"/><rect x="14" y="-30" width="10" height="24" fill="#5a5a60"/><rect x="-6" y="-41" width="4" height="3" fill="#6ff"/><rect x="2" y="-41" width="4" height="3" fill="#6ff"/>',serpente:'<path d="M-30 0 Q-20 -22 -8 -8 T16 -10 Q28 -14 24 -30" stroke="#3a7a3a" stroke-width="7" fill="none"/><circle cx="24" cy="-32" r="6" fill="#4a9a4a"/><circle cx="26" cy="-33" r="1.3" fill="#ff0"/>',slime:'<path d="M-20 0 Q-22 -26 0 -28 Q22 -26 20 0Z" fill="#4ad07a" opacity=".85"/><circle cx="-6" cy="-14" r="2.2" fill="#052"/><circle cx="6" cy="-14" r="2.2" fill="#052"/>'};
+const NP={mercador:["#7a5a2a",'<rect x="-16" y="-24" width="10" height="12" fill="#a07a3a"/>'],sabio:["#4a4aa0",'<polygon points="-10,-47 0,-68 10,-47" fill="#4a4aa0"/><path d="M-6 -36Q0 -20 6 -36Z" fill="#eee"/>'],guarda:["#777",'<path d="M-8 -42 A8 8 0 0 1 8 -42Z" fill="#999"/><rect x="14" y="-60" width="2" height="60" fill="#654"/><polygon points="12,-60 18,-60 15,-70" fill="#ccc"/>'],aldeao:["#8a6a4a",""],nobre:["#a0204a",'<polygon points="-6,-47 -6,-54 -3,-50 0,-55 3,-50 6,-54 6,-47" fill="#fc3"/>'],taverneiro:["#6a3a2a",'<rect x="-6" y="-24" width="12" height="22" fill="#eee"/>']};
+function extras(m){let s="";if(S.army)for(let i=0;i<Math.min(5,S.army);i++)s+=`<g transform="translate(${105+i*26} ${172-(i%2)*4}) scale(.9)">${CR.esqueleto}</g>`;if(S.look)s+=fig(60,172,1.7,S.look.sk,S.look.cl,S.look.w,S.race,"");let x=330;if(CR[m.criatura]){s+=`<g transform="translate(${x} 172) scale(${m.criatura=="dragao"?1.2:1.6})">${CR[m.criatura]}</g>`;x=215}if(NP[m.npc])s+=fig(x,172,1.7,"#e0b48a",NP[m.npc][0],"",null,NP[m.npc][1]);return s}
+function sheet(){const e=$("sheet");e.innerHTML="";if(S.look)e.innerHTML=`<svg viewBox="-40 -80 80 90" width="100" height="112" style="float:left;margin-right:12px;background:#101211;border-radius:8px;border:1px solid #e8c46a">${fig(0,0,1,S.look.sk,S.look.cl,S.look.w,S.race,"")}</svg>`;[S.hero+" — "+(S.race||"")+" "+S.cls+(S.bg?" ("+S.bg+")":""),S.at?ATS.map(a=>a+" "+S.at[a]).join(" · "):"","Habilidade: "+(S.skill||"—"),S.soul?"Alma: "+Object.entries(S.soul).filter(x=>x[1]).map(x=>x[0]+" "+x[1]).join(", "):""].forEach(t=>{if(!t)return;const p=document.createElement("p");p.textContent=t;e.appendChild(p)});const b=$("bes");b.innerHTML="";(S.bes||[]).forEach(n=>{const d=document.createElement("div");d.innerHTML=`<svg viewBox="-70 -90 140 100" width="80" height="60">${CR[n]}</svg>`;const l=document.createElement("small");l.textContent=n;d.append(l);b.appendChild(d)});if(!(S.bes||[]).length)b.textContent="Nenhuma criatura encontrada ainda."}
+let W,ST=0;
+function wiz(){W={race:0,bg:0,pts:15,at:{FOR:8,DES:8,CON:8,INT:8,SAB:8,CAR:8},d:[null,null,null],cl:null};ST=0;show("s4");wz()}
+function fin(){if(W.fx)return {...W.fx};const a={...W.at};[RACES[W.race][2],BGS[W.bg][2]].forEach(b=>{for(const k in b)a[k]+=b[k]});return a}
+function soulOf(){if(W.fs)return W.fs;const s={luz:0,sombra:0,caos:0,ordem:0};W.d.forEach((v,i)=>{if(v!=null)s[DIL[i][1][v][1]]++});return s}
+const bt=b=>Object.entries(b).map(([k,v])=>"+"+v+" "+k).join(" ");
+function H(t,d){const h=document.createElement("div");h.className="panel";const a=document.createElement("h2");a.textContent=t;const b=document.createElement("p");b.textContent=d;h.append(a,b);$("wz").appendChild(h)}
+function card(t,d,sel,fn,cls){const b=document.createElement("button");b.className="opt"+(sel?" sel":"")+(cls?" "+cls:"");const x=document.createElement("b"),y=document.createElement("small");x.textContent=t;y.textContent=d;b.append(x,y);if(fn)b.onclick=fn;return b}
+function grid(){const g=document.createElement("div");g.className="opts";$("wz").appendChild(g);return g}
+function wz(){$("wz").innerHTML="";$("wt").textContent=W.grad?"🎓 Formatura":"Criação · passo "+(ST+1)+"/"+(mode?4:5);$("wb").style.visibility=$("wx").style.visibility=W.grad?"hidden":"visible";const R=RACES[W.race],cx={at:fin(),race:R[0],bg:BGS[W.bg][0],soul:soulOf()};let c=CL.find(x=>x.n==W.cl);if(c&&c.h&&!c.f(cx)){W.cl=null;c=null}
+$("wp").innerHTML=`<svg viewBox="-40 -80 80 90" width="90" height="100">${fig(0,0,1,R[3],c?c.c:"#6a6a70",c?c.w:"",R[0],"")}</svg>`;$("wn").textContent=ST==(mode&&!W.grad?3:4)?(W.grad?"Escolher esta classe":mode?"Começar história":"Começar aventura"):"Avançar";
+if(ST==0){H("Origem","Seu povo define seus talentos naturais.");const g=grid();RACES.forEach((r,i)=>g.appendChild(card(r[0],r[1]+" · "+bt(r[2]),W.race==i,()=>{W.race=i;wz()})))}
+if(ST==1){H("Passado","O que você era antes da lenda?");const g=grid();BGS.forEach((r,i)=>g.appendChild(card(r[0],r[1]+" · "+bt(r[2]),W.bg==i,()=>{W.bg=i;wz()})))}
+if(ST==2){H("Atributos","Pontos restantes: "+W.pts+" (base máx. 15). Bônus de origem e passado já estão somados.");ATS.forEach(a=>{const r=document.createElement("div");r.className="row";const s=document.createElement("span");s.textContent=a+"  "+cx.at[a];const m=document.createElement("button"),p=document.createElement("button");m.textContent="−";p.textContent="+";m.onclick=()=>{if(W.at[a]>8){W.at[a]--;W.pts++;wz()}};p.onclick=()=>{if(W.at[a]<15&&W.pts>0){W.at[a]++;W.pts--;wz()}};r.append(s,m,p);$("wz").appendChild(r)})}
+if(ST==3){H("Temperamento","Suas escolhas moldam sua alma. Há destinos que só se revelam a quem age de certo modo.");DIL.forEach((q,i)=>{const p=document.createElement("p");p.textContent=q[0];$("wz").appendChild(p);const ch=document.createElement("div");ch.className="ch";q[1].forEach((o,j)=>{const b=document.createElement("button");b.textContent=o[0];if(W.d[i]===j)b.className="sel";b.onclick=()=>{W.d[i]=j;wz()};ch.appendChild(b)});$("wz").appendChild(ch)})}
+if(ST==4){const un=CL.filter(x=>x.h&&x.f(cx));H(W.grad?"🎓 Formatura: escolha sua classe":"Classe",un.length?"✨ Seu destino despertou "+un.length+" classe(s) oculta(s)!":"Classes ocultas esperam por quem fizer as escolhas certas.");const g=grid();CL.filter(x=>!x.h).concat(CL.filter(x=>x.h)).forEach(x=>{const pk=()=>{W.cl=x.n;wz()};if(!x.h)g.appendChild(card(x.n,x.d,W.cl==x.n,pk));else if(x.f(cx))g.appendChild(card("✨ "+x.n,x.d,W.cl==x.n,pk,"hid"));else g.appendChild(card("🔒 ???",x.t,false,null,"lock"))})}}
+const err=t=>{$("wt").textContent=t};
+$("wn").onclick=()=>{if(ST==2&&W.pts>0)return err("Gaste todos os pontos");if(ST==3&&W.d.includes(null))return err("Responda os 3 dilemas");if(ST==3&&mode&&!W.grad)return startStory();if(ST==4){if(!W.cl)return err("Escolha uma classe");return W.grad?grad():finish()}ST++;wz()};
+$("wb").onclick=()=>{if(ST){ST--;wz()}else show("s1")};$("wx").onclick=()=>show("s1");
+function finish(){const c=CL.find(x=>x.n==W.cl),R=RACES[W.race],a=fin();S={hero:$("nm").value.trim()||"Viajante",world:WORLDS[world][0],cls:c.n,race:R[0],bg:BGS[W.bg][0],at:a,soul:soulOf(),skill:c.s,look:{sk:R[3],cl:c.c,w:c.w},idea:$("idea").value.trim(),hp:Math.min(20,12+Math.floor((a.CON-8)/2)+(c.h?2:0)),loc:"Início",inv:[...c.i],army:c.army?3:0,places:[],bes:[],mem:"",log:[],ch:[]};openGame();turn("Comece a aventura com uma cena de abertura vívida.")}
+function startStory(){const R=RACES[W.race],a=fin();S={hero:$("nm").value.trim()||"Estudante",world:WORLDS[world][0],story:1,fase:"escola",t:0,cls:"Estudante",race:R[0],bg:BGS[W.bg][0],at:a,soul:soulOf(),skill:"Nenhuma ainda",look:{sk:R[3],cl:"#2a4a7a",w:""},idea:$("idea").value.trim(),hp:Math.min(20,12+Math.floor((a.CON-8)/2)),loc:"Escola",inv:["Mochila","Caderno","Uniforme"],places:[],bes:[],mem:"",log:[],ch:[],xp:0,lv:1,pts:0,mis:[],tit:[],cia:[]};openGame();turn("Comece a história: último dia de aula antes da formatura do ensino fundamental.")}
+function gradPick(){W={race:Math.max(0,RACES.findIndex(r=>r[0]==S.race)),bg:Math.max(0,BGS.findIndex(b=>b[0]==S.bg)),pts:0,at:{},d:[],cl:null,grad:1,fx:S.at,fs:S.soul};ST=4;show("s4");wz()}
+function grad(){const c=CL.find(x=>x.n==W.cl);W.grad=0;S.cls=c.n;S.skill=c.s;S.inv=[...S.inv,...c.i];S.army=c.army?3:0;S.look={...S.look,cl:c.c,w:c.w};S.fase="isekai";S.hp=Math.min(20,S.hp+(c.h?2:0));openGame();turn("Comece a nova fase: o herói escolheu a classe "+c.n+(c.h?" (CLASSE OCULTA desbloqueada pelo destino dele!)":"")+". Narre o fim da formatura, o portal que engole a escola, o despertar do Sistema (janela de status) e a chegada ao novo mundo, com diálogos dos colegas transportados junto.")}
+function sysui(){const e=$("sys");e.innerHTML="";const ad=t=>{const p=document.createElement("p");p.textContent=t;e.appendChild(p)};ad("Nível "+(S.lv||1)+" · "+(S.xp||0)+" XP · próximo nível em "+(40-((S.xp||0)%40))+" XP");if(S.pts&&S.at){ad("✨ Pontos para distribuir: "+S.pts);ATS.forEach(a=>{const r=document.createElement("div");r.className="row";const s=document.createElement("span");s.textContent=a+"  "+S.at[a];const b=document.createElement("button");b.textContent="+";b.onclick=()=>{if(S.pts>0&&S.at[a]<20){S.at[a]++;S.pts--;save();sheet();sysui()}};r.append(s,b);e.appendChild(r)})}ad("Missões ativas:");(S.mis||[]).forEach(m=>ad("▸ "+m.n+" — "+m.r));if(!(S.mis||[]).length)ad("Nenhuma ainda.");ad("Títulos: "+((S.tit||[]).join(", ")||"nenhum"));const c=$("cia");c.innerHTML="";(S.cia||[]).forEach(x=>{const p=document.createElement("p");p.textContent=x.n+" ("+(x.d||"")+") · afinidade "+x.a+"/100 "+"♥".repeat(Math.min(5,Math.round((+x.a||0)/20)));c.appendChild(p)});if(!(S.cia||[]).length)c.textContent="Você ainda não fez aliados."}
+const TTS=window.speechSynthesis||null;let V={on:false,rate:1,vn:"",vd:""};
+try{Object.assign(V,JSON.parse(localStorage.getItem("forje-voz")||"{}"))}catch(e){}
+const vsave=()=>{try{localStorage.setItem("forje-voz",JSON.stringify(V))}catch(e){}};
+const ptv=()=>TTS?TTS.getVoices().filter(v=>/^pt/i.test(v.lang)):[];
+function say(t,el){if(TTS&&sayHL(t,el))return;if(!TTS)return;TTS.cancel();const vs=ptv();String(t).split(/\n+/).forEach(p=>{p=p.trim();if(!p)return;const d=/^[—–-]/.test(p);(p.replace(/^[—–-]\s*/,"").match(/[^.!?…]+[.!?…]*/g)||[p]).forEach(s=>{s=s.trim();if(!s)return;const u=new SpeechSynthesisUtterance(s);u.lang="pt-BR";const v=vs.find(x=>x.name==(d?V.vd:V.vn))||vs[0];if(v)u.voice=v;u.rate=V.rate;u.pitch=d?1.3:.9;TTS.speak(u)})})}
+function vfill(){const vs=ptv();["vn","vd"].forEach((id,k)=>{const e=$(id);e.innerHTML="";vs.forEach(v=>{const o=document.createElement("option");o.value=v.name;o.textContent=v.name;e.appendChild(o)});e.value=V[id]||(vs[k]||vs[0]||{}).name||"";V[id]=e.value});$("vnote").textContent=vs.length?"":"Nenhuma voz em português encontrada neste aparelho."}
+const vui=()=>{$("bVoz").textContent=V.on?"🔊":"🔇"};
+if(!TTS){["bVoz","bPlay"].forEach(i=>$(i).style.display="none");$("vnote").textContent="Seu navegador não suporta narração por voz."}else{vfill();TTS.onvoiceschanged=vfill;vui();$("vr").value=V.rate;
+$("vn").onchange=()=>{V.vn=$("vn").value;vsave()};$("vd").onchange=()=>{V.vd=$("vd").value;vsave()};$("vr").onchange=()=>{V.rate=+$("vr").value;vsave()};
+$("bVoz").onclick=()=>{V.on=!V.on;vsave();vui();if(V.on)say("Narração ligada.");else TTS.cancel()};
+$("bPlay").onclick=()=>{if(TTS.speaking){TTS.cancel();return}const m=[...S.log].reverse().find(x=>x.role!="user"&&!x.sys);if(m)say(m.text,lastNar())};
+$("vt").onclick=()=>say("Bem-vindo, herói. A aventura começa agora.\n— Esta é a voz dos personagens.")}
+let sayTok=0;
+function lastNar(){const l=[...$("log").querySelectorAll("p.n")].filter(p=>!p.classList.contains("me")&&!p.classList.contains("sy"));return l[l.length-1]}
+function sayHL(t,el){const tok=++sayTok,vs=ptv(),segs=[];TTS.cancel();String(t).split(/\n+/).forEach(p=>{p=p.trim();if(!p)return;const d=/^[—–-]/.test(p);(p.replace(/^[—–-]\s*/,"").match(/[^.!?…]+[.!?…]*/g)||[p]).forEach((s,i)=>{s=s.trim();if(s)segs.push({s,d,first:!i,txt:(d&&!i?"— ":"")+s})})});
+if(el){el.textContent="";segs.forEach((g,i)=>{const sp=document.createElement("span");sp.textContent=(i?(g.first?"\n":" "):"")+g.txt;el.appendChild(sp);g.sp=sp})}
+const clr=()=>{if(el)el.querySelectorAll(".hl").forEach(x=>x.classList.remove("hl"))};
+segs.forEach((g,i)=>{const u=new SpeechSynthesisUtterance(g.s);u.lang="pt-BR";const v=vs.find(x=>x.name==(g.d?V.vd:V.vn))||vs[0];try{if(v)u.voice=v}catch(e){}u.rate=V.rate;u.pitch=g.d?1.3:.9;u.onstart=()=>{if(tok!=sayTok||!g.sp)return;clr();g.sp.classList.add("hl");g.sp.scrollIntoView({block:"nearest",behavior:"smooth"})};if(i==segs.length-1)u.onend=u.onerror=()=>{if(tok==sayTok)clr()};TTS.speak(u)});return true}
+const PLOT=[["Tom da história",["Épico","Sombrio","Divertido","Misterioso","Romântico"]],["Seu objetivo",["Salvar o reino","Vingança","Achar um tesouro","Descobrir a verdade","Sobreviver"]],["Grande ameaça",["Dragão ancestral","Culto das trevas","Império tirano","Praga misteriosa","Demônio selado"]],["Aliado inicial",["Ninguém, sozinho","Amigo leal","Animal fiel","Mentor sábio","Rival que vira parceiro"]],["Foco do jogo",["Combate","Exploração","Diálogos e intrigas","Equilibrado"]]];
+const PL=PLOT.map(()=>0);
+function plotStr(){return PLOT.map((g,i)=>{let k=PL[i];if(k>=g[1].length)k=Math.floor(Math.random()*g[1].length);return g[0]+": "+g[1][k]}).join("; ")}
+PLOT.forEach((g,i)=>{const l=document.createElement("label");l.textContent=g[0];const c=document.createElement("div");c.className="chips";[...g[1],"🎲 Surpreenda-me"].forEach((t,j)=>{const b=document.createElement("button");b.className="chip"+(j==0?" sel":"");b.textContent=t;b.onclick=()=>{PL[i]=j;[...c.children].forEach(x=>x.classList.remove("sel"));b.classList.add("sel")};c.appendChild(b)});$("plot").append(l,c)});
+function armyTxt(){const n=S.army||0,l=S.lv||1;return n+" mortos-vivos ("+[["Esqueletos",1],["Zumbis",3],["Espectros",5],["Cavaleiros da Morte",7],["Dragão Morto",9]].filter(x=>l>=x[1]).map(x=>x[0]).join(", ")+")"}
+function armyui(){$("armyp").style.display=S.army?"block":"none";const e=$("army");e.innerHTML="";if(!S.army)return;const t=document.createElement("p");t.textContent=armyTxt();e.appendChild(t);const n=Math.min(S.army,14),d=document.createElement("div");d.innerHTML=`<svg viewBox="0 0 ${n*22+30} 60" width="100%" height="60">${Array.from({length:n},(_,i)=>`<g transform="translate(${25+i*22} 56) scale(.9)">${i%4==3?CR.fantasma:CR.esqueleto}</g>`).join("")}</svg>`;e.appendChild(d)}
+
+/* ===== TELA DE CONFIGURACAO ===== */
+let cfFrom="s1";
+const CFH={off:"O Mestre offline funciona sem internet e sem chave. Cria histórias infinitas por regras (arcos, vilões, aliados, reviravoltas), mas é menos criativo que uma IA.",gemini:"Grátis: crie uma chave em aistudio.google.com/apikey e cole abaixo. É a opção mais fácil para jogar no celular.",anthropic:"Chave em console.anthropic.com (uso pago, centavos por sessão). Padrão: claude-haiku-5-5.",openai:"Funciona com OpenAI, OpenRouter, Groq e serviços compatíveis. Informe URL base, modelo e chave."};
+function cfLabel(){const p=prov();$("cfg").textContent="⚙ Narrador: "+({off:"Mestre offline (toque para conectar uma IA)",claude:"Claude embutido",gemini:"Google Gemini",anthropic:"Anthropic Claude",openai:"IA compatível OpenAI"})[p]}
+function cfSync(){const p=$("cfP").value;$("cfHint").textContent=CFH[p]||"";$("cfK").style.display=p=="off"?"none":"block";$("cfM").style.display=p=="off"?"none":"block";$("cfB").style.display=p=="openai"?"block":"none";$("cfMod").placeholder=DEFM[p]||"padrão"}
+function cfOpen(from){cfFrom=from;const p=CFG.prov||(hasC()?"off":"off");$("cfP").value=["off","gemini","anthropic","openai"].includes(CFG.prov)?CFG.prov:"off";$("cfKey").value=CFG.key||"";$("cfMod").value=CFG.model||"";$("cfBase").value=CFG.base||"";$("cfS").textContent="";cfSync();show("s5")}
+$("cfP").onchange=cfSync;$("cfg").onclick=()=>cfOpen("s1");$("bCfg").onclick=()=>cfOpen("s2");$("cfBack").onclick=()=>{cfLabel();show(cfFrom);if(cfFrom=="s2"&&S)render()};
+$("cfT").onclick=async()=>{
+  CFG={prov:$("cfP").value,key:$("cfKey").value.trim(),model:$("cfMod").value.trim(),base:$("cfBase").value.trim()};cfSave();cfLabel();
+  const st=$("cfS");if(CFG.prov=="off"){st.textContent="✔ Mestre offline ativo. Pode jogar sem internet.";return}
+  if(!CFG.key){st.textContent="✖ Cole a chave de API para usar a IA.";return}
+  st.textContent="Testando conexão…";
+  try{const r=await callAI("Responda somente com JSON válido.",'Responda exatamente: {"ok":true,"msg":"pronto"}');st.textContent=parseJ(r)?"✔ Conectado! O Mestre Ancião (IA) está pronto para narrar.":"A IA respondeu, mas fora do formato. Tente outro modelo."}
+  catch(e){st.textContent="✖ Falha: "+friendly(e)+". O Mestre offline continua como reserva."}
+};
+cfLabel();
+</script>
+</body>
+</html>

@@ -61,7 +61,64 @@ input,textarea{width:100%;background:#101211;border:1px solid var(--line);border
 .top{flex-wrap:wrap}.n{white-space:pre-line}select{width:100%;background:#101211;border:1px solid var(--line);border-radius:8px;color:var(--txt);font:inherit;padding:8px}
 .hl{background:rgba(232,196,106,.3);border-radius:4px;color:#fff;box-shadow:0 0 0 2px rgba(232,196,106,.3)}
 .chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:6px}.chip{background:var(--panel);border:1px solid #34312a;border-radius:20px;padding:6px 12px;font-size:17px}.chip.sel{border-color:var(--gold);color:var(--gold);box-shadow:0 0 0 1px var(--gold) inset}
+/* ===== v2: interface estilo Fablia ===== */
+body.tb .screen{padding-bottom:96px}
+#tabs{position:fixed;left:0;right:0;bottom:0;display:none;background:#0a0a0af2;border-top:1px solid var(--line);padding:4px 0 calc(4px + env(safe-area-inset-bottom,0px));z-index:50}
+#tabs.on{display:flex}
+#tabs button{flex:1;background:none;border:0;display:flex;flex-direction:column;align-items:center;color:var(--mut);font-family:Cinzel,serif;font-size:12px;padding:6px 0}
+#tabs button span{font-size:24px;line-height:1.2}
+#tabs button.a{color:var(--gold);background:linear-gradient(#e8c46a22,transparent)}
+.hb{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.logo{width:42px;height:42px;border-radius:10px;background:linear-gradient(#c8161d,#6e0a0e);display:flex;align-items:center;justify-content:center;font-size:24px;border:1px solid #e23a3a}
+.hb h2{margin:0;flex:1;font-size:24px;color:var(--gold)}
+.pill{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:4px 12px;font-size:16px;color:var(--gold)}
+.ban{border-radius:14px;padding:44px 16px 24px;text-align:center;background:radial-gradient(ellipse at 50% 0,#6e0a0e99,transparent 70%),linear-gradient(#1d1a14,#0b0d0c);border:1px solid var(--line)}
+.ban h1{font-size:30px;margin:0 0 6px}.ban p{margin:0 0 14px;color:var(--mut)}
+.ex{background:none;border:0;color:var(--gold);font-family:Cinzel,serif;font-size:22px;letter-spacing:.12em;border-bottom:2px solid var(--gold);padding:4px 10px}
+.row2{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;padding:4px 0 10px}
+.cd{flex:0 0 62%;max-width:230px;scroll-snap-align:start;border-radius:12px;border:1px solid var(--line);padding:0;overflow:hidden;background:var(--panel);text-align:left}
+.cd .im{height:120px;display:flex;align-items:center;justify-content:center;font-size:52px}
+.cd b{display:block;padding:8px 10px 0;font-family:Cinzel,serif;color:var(--gold);font-size:15px}
+.cd small{display:block;padding:2px 10px 10px;color:var(--mut);font-size:15px}
+.sec{font-family:Cinzel,serif;font-size:20px;margin:16px 0 4px;color:var(--txt)}
+.bars{display:flex;flex-direction:column;gap:6px;padding:8px 0 0}
+.bar2{position:relative;height:22px;border-radius:12px;background:#101211;border:1px solid var(--line);overflow:hidden}
+.bar2 i{position:absolute;inset:0 auto 0 0;transition:width .4s}
+.bar2.hp i{background:linear-gradient(#e03a3a,#7a0d12)}.bar2.xp i{background:linear-gradient(#f2d37a,#a07a20)}
+.bar2 b{position:relative;display:block;text-align:center;font-size:14px;line-height:20px;font-family:Cinzel,serif;color:#fff;text-shadow:0 1px 2px #000}
+#hud span:nth-child(-n+2){display:none}
+#dm{position:fixed;inset:0;background:#000d;display:none;align-items:center;justify-content:center;z-index:99;padding:16px}
+#dm.on{display:flex}
+#dm .dc{background:var(--panel);border:1px solid var(--gold);border-radius:14px;padding:16px;width:100%;max-width:420px;text-align:center}
+#dm h2{margin:0 0 4px;color:var(--gold)}
+#d20{width:150px;height:150px;margin:8px auto}
+#d20.spin{animation:sp .5s linear infinite}@keyframes sp{to{transform:rotate(360deg)}}
+#dr{min-height:48px;font-family:Cinzel,serif;font-size:18px}
+#inv li{list-style:none;border-left:4px solid var(--rc,#777);padding-left:8px;margin:6px 0}
+#inv li em{font-style:normal;font-size:13px;color:var(--rc,#777);margin-left:8px;font-family:Cinzel,serif}
+#inv{padding-left:0}
+.slot{display:flex;flex-direction:column;gap:8px}
+.slot .r{display:flex;gap:8px}.slot .r button{flex:1}
+/* ===== v3 ===== */
+#dsm,#vz{position:fixed;inset:0;background:#000d;display:none;align-items:center;justify-content:center;z-index:99;padding:16px}
+#dsm.on,#vz.on{display:flex}
+#dsm .dc,#vz .dc{background:var(--panel);border:1px solid var(--gold);border-radius:14px;padding:16px;width:100%;max-width:460px;max-height:92vh;overflow:auto;text-align:center}
+#dsm h2,#vz h2{margin:0 0 6px;color:var(--gold)}
+#dsd{width:150px;height:150px;margin:8px auto}#dsd.spin{animation:sp .5s linear infinite}
+#dsr{min-height:48px;font-family:Cinzel,serif;font-size:18px}
+#vzi{position:relative;border-radius:10px;overflow:hidden;margin-bottom:8px}
+#vzi::after{content:"";position:absolute;inset:0;box-shadow:inset 0 0 60px 20px #000b;pointer-events:none}
+#vzi svg{margin:0;border:0;border-radius:0;animation:kb 12s ease-in-out infinite alternate}@keyframes kb{to{transform:scale(1.12)}}
+#vzt{font-size:17px;text-align:left}
+#toast{position:fixed;left:50%;bottom:100px;transform:translateX(-50%);background:#000c;border:1px solid var(--gold);color:var(--gold);padding:8px 16px;border-radius:20px;font-family:Cinzel,serif;z-index:120;display:none}
+#vmap svg{width:100%;border-radius:10px;border:1px solid var(--line);display:block}
+.gal{display:grid;grid-template-columns:1fr 1fr;gap:8px}.gal svg{width:100%;border-radius:8px}
+.shp{display:flex;flex-direction:column;gap:8px}.shp button{background:var(--bg2);border:1px solid var(--gold);border-radius:8px;padding:10px;text-align:left;font-size:17px}
+.cx p{margin:4px 0;border-bottom:1px solid #2a2820;padding-bottom:4px}
 </style>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
 </head>
 <body>
 
@@ -512,6 +569,287 @@ $("cfT").onclick=async()=>{
   catch(e){st.textContent="✖ Falha: "+friendly(e)+". O Mestre offline continua como reserva."}
 };
 cfLabel();
+</script>
+<script>
+/* ===== v2: slots, home, dados, barras, raridade ===== */
+(function(){
+const $=id=>document.getElementById(id);
+const el=(t,c,x)=>{const e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e};
+const SL="forje-slots";
+const slots=()=>{try{return JSON.parse(localStorage.getItem(SL)||"{}")}catch(e){return{}}};
+const wslots=o=>{try{localStorage.setItem(SL,JSON.stringify(o))}catch(e){}};
+(function(){const o=slots();if(!Object.keys(o).length){const a=load();if(a){a.sid="s"+Date.now();o[a.sid]={S:a,ts:Date.now()};wslots(o)}}})();
+const _save=save;
+save=function(){if(S){if(!S.sid)S.sid="s"+Date.now();const o=slots();o[S.sid]={S:S,ts:Date.now()};wslots(o)}_save()};
+const list=()=>Object.values(slots()).sort((a,b)=>b.ts-a.ts);
+$("cont").style.display="none";
+
+document.body.insertAdjacentHTML("beforeend",
+'<div id="s0" class="screen"></div><div id="s6" class="screen"></div>'+
+'<div id="tabs"><button><span>🏠</span>Início</button><button><span>⚔️</span>Criar</button><button><span>📜</span>Salvos</button><button><span>⚙️</span>Ajustes</button></div>'+
+'<div id="dm"><div class="dc"><h2>Teste de dados</h2><label>Atributo</label><div class="chips" id="dA"></div><label>Dificuldade (CD)</label><div class="chips" id="dD"></div><div id="d20"><svg viewBox="-50 -50 100 100"><polygon points="0,-46 40,-23 40,23 0,46 -40,23 -40,-23" fill="#6e0a0e" stroke="#e8c46a" stroke-width="3"/><polygon points="0,-46 40,23 -40,23" fill="none" stroke="#e8c46a55" stroke-width="1.5"/><text id="dn" y="9" text-anchor="middle" font-size="28" font-family="Cinzel,serif" fill="#fff">20</text></svg></div><p id="dr"></p><button class="cta" id="dGo">Rolar d20</button><button class="ghost" id="dX" style="margin-top:8px">Cancelar</button></div></div>');
+
+const _show=show;
+show=function(id){_show(id);const m={s0:0,s1:1,s6:2,s5:3};let on=id in m;if(id=="s5"&&typeof cfFrom!="undefined"&&cfFrom=="s2")on=false;
+ $("tabs").classList.toggle("on",on);document.body.classList.toggle("tb",on);
+ [...$("tabs").children].forEach((b,i)=>b.classList.toggle("a",m[id]===i));
+ if(id=="s0")home();if(id=="s6")saves();window.scrollTo(0,0)};
+const T=$("tabs").children;
+T[0].onclick=()=>show("s0");T[1].onclick=()=>show("s1");T[2].onclick=()=>show("s6");T[3].onclick=()=>cfOpen("s0");
+$("bExit").onclick=()=>{if(typeof TTS!="undefined"&&TTS)TTS.cancel();show("s0")};
+
+const ICO=[[/fantasia/i,"🐉"],[/terror/i,"🦇"],[/sci/i,"🚀"],[/pirat/i,"🏴‍☠️"],[/cyber/i,"🌆"],[/faroeste/i,"🤠"],[/n[óo]rdica/i,"🪓"],[/japão/i,"🏯"],[/p[óo]s-apoc/i,"☢️"],[/grega/i,"🏛️"],[/steampunk/i,"⚙️"],[/atl[âa]ntida/i,"🔱"],[/vampir/i,"🧛"],[/dinossauro/i,"🦖"],[/egito/i,"🔺"],[/f[ée]rico/i,"🧚"],[/academia/i,"🪄"],[/urbana/i,"🌃"],[/sonhos/i,"🌙"],[/cavaleiros/i,"🛡️"],[/ilhas/i,"☁️"]];
+const ico=n=>(ICO.find(x=>x[0].test(n))||[0,"✦"])[1];
+function go2(w,m){if(w!=null){world=w;[...$("worlds").children].forEach((c,i)=>c.classList.toggle("sel",i==w))}if(m!=null){mode=m;[...$("modes").children].forEach((c,i)=>c.classList.toggle("sel",i==m))}show("s1")}
+function card(ic,bg,t,d,fn){const b=el("button","cd");const i=el("div","im",ic);i.style.background=bg;b.append(i,el("b","",t),el("small","",d));b.onclick=fn;return b}
+function home(){const h=$("s0");h.innerHTML="";const L=list();
+ const hb=el("div","hb");const lg=el("div","logo","🐉");hb.append(lg,el("h2","cz","Forje sua lenda"),el("span","pill","📜 "+L.length));h.appendChild(hb);
+ const bn=el("div","ban");bn.append(el("h1","","Escolha o seu destino"),el("p","","Um Mestre de IA, dados de verdade e histórias sem fim"));const ex=el("button","ex","EXPLORAR");ex.onclick=()=>$("cards").scrollIntoView({behavior:"smooth"});bn.appendChild(ex);h.appendChild(bn);
+ if(L.length){const s=L[0].S,c=el("button","cta","▶ Continuar: "+s.hero+" · Nv "+(s.lv||1));c.onclick=()=>{S=s;openGame()};h.appendChild(c)}
+ const ch=el("div","chips");ch.style.marginTop="14px";const cards=el("div");cards.id="cards";
+ const sM=el("div"),sW=el("div");
+ [["Todas",0],["Modos",1],["Mundos",2]].forEach(([t,k],i)=>{const b=el("button","chip"+(i?"":" sel"),t);b.onclick=()=>{[...ch.children].forEach(x=>x.classList.remove("sel"));b.classList.add("sel");sM.style.display=k==2?"none":"";sW.style.display=k==1?"none":""};ch.appendChild(b)});
+ h.append(ch,cards);cards.append(sM,sW);
+ sM.appendChild(el("div","sec","Modos de jogo"));let r=el("div","row2");
+ [["⚔️","Aventura livre","Escolha a classe e explore",0,"linear-gradient(#3a1a1a,#140a0a)"],["🎓","Academia Isekai","Formatura, classe oculta e outro mundo",1,"linear-gradient(#1a2a4a,#0a0f1a)"]].forEach(a=>r.appendChild(card(a[0],a[4],a[1],a[2],()=>go2(null,a[3]))));sM.appendChild(r);
+ sW.appendChild(el("div","sec","Mundos"));r=el("div","row2");
+ WORLDS.forEach((w,i)=>r.appendChild(card(ico(w[0]),"linear-gradient(160deg,"+w[2][0]+","+w[2][1]+")",w[0],w[1],()=>go2(i,null))));sW.appendChild(r);
+ h.appendChild(Object.assign(el("p","","v2.0"),{style:"text-align:center;color:#555;font-size:13px"}))}
+
+function saves(){const h=$("s6");h.innerHTML="";h.appendChild(el("h2","cz","Crônicas salvas"));const L=list();
+ if(!L.length)h.appendChild(el("div","panel","Nenhuma aventura salva ainda. Toque em Criar para começar a sua."));
+ L.forEach(x=>{const s=x.S,p=el("div","panel slot");p.append(el("b","cz",s.hero+" · "+s.cls),el("small","",(s.race||"")+" · Nv "+(s.lv||1)+" · "+s.loc+" · "+new Date(x.ts).toLocaleDateString("pt-BR")));
+  const r=el("div","r"),a=el("button","cta","Continuar"),d=el("button","ghost","Excluir");a.style.marginTop="0";a.onclick=()=>{S=s;openGame()};
+  d.onclick=()=>{if(confirm("Excluir esta aventura para sempre?")){const o=slots();delete o[s.sid];wslots(o);saves()}};r.append(a,d);p.appendChild(r);h.appendChild(p)})}
+
+const _r=render;
+render=function(){_r();const h=$("hud"),mx=Math.max(20,S.hp||0),xp=(S.xp||0)%40;const b=el("div","bars");
+ b.innerHTML='<div class="bar2 hp"><i style="width:'+Math.max(0,S.hp)/mx*100+'%"></i><b>❤ '+S.hp+'/'+mx+'</b></div><div class="bar2 xp"><i style="width:'+xp/40*100+'%"></i><b>⭐ Nv '+(S.lv||1)+' · '+xp+'/40</b></div>';
+ const o=$("hud").parentNode.querySelector(".bars");if(o)o.remove();h.parentNode.insertBefore(b,h)};
+
+let dA="FOR",dD=15;
+function chips(box,arr,cur,fn){box.innerHTML="";arr.forEach(a=>{const b=el("button","chip"+(a[0]==cur?" sel":""),a[1]);b.onclick=()=>{fn(a[0]);chips(box,arr,a[0],fn)};box.appendChild(b)})}
+const modOf=()=>S&&S.at?Math.floor((S.at[dA]-10)/2):0;
+$("dice").onclick=()=>{chips($("dA"),ATS.map(a=>[a,a]),dA,v=>dA=v);chips($("dD"),[[10,"Fácil 10"],[15,"Média 15"],[20,"Difícil 20"]],dD,v=>dD=v);$("dr").textContent="";$("dn").textContent="20";$("dGo").disabled=false;$("dm").classList.add("on")};
+$("dX").onclick=()=>$("dm").classList.remove("on");
+$("dGo").onclick=()=>{$("dGo").disabled=true;const d=$("d20");d.classList.add("spin");let n=0;
+ const iv=setInterval(()=>{$("dn").textContent=1+Math.floor(Math.random()*20);if(navigator.vibrate)navigator.vibrate(12);if(++n>14){clearInterval(iv);fim()}},70);
+ function fim(){d.classList.remove("spin");const v=1+Math.floor(Math.random()*20),m=modOf(),t=v+m;$("dn").textContent=v;
+  const ok=v==20||(v!=1&&t>=dD),res=v==20?"SUCESSO CRÍTICO":v==1?"FALHA CRÍTICA":ok?"SUCESSO":"FALHA";
+  $("dr").textContent=v+(m>=0?" + ":" − ")+Math.abs(m)+" ("+dA+") = "+t+" contra CD "+dD+" → "+res;if(navigator.vibrate)navigator.vibrate([40,30,80]);
+  setTimeout(()=>{$("dm").classList.remove("on");turn(($("act").value.trim()||"Tento algo ousado")+" (🎲 d20 = "+v+") [teste de "+dA+": "+v+(m>=0?"+":"")+m+" = "+t+" contra CD "+dD+": "+res+"]")},1700)}};
+
+const _m=$("bMem").onclick;
+$("bMem").onclick=function(){_m();const RC=[["Comum","#8a8f99"],["Incomum","#5fbf6a"],["Raro","#4aa3ff"],["Muito raro","#b06aff"],["Lendário","#ff9d2e"]];
+ const IC=[[/espada|l[âa]mina|adaga|machado/i,"🗡️"],[/cajado|varinha|maça/i,"🪄"],[/escudo/i,"🛡️"],[/po[çc][ãa]o/i,"🧪"],[/armadura|cota|manto|capa|uniforme/i,"🧥"],[/arco|flecha/i,"🏹"],[/livro|grim|caderno/i,"📖"],[/ala[úu]de/i,"🎻"],[/anel|s[íi]mbolo|rel[íi]quia|b[úu]ssola/i,"💍"]];
+ document.querySelectorAll("#inv li").forEach(li=>{const t=li.textContent;let h=0;for(const c of t)h=(h*31+c.charCodeAt(0))>>>0;
+  let k=h%3;if(/lend[áa]ri|rel[íi]quia|destino|divin/i.test(t))k=4;else if(/m[áa]gic|encant|aben[çc]oad|sombras|estrelas|osso|g[êe]meas/i.test(t))k=3;
+  li.style.setProperty("--rc",RC[k][1]);li.textContent=((IC.find(x=>x[0].test(t))||[0,"🎒"])[1])+" "+t;li.appendChild(el("em","",RC[k][0]))})};
+$("vr").max="2";
+
+let tn=0;
+$("go").insertAdjacentHTML("beforebegin",'<label>Aparência do herói (opcional)</label><textarea id="look" rows="2" maxlength="300" placeholder="Cabelo, olhos, cicatrizes, estatura…"></textarea><label>Estilo do Mestre</label><div class="opts" id="tone"></div>');
+pick($("tone"),[["Modo História","Consequências reais e mundo coerente"],["Modo Criativo","Liberdade total, a IA se adapta a você"]],i=>tn=i);
+$("go").onclick=()=>{const lk=$("look").value.trim();$("idea").value="Enredo escolhido pelo jogador → "+plotStr()+(lk?" | Aparência do herói (use nas descrições): "+lk:"")+" | Estilo do Mestre: "+(tn?"MODO CRIATIVO — máxima liberdade, aceite ações ousadas e adapte o mundo a elas":"MODO HISTÓRIA — consequências reais e coerência com o mundo");wiz()};
+show("s0");
+})();
+</script>
+<script>
+/* ===== v3: Códice, teste de morte, cristais, mapa clicável, visualizar ===== */
+(function(){
+const $=id=>document.getElementById(id),el=(t,c,x)=>{const e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e};
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const vib=p=>{if(navigator.vibrate)navigator.vibrate(p)};
+function toast(t){const e=$("toast");e.textContent=t;e.style.display="block";clearTimeout(toast.k);toast.k=setTimeout(()=>e.style.display="none",2000)}
+const SVGD=(id,n)=>'<div id="'+id+'"><svg viewBox="-50 -50 100 100"><polygon points="0,-46 40,-23 40,23 0,46 -40,23 -40,-23" fill="#6e0a0e" stroke="#e8c46a" stroke-width="3"/><polygon points="0,-46 40,23 -40,23" fill="none" stroke="#e8c46a55" stroke-width="1.5"/><text id="'+n+'" y="9" text-anchor="middle" font-size="28" font-family="Cinzel,serif" fill="#fff">20</text></svg></div>';
+document.body.insertAdjacentHTML("beforeend",'<div id="toast"></div>'+
+'<div id="dsm"><div class="dc"><h2>☠ Teste de morte</h2><p>O herói caiu. Um único d20 decide: 10 ou mais e ele se levanta.</p>'+SVGD("dsd","dsn")+'<p id="dsr"></p><button class="cta" id="dsGo">Rolar contra a morte</button><button class="ghost" id="dsRe" style="display:none;margin-top:8px">Rerrolar (2 💎)</button></div></div>'+
+'<div id="vz"><div class="dc"><h2>🖼 Visualizar cena</h2><div id="vzi"></div><p id="vzt"></p><button class="cta" id="vzS">Guardar na galeria</button><button class="ghost" id="vzD" style="margin-top:8px">Baixar PNG</button> <button class="ghost" id="vzX" style="margin-top:8px">Fechar</button></div></div>');
+$("bMem").insertAdjacentHTML("beforebegin",'<button class="ghost" id="bViz">🖼</button> ');
+$("map").style.display="none";$("map").insertAdjacentHTML("afterend",'<div id="vmap"></div><div id="vmi" style="margin-top:8px"></div>');
+$("inv").parentNode.insertAdjacentHTML("beforebegin",'<div class="panel"><h2>Códice</h2><div class="chips" id="cdt"></div><div id="cdb" class="cx"></div></div><div class="panel"><h2>Loja de cristais</h2><div id="shp" class="shp"></div></div>');
+
+const lastAi=()=>{const l=(S.log||[]).filter(m=>m.role=="ai"&&!m.sys&&m.scene);return l[l.length-1]};
+/* gemas + crônica + teste de morte */
+const _r=render;render=function(){_r();const s=el("span","","💎 "+(S.gems||0));$("hud").appendChild(s)};
+const _t=turn;
+turn=async function(text){
+ const lv0=S?(S.lv||1):1,t0=S?(S.t||0):0;await _t(text);
+ if(!S||(S.t||0)==t0)return;
+ try{
+  S.chron=S.chron||[];const a=lastAi();
+  if(a){S.chron.push({t:S.t,x:String(a.text).replace(/\s+/g," ").slice(0,150)});if(S.chron.length>80)S.chron=S.chron.slice(-80);
+   if(a.npc&&typeof NP!="undefined"&&NP[a.npc]){S.npcs=S.npcs||[];if(!S.npcs.includes(a.npc))S.npcs.push(a.npc)}}
+  let g=0;const lv1=S.lv||1;if(lv1>lv0)g+=5*(lv1-lv0);
+  const sy=S.log[S.log.length-1];if(sy&&sy.sys){const mm=String(sy.text).match(/Missão concluída: (.*) \(\+/);if(mm)g+=3*mm[1].split(",").length}
+  if(S.t%5==0)g+=1;
+  if(g){S.gems=(S.gems||0)+g;toast("+"+g+" 💎")}
+  save();render();
+  if(S.nota&&/caiu a 0 HP/.test(S.nota))deathSave();
+ }catch(e){}
+};
+function fimDS(ms){save();render();setTimeout(()=>$("dsm").classList.remove("on"),ms)}
+function dsFail(v){S.hp=3;S.nota="O herói falhou no teste de morte (d20 = "+v+"), mas algo o arrancou da escuridão ao custo de uma cicatriz profunda e uma dívida misteriosa; narre esse retorno.";S.tit=S.tit||[];if(!S.tit.includes("Marcado pela Morte"))S.tit.push("Marcado pela Morte");
+ $("dsGo").style.display="none";$("dsRe").style.display="none";$("dsr").textContent="A escuridão cobra seu preço: você volta com HP 3 e uma cicatriz.";fimDS(2300)}
+function dsRes(v){$("dsn").textContent=v;vib([40,30,80]);
+ if(v>=(S.gm==6?15:10)){S.hp=v==20?12:6;S.nota="O herói venceu o teste de morte (d20 = "+v+") e se levantou, ferido; narre esse retorno heroico.";$("dsr").textContent=(v==20?"CRÍTICO! ":"")+"Você se levanta! HP "+S.hp;fimDS(1900)}
+ else if((S.gems||0)>=2){$("dsr").textContent="Falhou ("+v+"). Rerrolar custa 2 💎.";$("dsRe").style.display="";$("dsGo").style.display="";$("dsGo").disabled=false;$("dsGo").textContent="Aceitar o destino";$("dsGo").onclick=()=>dsFail(v);$("dsRe").onclick=()=>{S.gems-=2;dsRoll()}}
+ else{$("dsr").textContent="Falhou ("+v+").";$("dsGo").style.display="none";setTimeout(()=>dsFail(v),1300)}}
+function dsRoll(){$("dsGo").style.display="none";$("dsRe").style.display="none";$("dsr").textContent="";const d=$("dsd");d.classList.add("spin");let n=0;
+ const iv=setInterval(()=>{$("dsn").textContent=1+Math.floor(Math.random()*20);vib(12);if(++n>14){clearInterval(iv);d.classList.remove("spin");dsRes(1+Math.floor(Math.random()*20))}},70)}
+function deathSave(){$("dsr").textContent="";$("dsn").textContent="20";$("dsRe").style.display="none";$("dsGo").style.display="";$("dsGo").disabled=false;$("dsGo").textContent="Rolar contra a morte";$("dsGo").onclick=dsRoll;$("dsm").classList.add("on")}
+
+/* visualizar cena */
+$("bViz").onclick=()=>{const a=lastAi();if(!a){toast("Nenhuma cena ainda");return}$("vzi").innerHTML=art(a.scene,S.world,a);$("vzt").textContent=a.text;$("vz").classList.add("on")};
+$("vzX").onclick=()=>$("vz").classList.remove("on");
+$("vzS").onclick=()=>{const a=lastAi();if(!a)return;S.gal=S.gal||[];S.gal.push({scene:a.scene,criatura:a.criatura,npc:a.npc,txt:String(a.text).slice(0,100)});if(S.gal.length>12)S.gal=S.gal.slice(-12);save();toast("Guardada na galeria")};
+$("vzD").onclick=()=>{const s=$("vzi").querySelector("svg").cloneNode(true);s.setAttribute("width",1200);s.setAttribute("height",600);const img=new Image();
+ img.onload=()=>{const c=document.createElement("canvas");c.width=1200;c.height=600;c.getContext("2d").drawImage(img,0,0,1200,600);const k=document.createElement("a");k.download="cena-forje-sua-lenda.png";k.href=c.toDataURL("image/png");k.click()};
+ img.src="data:image/svg+xml;charset=utf-8,"+encodeURIComponent(new XMLSerializer().serializeToString(s))};
+
+/* mapa clicável */
+const MI=[[/escola|academia/i,"🏫"],[/taverna|estalagem/i,"🍺"],[/castelo|fortaleza|torre|palácio/i,"🏰"],[/floresta|bosque|selva/i,"🌲"],[/caverna|mina|cripta|masmorra|túmulo/i,"🕳️"],[/montanha|pico/i,"⛰️"],[/deserto|dunas/i,"🏜️"],[/ruína|templo/i,"🏛️"],[/mar|ilha|porto|navio|cais/i,"⚓"],[/cidade|vila|aldeia|vilarejo|mercado/i,"🏘️"]];
+const mi=n=>(MI.find(x=>x[0].test(n))||[0,"📍"])[1];
+function pos(n,used){let h=0;for(const c of n)h=(h*31+c.charCodeAt(0))>>>0;let x,y,k=0;do{x=36+(h%328);y=34+((h>>>8)%172);h=(h*1664525+1013904223)>>>0;k++}while(k<25&&used.some(u=>Math.hypot(u[0]-x,u[1]-y)<48));used.push([x,y]);return[x,y]}
+function buildMap(){const P=(S.places||[]).slice(-14),used=[],pts=P.map(n=>pos(n,used));
+ let s='<svg viewBox="0 0 400 240"><defs><radialGradient id="mpg"><stop offset="0" stop-color="#3a3020"/><stop offset="1" stop-color="#14110b"/></radialGradient></defs><rect width="400" height="240" fill="url(#mpg)"/>';
+ for(let i=0;i<40;i++)s+='<circle cx="'+((i*97)%400)+'" cy="'+((i*53)%240)+'" r=".8" fill="#e8c46a" opacity=".2"/>';
+ if(pts.length>1)s+='<polyline points="'+pts.map(p=>p.join(",")).join(" ")+'" fill="none" stroke="#e8c46a" stroke-width="1.5" stroke-dasharray="4 4" opacity=".6"/>';
+ P.forEach((n,i)=>{const [x,y]=pts[i],cur=n==S.loc;s+='<g data-i="'+i+'" style="cursor:pointer"><circle cx="'+x+'" cy="'+y+'" r="15" fill="#1d1f1f" stroke="'+(cur?"#ff5a5a":"#e8c46a")+'" stroke-width="'+(cur?3:1.5)+'"/><text x="'+x+'" y="'+(y+6)+'" text-anchor="middle" font-size="16">'+mi(n)+'</text><text x="'+x+'" y="'+(y+29)+'" text-anchor="middle" font-size="10" fill="#efe6d2" font-family="Cinzel,serif">'+esc(n.length>16?n.slice(0,15)+"…":n)+'</text></g>'});
+ $("vmap").innerHTML=s+"</svg>";$("vmi").innerHTML="";
+ $("vmap").querySelectorAll("g").forEach(g=>g.onclick=()=>{const n=P[+g.dataset.i];$("vmi").innerHTML="";$("vmi").append(el("b","cz",mi(n)+" "+n));
+  if(n==S.loc)$("vmi").append(el("p","","📍 Você está aqui."));else{const b=el("button","cta","Viajar para cá");b.onclick=()=>{show("s2");turn("Viajo até "+n+".")};$("vmi").append(b)}})}
+
+/* códice */
+let cdT=0;const TABS=["Missões","Pessoas","Lugares","Criaturas","Crônica","Galeria"];
+function buildCodex(){const t=$("cdt");t.innerHTML="";TABS.forEach((n,i)=>{const b=el("button","chip"+(i==cdT?" sel":""),n);b.onclick=()=>{cdT=i;buildCodex()};t.appendChild(b)});
+ const b=$("cdb");b.innerHTML="";const add=x=>b.appendChild(el("p","",x)),none=()=>add("Nada registrado ainda.");
+ if(cdT==0){(S.mis||[]).forEach(m=>add("▸ "+m.n+" — "+m.r));if(!(S.mis||[]).length)none()}
+ else if(cdT==1){(S.cia||[]).forEach(x=>add(x.n+" ("+(x.d||"")+") · afinidade "+x.a+"/100"));(S.npcs||[]).forEach(n=>add("🧑 "+n));if(!(S.cia||[]).length&&!(S.npcs||[]).length)none()}
+ else if(cdT==2){(S.places||[]).forEach(p=>add(mi(p)+" "+p));if(!(S.places||[]).length)none()}
+ else if(cdT==3){const g=el("div","gal");(S.bes||[]).forEach(n=>{const d=el("div");d.innerHTML='<svg viewBox="-70 -90 140 100">'+CR[n]+'</svg>';d.append(el("small","",n));g.appendChild(d)});if((S.bes||[]).length)b.appendChild(g);else none()}
+ else if(cdT==4){(S.chron||[]).slice().reverse().forEach(c=>add("Cena "+c.t+": "+c.x+"…"));if(!(S.chron||[]).length)none()}
+ else{const g=el("div","gal");(S.gal||[]).forEach(x=>{const d=el("div");d.innerHTML=art(x.scene,S.world,x);d.append(el("small","",x.txt));g.appendChild(d)});if((S.gal||[]).length)b.appendChild(g);else add("Toque em 🖼 durante a aventura e guarde cenas aqui.")}}
+
+/* loja */
+function spend(n){if((S.gems||0)<n){toast("Cristais insuficientes");return false}S.gems-=n;save();render();buildShop();return true}
+function buildShop(){const s=$("shp");s.innerHTML="";s.appendChild(el("p","","Você tem 💎 "+(S.gems||0)+" (ganhe em missões, níveis e a cada 5 turnos)"));
+ [["❤ Cura (+8 HP) — 3 💎",3,()=>{if(S.hp>=20){toast("Vida já está cheia");return}if(spend(3)){S.hp=Math.min(20,S.hp+8);save();render();toast("+8 HP")}}],
+  ["✨ Bênção do Mestre — 2 💎",2,()=>{if(spend(2)){S.nota="O herói recebeu a Bênção do Mestre: a sorte favorece suas próximas ações; narre sinais sutis disso.";save();toast("Abençoado!")}}],
+  ["🔮 Dica do Mestre — 1 💎",1,()=>{if(spend(1)){show("s2");turn("Peço ao Mestre uma dica sutil sobre o que fazer a seguir.")}}]].forEach(x=>{const b=el("button","",x[0]);b.onclick=x[2];s.appendChild(b)})}
+
+const _m=$("bMem").onclick;$("bMem").onclick=function(){_m();buildMap();buildCodex();buildShop()};
+const _s=show;show=function(id){_s(id);if(id=="s0"){let g=0;try{const o=Object.values(JSON.parse(localStorage.getItem("forje-slots")||"{}")).sort((a,b)=>b.ts-a.ts);if(o[0])g=o[0].S.gems||0}catch(e){}
+ const hb=document.querySelector("#s0 .hb");if(hb)hb.appendChild(el("span","pill","💎 "+g));const v=document.querySelector("#s0>p:last-child");if(v)v.textContent="v4.1"}};
+show("s0");
+window.FL={deathSave,buildMap,buildCodex,buildShop};
+})();
+</script>
+<script>
+/* ===== v4: +10 mundos, +6 modos de campanha ===== */
+(function(){
+const $=id=>document.getElementById(id),el=(t,c,x)=>{const e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e};
+const NW=[
+["Steampunk","Vapor, engrenagens e dirigíveis",["#2a1a10","#b87333","#1a1208","#ffd08a"],
+ {L:[["Cidade das Chaminés","cidade"],["Oficina do Relojoeiro","taverna"],["Dirigível Estrela","mar"],["Fábrica Abandonada","ruinas"],["Mina de Vapor","caverna"],["Torre do Inventor","castelo"]],M:[["um autômato enlouquecido","golem"],["um enxame de engrenagens-aranha","aranha"],["um rato mecânico gigante","lobo"],["uma serpente de vapor","serpente"]],I:["Óculos de latão","Pistola de vapor","Engrenagem rara","Relógio de bolso estranho","Mapa de dutos"],V:["o Barão Cogsworth","a Guilda do Carvão","a Mente de Latão"],N:[["a inventora excêntrica","sabio"],["o mercador de peças","mercador"],["o guarda da cidade","guarda"],["a industrial nobre","nobre"],["o taverneiro","taverneiro"]],A:["O vapor sibila entre as tubulações e o ar tem gosto de metal quente.","Engrenagens giram ao longe, num ritmo quase vivo.","Fuligem cai como neve cinzenta sobre os telhados."]}],
+["Atlântida submersa","Cidades de coral sob as ondas",["#04283f","#1a8a9a","#021a2a","#9ff5ff"],
+ {L:[["Cidade de Coral","cidade"],["Abismo das Luzes","caverna"],["Templo Afundado","ruinas"],["Palácio de Pérola","castelo"],["Floresta de Algas","floresta"],["Navio Naufragado","mar"]],M:[["um tubarão-espectro","serpente"],["um polvo colossal","aranha"],["uma sereia ensandecida","fantasma"],["um golem de coral","golem"]],I:["Tridente de coral","Pérola luminosa","Poção de respirar","Mapa de correntes","Escama de dragão marinho"],V:["a Rainha Abissal","o Kraken Antigo","a Corte das Marés"],N:[["a sacerdotisa das marés","sabio"],["o mercador de pérolas","mercador"],["o guarda tritão","guarda"],["a princesa exilada","nobre"]],A:["A luz azulada dança no fundo e o silêncio pesa nos ouvidos.","Bolhas sobem em fios finos enquanto cardumes brilham ao redor.","Uma correnteza fria sussurra segredos de cidades esquecidas."]}],
+["Noite dos vampiros","Clãs, sangue e eternidade",["#1a0508","#6e0a1e","#0b0205","#ffb0b8"],
+ {L:[["Castelo Carmesim","castelo"],["Cidade Noturna","cidade"],["Catacumbas de Sangue","caverna"],["Cemitério dos Antigos","ruinas"],["Floresta Eterna","floresta"],["Taverna Lua Rubra","taverna"]],M:[["um vampiro recém-nascido","esqueleto"],["um espectro de sangue","fantasma"],["um lobisomem","lobo"],["uma aranha de olhos vermelhos","aranha"]],I:["Estaca de carvalho","Água benta","Amuleto de alho","Anel do clã","Capa de sombras"],V:["a Matriarca Valeska","o Clã Rubro","o Conde Eterno"],N:[["o caçador de vampiros","guarda"],["o padre desgastado","sabio"],["a mercadora noturna","mercador"],["a nobre pálida","nobre"],["o taverneiro","taverneiro"]],A:["Uma lua vermelha pende sobre os telhados e o ar cheira a ferro e rosas murchas.","Passos ecoam atrás de você, mas a rua está vazia.","O silêncio da noite é cortado por asas ao longe."]}],
+["Terra dos dinossauros","Selva perdida no tempo",["#10240f","#6aa02a","#0a1608","#ffe08a"],
+ {L:[["Selva Primordial","floresta"],["Vulcão Rugidor","montanha"],["Vale dos Ossos","deserto"],["Aldeia da Tribo do Rio","cidade"],["Caverna dos Ovos","caverna"],["Templo Esquecido","ruinas"]],M:[["um raptor feroz","lobo"],["um tiranossauro","dragao"],["um pterossauro","serpente"],["um enxame de insetos gigantes","aranha"]],I:["Lança de osso","Pele curtida","Ovo brilhante","Fruta curativa","Colar de dentes"],V:["o Rei Tirano","a Tribo do Fogo Negro","o Devorador Alfa"],N:[["a xamã da tribo","sabio"],["a caçadora","guarda"],["o comerciante de peles","mercador"],["o chefe da tribo","nobre"],["o pescador","aldeao"]],A:["O ar é úmido e pesado, cheio de zumbidos e rugidos distantes.","O chão treme com passos enormes ao longe.","Folhas gigantes pingam sobre você, e algo se move entre elas."]}],
+["Egito dos faraós","Areia, pirâmides e maldições",["#3a2a0e","#e0a83a","#1f1608","#fff0b0"],
+ {L:[["Pirâmide Dourada","ruinas"],["Mercado de Mênfis","cidade"],["Oásis Escondido","floresta"],["Templo de Anúbis","castelo"],["Tumba Selada","caverna"],["Dunas Infinitas","deserto"]],M:[["uma múmia desperta","esqueleto"],["um escorpião gigante","aranha"],["uma serpente sagrada","serpente"],["um chacal espectral","lobo"]],I:["Ankh dourado","Papiro antigo","Adaga cerimonial","Escaravelho mágico","Odre de água"],V:["o Faraó Amenkhet","o Culto de Set","a Maldição da Múmia"],N:[["o escriba erudito","sabio"],["o mercador de especiarias","mercador"],["o guarda do faraó","guarda"],["a nobre da corte","nobre"],["o cameleiro","aldeao"]],A:["O sol castiga a areia e o ar tremula sobre as dunas.","Hieróglifos brilham fracamente nas paredes, como se observassem você.","Um vento quente carrega cheiro de incenso e poeira antiga."]}],
+["Reino feérico","Fadas, glamour e pactos",["#1f1040","#c46aff","#0e0824","#ffd0ff"],
+ {L:[["Corte da Primavera","castelo"],["Floresta dos Sussurros","floresta"],["Lago Espelhado","mar"],["Círculo de Cogumelos","ruinas"],["Feira dos Duendes","cidade"],["Gruta do Rei Sem Nome","caverna"]],M:[["um lobo de espinhos","lobo"],["um duende traiçoeiro","goblin"],["um espectro do glamour","fantasma"],["uma aranha de seda lunar","aranha"]],I:["Flor de prata","Sino de fada","Fio de glamour","Poção do esquecimento","Chave de folha"],V:["a Rainha da Geada","o Rei Sem Nome","a Corte da Noite"],N:[["a fada comerciante","mercador"],["o cavaleiro de espinhos","guarda"],["a coruja sábia","sabio"],["a princesa da corte","nobre"]],A:["O ar brilha com poeira dourada e cada promessa parece pesar mais.","Sinos minúsculos tilintam entre as árvores.","Tudo é belo demais, e isso deixa você alerta."]}],
+["Academia de magia","Feitiços, rivais e segredos",["#101a3a","#6a7ae0","#080d20","#ffe9a0"],
+ {L:[["Salão das Torres","castelo"],["Biblioteca Proibida","ruinas"],["Floresta Limite","floresta"],["Pátio dos Duelos","cidade"],["Cripta dos Mestres","caverna"],["Cantina Encantada","taverna"]],M:[["um golem animado","golem"],["o espectro de um professor","fantasma"],["uma aranha de tinta","aranha"],["um basilisco menor","serpente"]],I:["Varinha de aprendiz","Grimório rabiscado","Poção de foco","Capa da casa","Pergaminho de feitiço"],V:["o Reitor Sombrio","a Sociedade Velada","o Mestre Esquecido"],N:[["a professora misteriosa","sabio"],["o vendedor de livros","mercador"],["o monitor de plantão","guarda"],["o rival de família nobre","nobre"],["a cozinheira","taverneiro"]],A:["Velas flutuam sob o teto e os retratos cochicham quando você passa.","Um feitiço mal lançado faz faíscas dançarem pelo corredor.","O castelo parece mudar de lugar quando ninguém olha."]}],
+["Magia urbana","Mistérios sobrenaturais na cidade moderna",["#14141f","#4a5a8a","#0a0a12","#ffd27a"],
+ {L:[["Beco dos Neons","cidade"],["Metrô abandonado","caverna"],["Antiquário Sombrio","taverna"],["Prédio Velho","castelo"],["Parque à meia-noite","floresta"],["Cemitério da Cidade","ruinas"]],M:[["uma sombra faminta","fantasma"],["um lobisomem urbano","lobo"],["um cultista mascarado","esqueleto"],["uma criatura do esgoto","slime"]],I:["Isqueiro prateado","Lanterna","Giz de proteção","Celular com fotos estranhas","Amuleto herdado"],V:["a Ordem do Véu","o Demônio do Contrato","o Prefeito Imortal"],N:[["a dona do antiquário","sabio"],["o informante de rua","mercador"],["o detetive cansado","guarda"],["a herdeira misteriosa","nobre"],["o barman","taverneiro"]],A:["A chuva faz o asfalto brilhar em neon, e algo se move nos reflexos.","Sirenes soam ao longe, mas o beco está estranhamente calmo.","Um cheiro de enxofre sobe pelos bueiros."]}],
+["Mundo dos sonhos","Pesadelos e paisagens impossíveis",["#10102a","#8a5ae0","#06061a","#d0e8ff"],
+ {L:[["Escadaria Infinita","montanha"],["Cidade de Espelhos","cidade"],["Mar de Nuvens","mar"],["Biblioteca sem Fim","ruinas"],["Floresta de Relógios","floresta"],["Caverna dos Medos","caverna"]],M:[["um pesadelo de muitos dentes","lobo"],["uma sombra sem rosto","fantasma"],["uma aranha de fios de sonho","aranha"],["um boneco de porcelana","golem"]],I:["Pena do sono","Espelho de bolso","Chave sem porta","Poção da lucidez","Fio de memória"],V:["o Ceifador do Sono","a Rainha dos Pesadelos","o Eu Esquecido"],N:[["o guardião dos sonhos","sabio"],["o vendedor de memórias","mercador"],["a sentinela de névoa","guarda"],["a duquesa dos espelhos","nobre"]],A:["O chão muda de cor a cada passo e o céu parece respirar.","Você sabe que está sonhando, mas não consegue acordar.","Vozes familiares chamam seu nome de lugar nenhum."]}],
+["Era dos cavaleiros","Juramentos, torneios e dragões",["#1c2a3a","#c0c0d0","#0e151e","#ffe9a0"],
+ {L:[["Fortaleza da Távola","castelo"],["Floresta Encantada","floresta"],["Lago da Dama","mar"],["Colina do Dragão","montanha"],["Capela Antiga","ruinas"],["Vila do Torneio","cidade"]],M:[["um cavaleiro negro","esqueleto"],["uma bruxa da névoa","fantasma"],["um lobo gigante","lobo"],["um dragão velho","dragao"]],I:["Espada juramentada","Escudo heráldico","Cálice sagrado","Pergaminho de ordem","Corcel de guerra"],V:["o Cavaleiro Negro","a Feiticeira da Névoa","o Rei Caído"],N:[["o mago conselheiro","sabio"],["o ferreiro do reino","mercador"],["o capitão da guarda","guarda"],["a dama da corte","nobre"],["o estalajadeiro","taverneiro"]],A:["Estandartes tremulam ao vento e o som de ferro ecoa nas muralhas.","Um juramento antigo parece pairar no ar.","A névoa sobe do lago e esconde formas que se movem."]}],
+["Ilhas flutuantes","Arquipélago no céu, pontes de vento",["#0d3a6a","#8ad0ff","#0a2540","#fff4c0"],
+ {L:[["Ilha do Farol","montanha"],["Cidade das Nuvens","cidade"],["Dirigível Gaivota","mar"],["Ruínas Celestes","ruinas"],["Gruta do Trovão","caverna"],["Jardim Suspenso","floresta"]],M:[["uma águia colossal","dragao"],["um espírito da tempestade","fantasma"],["um golem de pedra voadora","golem"],["uma serpente do vento","serpente"]],I:["Asas de pano","Bússola dos ventos","Corda de nuvem","Lente celeste","Poção de leveza"],V:["o Senhor dos Raios","a Guilda dos Piratas do Céu","a Grande Tempestade"],N:[["a cartógrafa do céu","sabio"],["o mercador de ventos","mercador"],["o guarda do farol","guarda"],["a nobre das alturas","nobre"],["o taverneiro","taverneiro"]],A:["O vento assobia entre as ilhas e o chão parece muito, muito longe.","Nuvens passam abaixo dos seus pés como um mar branco.","Pontes de corda rangem e balançam a cada rajada."]}]
+];
+NW.forEach(w=>{WORLDS.push([w[0],w[1],w[2]]);WD[w[0]]=w[3]});
+pick($("worlds"),WORLDS,i=>world=i);world=0;
+
+const MODES=[["Clássico","Aventura padrão, sem regras extras"],["Sobrevivência","Suprimentos escassos e clima hostil"],["Terror psicológico","Sanidade frágil e tensão crescente"],["Torre infinita","Andares, chefes e tesouros"],["Mistério","Pistas, suspeitos e dedução"],["Senhor de terras","Governe um feudo e suas intrigas"],["Hardcore","Mundo implacável, XP +50%"]];
+const DIR=["",
+" | MODO SOBREVIVÊNCIA: recursos escassos (comida, água, abrigo, clima hostil); cada decisão custa suprimentos; ofereça escolhas de risco e recompensa sobre recursos.",
+" | MODO TERROR PSICOLÓGICO: tensão crescente, sanidade frágil, o desconhecido e o sugerido em vez do explícito; sem gore gratuito.",
+" | MODO TORRE INFINITA: o herói sobe uma torre de andares com salas, armadilhas, tesouros e um chefe a cada 5 andares; a dificuldade cresce a cada andar.",
+" | MODO MISTÉRIO: há um enigma central; distribua pistas, suspeitos que mentem e falsas pistas; registre fios abertos; só revele a verdade quando o jogador deduzir.",
+" | MODO SENHOR DE TERRAS: o herói governa um feudo (tesouro, povo, exército, intrigas na corte); ofereça decisões de governo com consequências de longo prazo.",
+" | MODO HARDCORE: mundo implacável, inimigos letais, poucos recursos de cura; escolhas ruins têm consequências graves."];
+const QA=["","🍖 Forragear comida e água","🧠 Respirar fundo e se acalmar","🗼 Descer ao próximo andar","🔎 Revisar pistas e suspeitos","👑 Realizar a audiência do reino",""];
+const QT=["","Procuro comida e água na região.","Respiro fundo, me acalmo e descanso um momento.","Desço ao próximo andar da torre.","Reviso todas as pistas e suspeitos até agora.","Realizo a audiência do reino e ouço os pedidos do povo.",""];
+let gm=0,pend=0;
+const lb=$("tone").previousElementSibling;
+lb.insertAdjacentHTML("beforebegin",'<label>Modo de campanha</label><div class="opts" id="gmo"></div>');
+pick($("gmo"),MODES,i=>gm=i);
+const g0=$("go").onclick;
+$("go").onclick=()=>{g0();pend=gm;$("idea").value+=DIR[gm]};
+
+const _t=turn;
+turn=async function(text){
+ if(!S)return _t(text);
+ if(S.gm==null){S.gm=S.sid?0:pend;if(!S.sid)pend=0}
+ const t0=S.t||0,x0=S.xp||0;
+ await _t(text);
+ if(!S||(S.t||0)==t0)return;
+ const g=S.gm||0;let add="";
+ if(g==6){const d=(S.xp||0)-x0;if(d>0)S.xp+=Math.floor(d/2)}
+ if(g==1||g==2){
+  let r=S.res==null?10:S.res;
+  r+=/forrag|comida|água|agua|ca[çc]a|descans|acalm|respir|medit|conforto/i.test(text)?3:0;
+  if(g==1||S.t%2==0)r-=1;
+  r=Math.max(0,Math.min(10,r));S.res=r;
+  if(r==0){S.hp=Math.max(1,S.hp-(g==1?2:1));add=g==1?"O herói está faminto e exausto (suprimentos zerados): narre fraqueza, escassez e desespero, e dê chances reais de achar comida.":"O herói está à beira do colapso mental (sanidade zerada): narre alucinações e paranoia intensas."}
+  else if(r<=3)add=g==1?"Os suprimentos do herói estão baixos: mostre fome, sede e tensão.":"A sanidade do herói está baixa: insinue ilusões e dúvidas sobre o que é real."}
+ if(g==3){S.andar=S.andar||1;if(/pr[óo]ximo andar|desc[oe]r|desço/i.test(text))S.andar++;add="O herói está no andar "+S.andar+" da torre"+(S.andar%5==0?": este é o andar de um CHEFE.":"; a dificuldade cresce a cada andar.")}
+ if(add)S.nota=(S.nota?S.nota+" ":"")+add;
+ save();render();
+};
+const _r=render;
+render=function(){_r();if(!S)return;const g=S.gm||0;if(!g)return;const h=$("hud");
+ if(g==1||g==2)h.appendChild(el("span","",(g==1?"🍖 ":"🧠 ")+(S.res==null?10:S.res)+"/10"));
+ if(g==3)h.appendChild(el("span","","🗼 Andar "+(S.andar||1)));
+ h.appendChild(el("span","",MODES[g][0]));
+ if(QA[g]){const b=el("button","",QA[g]);b.style.borderStyle="dashed";b.onclick=()=>turn(QT[g]);$("ch").appendChild(b)}};
+
+const EM=["⚔️","🍖","🧠","🗼","🔎","👑","💀"],BG=["#3a1a1a","#2a3a14","#1a1030","#2a2a3a","#3a2a14","#3a1a2a","#2a0a0a"];
+const _s=show;
+show=function(id){_s(id);if(id=="s0"){const row=document.querySelector("#cards .row2");if(!row)return;
+ for(let i=1;i<MODES.length;i++){const b=el("button","cd"),m=el("div","im",EM[i]);m.style.background="linear-gradient("+BG[i]+",#0a0a0a)";b.append(m,el("b","",MODES[i][0]),el("small","",MODES[i][1]));b.onclick=()=>{[...$("gmo").children][i].click();show("s1")};row.appendChild(b)}
+ const v=document.querySelector("#s0>p:last-child");if(v)v.textContent="v4.1"}};
+show("s0");
+window.FL4={MODES,NW};
+})();
+</script>
+<script>
+/* ===== v5: instalar como app (PWA) ===== */
+(function(){
+const $=id=>document.getElementById(id),el=(t,c,x)=>{const e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e};
+const web=/^https?:$/.test(location.protocol);
+if("serviceWorker" in navigator&&web)navigator.serviceWorker.register("sw.js").catch(()=>{});
+let dp=null;
+const sa=()=>{try{return matchMedia("(display-mode: standalone)").matches||navigator.standalone===true}catch(e){return false}};
+$("cfHint").parentNode.insertAdjacentHTML("afterend",'<div class="panel"><h2>📲 Instalar como app</h2><p id="pwaT"></p><button class="cta" id="pwaB" style="margin-top:6px"></button></div>');
+function upd(){const t=$("pwaT"),b=$("pwaB");b.style.display="";
+ if(sa()){t.textContent="✔ O jogo já está instalado e rodando como app.";b.style.display="none"}
+ else if(!web){t.textContent="Para instalar, abra o jogo pelo endereço do GitHub Pages (https://...) e não pelo arquivo local.";b.style.display="none"}
+ else if(dp){t.textContent="Instale para jogar em tela cheia, com ícone na tela inicial e funcionamento offline do visual (o Mestre IA precisa de internet).";b.textContent="Instalar agora"}
+ else{t.textContent="Chrome: menu ⋮ → Instalar app (ou Adicionar à tela inicial). iPhone: Safari → Compartilhar → Adicionar à Tela de Início.";b.textContent="Como instalar"}}
+$("pwaB").onclick=()=>{if(dp){dp.prompt();dp.userChoice.finally(()=>{dp=null;upd()})}else alert("Chrome (Android): toque no menu ⋮ e escolha \"Instalar app\" ou \"Adicionar à tela inicial\".\n\niPhone (Safari): toque em Compartilhar e escolha \"Adicionar à Tela de Início\".")};
+addEventListener("beforeinstallprompt",e=>{e.preventDefault();dp=e;upd()});
+addEventListener("appinstalled",()=>{dp=null;upd()});
+upd();
+const _s=show;
+show=function(id){_s(id);if(id=="s5")upd();if(id=="s0"&&dp){const hb=document.querySelector("#s0 .hb");if(hb){const b=el("button","chip","📲 Instalar");b.onclick=()=>$("pwaB").click();hb.appendChild(b)}}};
+})();
 </script>
 </body>
 </html>

@@ -115,6 +115,55 @@ body.tb .screen{padding-bottom:96px}
 .gal{display:grid;grid-template-columns:1fr 1fr;gap:8px}.gal svg{width:100%;border-radius:8px}
 .shp{display:flex;flex-direction:column;gap:8px}.shp button{background:var(--bg2);border:1px solid var(--gold);border-radius:8px;padding:10px;text-align:left;font-size:17px}
 .cx p{margin:4px 0;border-bottom:1px solid #2a2820;padding-bottom:4px}
+/* ===== v7: interface Fablia + animações de anime ===== */
+#s2 .top{gap:8px;justify-content:flex-start;align-items:center}
+#av{width:46px;height:46px;border-radius:50%;border:2px solid var(--gold);background:radial-gradient(#3a2a2a,#0b0d0c);overflow:hidden;flex:none}#av svg{width:100%;height:100%}
+#s2 .who{display:flex;flex-direction:column;min-width:0;flex:1}#s2 .who b{font-family:Cinzel,serif;font-size:20px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}#s2 .who small{color:var(--gold);font-size:12px;letter-spacing:.05em;font-family:Cinzel,serif}
+#tbb{display:flex;gap:3px}#tbb button,#s2 .top>#bExit{padding:6px 9px;font-size:16px}
+#ch:not(.open){display:none}
+#sgb{width:100%;margin:6px 0;letter-spacing:.12em;font-family:Cinzel,serif;border-radius:12px;background:linear-gradient(#26262a,#141416)}
+#ab{display:flex;gap:6px;overflow-x:auto;padding:4px 0;align-items:center}#ab small{color:var(--mut);font-family:Cinzel,serif;font-size:12px;white-space:nowrap}
+.abb{white-space:nowrap;border:1px solid var(--line);background:#17181a;color:var(--txt);border-radius:18px;padding:6px 12px;font-size:15px}.abb.sig{border-color:var(--gold);color:var(--gold)}.abb:disabled{opacity:.45}
+#bMap,.bar #dice{border-radius:50%;width:46px;height:46px;flex:none;padding:0;background:radial-gradient(#3a3a40,#17181a);border:2px solid #3a3a40;color:var(--gold);font-size:20px}
+.cardx{border-left:4px solid var(--gold);background:linear-gradient(90deg,#3a2a0e88,#0b0d0ccc);border-radius:10px;padding:12px;margin:10px 0;animation:inn .6s both}
+.cardx.m{border-color:#ee8a3a;background:linear-gradient(90deg,#4a260e88,#0b0d0ccc)}.cardx.h{border-color:#d8b8ff;background:linear-gradient(90deg,#3a1a5a88,#0b0d0ccc)}
+.cardx h3{margin:0 0 8px;font-family:Cinzel,serif;font-size:15px;letter-spacing:.08em;color:var(--gold);display:flex;justify-content:space-between}.cardx.m h3{color:#ffb070}
+.cardx b{display:block;font-family:Cinzel,serif;font-size:21px;margin-bottom:4px}.cardx p{margin:2px 0;font-size:17px}
+.tiles{display:flex;gap:8px;flex-wrap:wrap}.tiles div{width:54px;height:54px;border-radius:8px;border:1px solid #3a3a40;background:#101112;display:flex;align-items:center;justify-content:center;font-size:30px}
+.tbr{display:flex;gap:8px;align-items:center;margin:4px 0 8px}.pill{border:1px solid var(--line);background:#1a1b1d;color:var(--txt);border-radius:18px;padding:6px 14px;font-size:16px}
+@keyframes inn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+#log p.n:last-of-type{animation:inn .7s both}
+.ani{position:relative;overflow:hidden;border-radius:10px;margin:6px 0;line-height:0}.ani svg{width:100%;margin:0;animation:pan 22s ease-in-out infinite alternate;transform-origin:60% 70%}
+@keyframes pan{from{transform:scale(1)}to{transform:scale(1.14) translateX(-2%)}}
+.ani .rays{position:absolute;inset:-60%;background:conic-gradient(from 0deg at 75% 0,transparent 0 6%,#fff3 8%,transparent 11%,transparent 20%,#fff2 22%,transparent 26%,transparent 40%);animation:spin 50s linear infinite;mix-blend-mode:screen;opacity:.35;pointer-events:none}
+@keyframes spin{to{transform:rotate(360deg)}}
+.ani::after{content:"";position:absolute;inset:0;box-shadow:inset 0 0 50px 14px #000c;pointer-events:none}
+.ani .lb{position:absolute;left:0;right:0;height:7%;background:#000;z-index:3}.ani .lb.t{top:0}.ani .lb.b{bottom:0}
+.ani.enter .sl{position:absolute;inset:0;z-index:4;background:repeating-conic-gradient(from 0deg at 50% 55%,#fff 0 .8deg,transparent .8deg 6deg);-webkit-mask:radial-gradient(circle at 50% 55%,transparent 25%,#000 85%);mask:radial-gradient(circle at 50% 55%,transparent 25%,#000 85%);animation:slx .8s ease-out both;pointer-events:none}
+@keyframes slx{0%{opacity:.9;transform:scale(1.6)}100%{opacity:0;transform:scale(1)}}
+.pts{position:absolute;inset:0;pointer-events:none;z-index:2;overflow:hidden}.pt{position:absolute;display:block;width:calc(7px*var(--s,1));height:calc(7px*var(--s,1));border-radius:50%;animation-iteration-count:infinite;animation-timing-function:linear}
+.pt.petal{background:#ffb7d0;border-radius:80% 0 80% 0;top:-6%!important;animation-name:fall;animation-timing-function:ease-in-out}
+.pt.snow{background:#fff;top:-6%!important;animation-name:fall2}.pt.ember{background:#ff8a3a;box-shadow:0 0 6px #ff6a1a;top:100%!important;animation-name:rise}
+.pt.firefly{background:#f2ff7a;box-shadow:0 0 8px #e8ff3a;animation-name:blink,wob;animation-timing-function:ease-in-out}.pt.bubble{border:1px solid #bfeaff;background:#bfeaff22;top:100%!important;animation-name:rise}
+.pt.star{background:#fff;animation-name:blink;animation-timing-function:ease-in-out}.pt.sand{background:#e0b878;left:-4%!important;animation-name:drift}.pt.lantern{background:#ffc860;box-shadow:0 0 10px #ffa830;top:100%!important;animation-name:rise;border-radius:30%}
+@keyframes fall{0%{transform:translate(0,0) rotate(0)}100%{transform:translate(60px,290px) rotate(540deg)}}@keyframes fall2{to{transform:translate(-20px,300px)}}
+@keyframes rise{0%{transform:translate(0,0);opacity:0}15%{opacity:1}100%{transform:translate(14px,-330px);opacity:0}}@keyframes blink{0%,100%{opacity:.1}50%{opacity:1}}
+@keyframes wob{0%,100%{transform:translate(0,0)}50%{transform:translate(12px,-10px)}}@keyframes drift{to{transform:translate(520px,30px)}}
+.burst{position:fixed;inset:0;z-index:200;pointer-events:none;display:flex;align-items:center;justify-content:center;animation:bst .9s both}
+.burst i{position:absolute;inset:0;background:repeating-conic-gradient(from 0deg at 50% 50%,#fff 0 1deg,transparent 1deg 7deg);-webkit-mask:radial-gradient(circle,transparent 20%,#000 90%);mask:radial-gradient(circle,transparent 20%,#000 90%);opacity:.8}
+.burst b{position:relative;font-family:Cinzel,serif;font-size:54px;font-weight:900;font-style:italic;transform:skew(-8deg);color:#fff;-webkit-text-stroke:2px #000;text-shadow:0 0 20px var(--c,#ffd44a),4px 4px 0 var(--c,#ffd44a);animation:pop .5s cubic-bezier(.2,2,.4,1) both}
+.burst.crit{--c:#ffd44a}.burst.hit{--c:#ff3a3a;background:radial-gradient(#0000 40%,#a0000088)}.burst.lvl{--c:#5ad8ff}
+@keyframes bst{0%{opacity:0}10%{opacity:1}100%{opacity:0}}@keyframes pop{from{transform:skew(-8deg) scale(.2)}to{transform:skew(-8deg) scale(1)}}
+#s2.shk{animation:shk .45s}@keyframes shk{0%,100%{transform:none}20%{transform:translate(-7px,3px)}40%{transform:translate(6px,-4px)}60%{transform:translate(-4px,4px)}80%{transform:translate(3px,-2px)}}
+.ban{position:relative;overflow:hidden;min-height:250px;display:flex;flex-direction:column;justify-content:flex-end}.ban>*:not(.hsv):not(.pts){position:relative;z-index:3}
+.hsv{position:absolute;inset:0;width:100%;height:100%;z-index:1}.hsv .moon{animation:glow 5s ease-in-out infinite alternate}@keyframes glow{from{opacity:.55}to{opacity:1}}
+.bob{animation:bob 3.2s ease-in-out infinite}@keyframes bob{50%{transform:translateY(-4px)}}
+#s7{padding-bottom:30px}.sthd{display:flex;justify-content:center;position:relative;color:var(--mut);font-family:Cinzel,serif;font-size:20px;padding:6px 0 12px}.xb{position:absolute;right:0;top:0;width:44px;height:44px;border-radius:50%;background:#1d1e20;border:2px solid #3a3a40;color:var(--txt);font-size:20px}
+.stban{border-radius:12px;padding:70px 14px 14px;margin-bottom:10px;border:1px solid var(--line)}.stban b{display:block;font-family:Cinzel,serif;font-size:30px}.stban small{font-size:17px;color:#fff9}
+.stt{font-size:19px;line-height:1.5;color:#e6dcc6}.ovw{border:1px solid #3a3a40;border-radius:12px;background:linear-gradient(#1c1d1f,#121314);margin:8px 0 14px}.ovr{display:flex;justify-content:space-between;padding:14px;border-bottom:1px solid #2c2d30;font-family:Cinzel,serif}.ovr:last-child{border:0}.ovr span{color:#d8d0bc}.ovr b{color:#f0b868}
+.redb{width:100%;padding:16px;margin:8px 0;border-radius:6px;border:2px solid #ff3a3a;background:linear-gradient(#d4161c,#7a0a0e);color:#ffe9d0;font-family:Cinzel,serif;font-size:21px;letter-spacing:.04em;box-shadow:0 0 18px #ff1a1a66,inset 0 0 10px #ff8a8a55}
+.tcards{display:flex;flex-direction:column;gap:12px;margin:8px 0}.tc{position:relative;text-align:left;border:2px solid #3a2a22;border-radius:14px;padding:70px 16px 16px;color:#fff}.tc.sel{border-color:var(--gold);box-shadow:0 0 14px #e8c46a66}
+.tc i{position:absolute;right:14px;top:8px;font-style:normal;font-size:62px;opacity:.85}.tc small{display:block;color:#f0b868;font-family:Cinzel,serif;letter-spacing:.06em}.tc b{display:block;font-family:Cinzel,serif;font-size:28px}.tc span{font-size:17px;color:#fffc}
 </style>
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" type="image/png" href="icon-192.png">
@@ -740,7 +789,7 @@ function buildShop(){const s=$("shp");s.innerHTML="";s.appendChild(el("p","","Vo
 
 const _m=$("bMem").onclick;$("bMem").onclick=function(){_m();buildMap();buildCodex();buildShop()};
 const _s=show;show=function(id){_s(id);if(id=="s0"){let g=0;try{const o=Object.values(JSON.parse(localStorage.getItem("forje-slots")||"{}")).sort((a,b)=>b.ts-a.ts);if(o[0])g=o[0].S.gems||0}catch(e){}
- const hb=document.querySelector("#s0 .hb");if(hb)hb.appendChild(el("span","pill","💎 "+g));const v=document.querySelector("#s0>p:last-child");if(v)v.textContent="v4.2"}};
+ const hb=document.querySelector("#s0 .hb");if(hb)hb.appendChild(el("span","pill","💎 "+g));const v=document.querySelector("#s0>p:last-child");if(v)v.textContent="v5.0"}};
 show("s0");
 window.FL={deathSave,buildMap,buildCodex,buildShop};
 })();
@@ -824,7 +873,7 @@ const EM=["⚔️","🍖","🧠","🗼","🔎","👑","💀"],BG=["#3a1a1a","#2a
 const _s=show;
 show=function(id){_s(id);if(id=="s0"){const row=document.querySelector("#cards .row2");if(!row)return;
  for(let i=1;i<MODES.length;i++){const b=el("button","cd"),m=el("div","im",EM[i]);m.style.background="linear-gradient("+BG[i]+",#0a0a0a)";b.append(m,el("b","",MODES[i][0]),el("small","",MODES[i][1]));b.onclick=()=>{[...$("gmo").children][i].click();show("s1")};row.appendChild(b)}
- const v=document.querySelector("#s0>p:last-child");if(v)v.textContent="v4.2"}};
+ const v=document.querySelector("#s0>p:last-child");if(v)v.textContent="v5.0"}};
 show("s0");
 window.FL4={MODES,NW};
 })();
@@ -873,7 +922,7 @@ function enhance(j,text){
  const d=dOf(),act=String(text).replace(/\s*\(🎲[^)]*\)\s*.*$/,"").replace(/\s*\[teste de[^\]]*\]\s*$/,"");
  const m=/d20\s*=\s*(\d+)/i.exec(text),dh=j.hp-S.hp;
  const tier=m?rollOf(text).tier:(j.xp>=18?3:dh<=-2?0:dh<0?1:2);
- const it=(INT.find(x=>x[1].test(act))||[null])[0];
+ const it=S.abIt=="x"?null:(S.abIt||(INT.find(x=>x[1].test(act))||[null])[0]);
  const ps=String(j.narrativa).split("\n");let pre="";
  if(it=="rest"){pre=pk(REST);j.hp=Math.min(20,j.hp+3);j.xp=3}
  else if(it=="use"){const w=act.toLowerCase(),item=(S.inv||[]).find(x=>x.toLowerCase().split(/\s+/).some(t=>t.length>3&&w.includes(t)))||(S.inv||[]).find(x=>CONS.test(x)&&/(bebo|beber|como|comer)/.test(w));
@@ -881,6 +930,7 @@ function enhance(j,text){
   else if(item){pre="Você usa "+item+" de um jeito criativo, abrindo uma possibilidade nova.";j.xp+=2}}
  else if(it&&RX[it])pre=fill(pk(RX[it][tier]),d);
  if(pre)ps[0]=(pre+" "+((it=="rest"||it=="use")?ps[0].replace(/[^.]*«[^»]*»[^.]*\.\s*/,""):ps[0])).trim();
+ if(window.GEN){const g=window.GEN(d,act,it);if(g){ps.length=1;ps.push(g.p2,g.p3)}}
  if(it=="tlk"){ps.splice(1,0,fill(pk(SAY[tier<2?tier:2]),{h:S.hero}))}
  if(j.hp<=5)ps[ps.length-1]+=" Seu corpo pesa; cada movimento cobra um preço.";
  if((S.t||0)%3==0)ps[ps.length-1]+=" "+HORA[Math.floor((S.t||0)/3)%4];
@@ -909,13 +959,174 @@ if(TT){
  const PROF={mercador:[1.12,1.05],sabio:[.8,.88],guarda:[.7,.98],nobre:[1.28,.95],taverneiro:[.95,1.05],aldeao:[1.18,1]};
  const _sp=TT.speak.bind(TT);
  TT.speak=function(u){try{
-  const a=((S&&S.log)||[]).filter(m=>m.role=="ai"&&!m.sys).pop()||{},dlg=u.pitch>1,ex=V.ex!==false;
+  const a=((S&&S.log)||[]).filter(m=>m.role=="ai"&&!m.sys).pop()||{},dlg=u.pitch>1,ex=V.ex!==false;u.__d=dlg;u.__n=a.npc;
   if(dlg){if(ex){const p=PROF[a.npc]||(a.criatura?[.6,.9]:[1.3,1]);u.pitch=p[0];u.rate=V.rate*p[1]}}
   else{let p=V.pn||.9,r=V.rate;if(ex){if(/caverna|ruinas|castelo/.test(a.scene||"")){p-=.05;r*=.93}if(a.criatura){r*=1.08;p+=.03}else if(/taverna|cidade/.test(a.scene||""))p+=.03}u.pitch=Math.max(.5,Math.min(1.5,p));u.rate=r}
- }catch(e){}return _sp(u)};
+ }catch(e){}try{window.VG&&window.VG(u)}catch(e){}return _sp(u)};
  vfill();
  window.FL6={best,score};
 }
+})();
+</script>
+<script>
+/* ===== v7: UI Fablia, anime, classes, Mestre que aprende, vozes ===== */
+(function(){
+const $=id=>document.getElementById(id),el=(t,c,x)=>{const e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e};
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const T=f=>{try{f()}catch(e){console.error("v7",e)}};
+const AR={espada:"sua espada",cajado:"seu cajado",adaga:"suas adagas",alaude:"seu alaúde",maca:"sua maça",arco:"seu arco"};
+const cl=()=>(S&&CL.find(c=>c.n==S.cls))||{};
+const arch=()=>({espada:"war",cajado:"mage",adaga:"rogue",alaude:"bard",maca:"holy",arco:"ranger"})[cl().w]||"war";
+const wpick=o=>{const ks=Object.keys(o),t=ks.reduce((s,k)=>s+Math.max(.05,o[k]),0);let r=Math.random()*t;for(const k of ks){r-=Math.max(.05,o[k]);if(r<=0)return k}return ks[0]};
+
+/* ---------- HABILIDADES E CLASSES ---------- */
+const AX={war:[["Postura de Defesa","🛡️",4,"shield",0,"Você assume uma postura firme e se prepara para absorver os golpes."],["Grito de Guerra","📣",4,"bonus",3,"Você ruge um grito de guerra que acende a coragem ao redor."]],
+mage:[["Escudo Arcano","🔮",4,"shield",0,"Você ergue um escudo de energia arcana."],["Leitura Arcana","📖",4,"scout",0,"Você lê os fios de magia do lugar em busca de pistas."]],
+rogue:[["Passo Sombrio","🌑",3,"bonus",3,"Você se funde às sombras e prepara o próximo movimento."],["Olho de Gatuno","👁️",4,"scout",0,"Você examina cada detalhe, atrás de portas e armadilhas."]],
+bard:[["Verso Inspirador","🎵",3,"bonus",3,"Você canta um verso que enche o coração de ânimo."],["Melodia Calmante","🎶",4,"heal",4,"Você toca uma melodia que acalma as feridas."]],
+holy:[["Oração de Cura","✨",3,"heal",6,"Você reza e uma luz suave fecha seus ferimentos."],["Escudo Sagrado","🛡️",4,"shield",0,"Uma luz sagrada envolve você como armadura."]],
+ranger:[["Marca da Presa","🎯",3,"bonus",3,"Você marca o alvo e prevê cada movimento dele."],["Rastrear","🐾",4,"scout",0,"Você lê pegadas e sinais na região."]]};
+const ABIT={war:"atk",mage:"mag",rogue:"sne",bard:"tlk",holy:"tlk",ranger:"inv"};
+const AFF={war:{atk:2},mage:{mag:2},rogue:{sne:2,atk:1},bard:{tlk:2},holy:{tlk:1,rest:1},ranger:{inv:2,atk:1}};
+const CLX={war:[["Intimidar com sua presença","tlk"],["Testar a defesa do inimigo","atk"]],mage:[["Estudar os fios de magia do local","inv"],["Canalizar energia arcana","mag"]],rogue:[["Procurar uma passagem oculta","sne"],["Arrombar o que estiver trancado","sne"]],bard:[["Tocar uma canção para encantar todos","tlk"],["Contar uma história para ganhar confiança","tlk"]],holy:[["Orar por orientação","rest"],["Abençoar quem está ao redor","tlk"]],ranger:[["Seguir rastros pela região","inv"],["Preparar uma emboscada","atk"]]};
+function abils(){const c=cl(),h=!!c.h;return [[c.s,"✦",h?2:3,"bonus",h?6:4,"Você libera "+c.s+(h?", o poder da sua classe oculta!":" com toda a sua força!"),1]].concat(AX[arch()]||[])}
+function useAb(a){const cd=S.cd=S.cd||{};if(cd[a[0]]>0)return;cd[a[0]]=a[2]+1;
+ if(a[3]=="bonus")S.buff=(S.buff||0)+a[4];if(a[3]=="shield")S.shield=1;if(a[3]=="heal")S.heal=a[4];if(a[3]=="scout")S.scout=1;if(a[6])S.sig=1;
+ S.abIt=a[6]?ABIT[arch()]:a[3]=="scout"?"inv":"x";turn("Uso "+a[0]+": "+a[5]+" [Habilidade de classe]")}
+const dt=t=>{t=String(t);return[["rest",/descans|dorm|acamp|respir|medit|recobr/i],["use",/\b(uso|usar|bebo|beber|aplico|como|comer)\b/i],["mag",/magia|feiti|invoc|poder|runa|conjur/i],["sne",/furtiv|esgueir|escond|silêncio|sorrat|invad|fug|recu|armadilha|escapo/i],["atk",/atac|golpe|lut|bat[ae]|mat[ae]|ferir|enfrent|espada|flecha|derrub|destru|soco|chut|disparo/i],["tlk",/\bfal[oa]|convers|convenc|negoc|persuad|blef|pedir|pergunt|interrog|oferec|acord|acalm|inspir|discurso|cumpriment/i],["inv",/invest|examin|procur|\bler\b|estud|segu[io]|pista|rastro|analis|decifr|explor|observ|\bolh/i]].find(x=>x[1].test(t))?.[0]||null};
+
+/* ---------- CÉREBRO DO MESTRE (aprende com você) ---------- */
+const BK="forje-brain";let B={cat:{combate:1,misterio:1,social:1,explor:1,perigo:1,humor:1},tpl:{},rec:[],n:0,it:{}};
+try{Object.assign(B,JSON.parse(localStorage.getItem(BK)||"{}"))}catch(e){}
+const bsave=()=>{try{localStorage.setItem(BK,JSON.stringify(B))}catch(e){}};
+const ICAT={atk:"combate",mag:"combate",sne:"perigo",tlk:"social",inv:"misterio",rest:"explor",use:"explor"};
+const HAB={atk:"resolver tudo no golpe",mag:"confiar na magia",sne:"agir nas sombras",tlk:"conversar antes de lutar",inv:"investigar cada detalhe",rest:"respirar fundo antes de decidir",use:"usar o que carrega"};
+const EV={combate:["{mon} bloqueia o caminho em {lug}, e o olhar dele diz que {vil} pagou por isso.","Passos pesados ecoam: {mon} surge das sombras e cerca você antes que possa respirar.","Um golpe súbito rasga o ar, vindo de alguém a serviço de {vil}; {nm} grita para você se proteger.","A paz em {lug} dura pouco: {mon} avança, e {w} treme na sua mão.","O chão estala, o ar pesa e um desafio é lançado em nome de {vil}."],
+misterio:["Entre as marcas na parede de {lug}, você vê um símbolo que {nm} jurava nunca ter visto.","{item} reage perto de você, brilhando de um jeito estranho, como se respondesse a algo escondido em {lug2}.","Uma carta rasgada, sem remetente, cita {vil} e termina com uma data que parece muito próxima.","Os rumores não batem: cada testemunha em {lug} conta uma versão diferente do que aconteceu.","Uma gaveta falsa revela anotações de {nm}, e algumas linhas falam de você."],
+social:["{nm} puxa você para um canto e confessa, em voz baixa, que também tem medo de {vil}.","Uma disputa começa em {lug}, e todos olham para você esperando que decida de que lado ficar.","Um estranho oferece ajuda, mas o sorriso dele é bonito demais para ser inocente.","{nm} pede um favor difícil e promete, em troca, contar o que sabe sobre o plano: {obj}.","A conversa vira negociação, e cada palavra sua parece pesar como moeda."],
+explor:["O caminho se abre rumo a {lug2}, e {amb}","Você encontra um atalho esquecido e, no fim dele, {item} repousa sob uma luz pálida.","Uma ponte antiga, um mapa rabiscado e uma escolha: arriscar a rota curta ou seguir a longa.","O vento muda e traz um cheiro novo: algo extraordinário espera adiante, em {lug2}.","Um viajante cansado divide a fogueira com você e fala de uma passagem que poucos conhecem."],
+perigo:["Uma armadilha antiga estala sob seus pés, e as paredes de {lug} começam a se fechar.","Alarmes soam ao longe: agentes de {vil} sabem que você está aqui.","O tempo aperta, e o que quer que esteja por vir não vai esperar você se decidir.","Uma sombra comprida cruza o chão atrás de você, mas ao virar não há ninguém.","A tempestade chega rápido, e o único abrigo por perto parece já estar ocupado."],
+humor:["Um mercador tenta vender a você, com muita convicção, um mapa do lugar onde você já está.","{nm} tropeça no próprio manto e, sem querer, revela um segredo importante.","Uma cabra teimosa decide que o caminho é dela, e nenhuma magia a convence do contrário.","O taverneiro jura que a lenda de {vil} é só história para vender bebida, mas treme ao falar.","Você descobre que {nm} canta muito mal, mas com um coração enorme."]};
+const TW=["Quando tudo parece resolvido, uma pista liga {item} ao passado de {nm}.","Mas há um detalhe que não encaixa, e ele aponta direto para {nm}.","Algo observa de longe, paciente, e você sente isso na pele.","Um som baixo, vindo de {lug2}, promete que a história está só começando.","A resposta que você procurava chega, e ela cria uma pergunta ainda maior.","Por um instante, {w} brilha, como se também sentisse o perigo."];
+const HK=["Qual é o seu próximo movimento, {hero}?","O tempo corre: em quem você vai confiar agora?","A decisão está nas suas mãos, {hero}.","O que você faz diante disso?"];
+const FC={poupou:"{who} ainda se lembra de que você o poupou, e isso muda o tom da conversa.",ameaçou:"{who} não esqueceu a sua ameaça e mantém uma distância cautelosa.",ajudou:"{who} lembra do seu apoio e retribui com um olhar de confiança.",roubou:"{who} suspeita de você desde o roubo e não esconde.",enganou:"{who} ainda desconfia depois da mentira e vigia cada palavra sua.",enfrentou:"Rumores sobre sua luta contra {who} já correm por {lug}."};
+const OPT={combate:["Atacar primeiro, sem hesitar","Recuar e estudar o ponto fraco do inimigo","Usar o cenário a seu favor","Desafiar o inimigo para um duelo"],misterio:["Examinar o símbolo mais de perto","Perguntar a {nm} o que ele sabe","Seguir a pista até {lug2}","Anotar tudo e comparar com os rumores"],social:["Ouvir {nm} até o fim","Propor um acordo justo","Fingir concordar e observar","Dizer a verdade sem rodeios"],explor:["Seguir pelo atalho","Mapear a região antes de avançar","Acampar e descansar um pouco","Explorar {lug2} com cuidado"],perigo:["Fugir pela rota mais segura","Enfrentar o perigo de frente","Procurar um esconderijo","Improvisar uma armadilha"],humor:["Rir e seguir em frente","Entrar na brincadeira","Aproveitar a distração","Perguntar o que está acontecendo de verdade"]};
+let LOPT=null;
+window.GEN=function(d,act,it){if(Math.random()<.15)return null;
+ const cat=wpick(B.cat),ids={};EV[cat].forEach((_,i)=>{if(!B.rec.includes(cat+i))ids[cat+i]=1+(B.tpl[cat+i]||0)});
+ const id=Object.keys(ids).length?wpick(ids):cat+"0",ev=EV[cat][+id.slice(cat.length)];
+ const E={...d,hero:S.hero,w:AR[cl().w]||"sua arma"};
+ let p2=fill(ev,E);if(Math.random()<.5)p2+=" "+fill(R(TW),E);
+ const f=(S.facts||[]).slice(-6),fx=f.length&&Math.random()<.4?R(f):null,top=Object.entries(B.it).sort((a,b)=>b[1]-a[1])[0];
+ let p3=fx?fill(FC[fx.k]||"",{who:fx.who,lug:d.lug})+" ":"";
+ p3+=top&&top[1]>=4&&Math.random()<.4?"Você, que costuma "+HAB[top[0]]+", sente que desta vez isso pode não bastar.":fill(R(HK),E);
+ B.rec.push(id);if(B.rec.length>10)B.rec.shift();B.last={cat,id,t:S.t};
+ const o=OPT[cat].slice().sort(()=>Math.random()-.5).slice(0,3),c2=wpick(B.cat),o2=OPT[c2][RI(0,3)];if(!o.includes(o2))o.push(o2);
+ LOPT=o.map(x=>fill(x,E)).slice(0,3);bsave();return{p2,p3}};
+function learn(v){if(!B.last||B.last.t+1!=S.t){toast("Sem nada para ajustar nesta cena");return}
+ B.cat[B.last.cat]=Math.max(.3,B.cat[B.last.cat]+(v>0?2:-1));B.tpl[B.last.id]=(B.tpl[B.last.id]||0)+v;bsave();toast(v>0?"Anotado: mais cenas assim":"Anotado: menos cenas assim")}
+function toast(t){let e=$("toast");if(!e){document.body.insertAdjacentHTML("beforeend",'<div id="toast"></div>');e=$("toast")}e.textContent=t;e.style.display="block";clearTimeout(toast.k);toast.k=setTimeout(()=>e.style.display="none",2000)}
+const FR=[[/poup|perdo/i,"poupou"],[/amea[çc]|intimid/i,"ameaçou"],[/ajud|prote[gj]|cur[oa]/i,"ajudou"],[/roub|furt|surrup/i,"roubou"],[/minto|blef|engan/i,"enganou"],[/atac|golp|enfrent|mat[ae]/i,"enfrentou"]];
+function learnIn(text){const it=S.abIt&&S.abIt!="x"?S.abIt:dt(text);B.n++;
+ if(it){B.it[it]=(B.it[it]||0)+1;const c=ICAT[it];Object.keys(B.cat).forEach(k=>B.cat[k]=k==c?B.cat[k]+1:Math.max(.3,B.cat[k]*.985))}
+ const f=FR.find(x=>x[0].test(text));if(f&&S.po){S.facts=S.facts||[];S.facts.push({k:f[1],who:f[1]=="enfrentou"?"a criatura":S.po.nm});if(S.facts.length>12)S.facts.shift()}bsave()}
+
+/* ---------- Mestre offline: rolagem com vantagens de classe ---------- */
+const _o=offline;
+offline=function(text){if(!S||(S.story&&S.fase=="escola")||/^Comece a /.test(text))return _o(text);let t=text;
+ if(!/d20\s*=/i.test(t)){const it=S.abIt&&S.abIt!="x"?S.abIt:dt(text),c=cl(),bn=(S.buff||0)+((AFF[arch()]||{})[it]||0)+(c.h?2:0);S.buff=0;
+  const nat=RI(1,20),eff=(nat==20||nat==1)?nat:Math.max(2,Math.min(19,nat+bn));t+=" (🎲 d20 = "+eff+")";S.lastBn=bn;S.lastNat=nat}
+ const j=_o(t);if(LOPT&&Array.isArray(j.opcoes)){LOPT.forEach((o,i)=>{if(!j.opcoes.includes(o))j.opcoes[i]=o});LOPT=null}return j};
+
+/* ---------- UI do jogo ---------- */
+const ICN=[[/espada|l[âa]mina|adaga|machado/i,"🗡️"],[/cajado|varinha|ma[çc]a/i,"🪄"],[/escudo/i,"🛡️"],[/po[çc][ãa]o|elixir/i,"🧪"],[/armadura|cota|manto|capa/i,"🥋"],[/arco|flecha/i,"🏹"],[/livro|grim|caderno|papiro|pergaminho/i,"📖"],[/anel|s[íi]mbolo|rel[íi]quia|amuleto|ankh/i,"💍"],[/mapa|b[úu]ssola/i,"🧭"],[/chave/i,"🗝️"],[/ovo|p[ée]rola|cristal/i,"💎"]];
+const ic=n=>(ICN.find(x=>x[0].test(n))||[0,"🎒"])[1];
+function cardEl(c){const d=el("div","cardx"+(c.type=="miss"?" m":c.type=="hid"?" h":""));
+ if(c.type=="loot"){const h=el("h3","","⇢ SAQUE ENCONTRADO");h.appendChild(el("span","",c.items.length+(c.items.length>1?" itens":" item")));d.appendChild(h);const t=el("div","tiles");c.items.forEach(n=>{const x=el("div","",ic(n));x.title=n;t.appendChild(x)});d.appendChild(t);d.appendChild(el("p","",c.items.join(", ")))}
+ else if(c.type=="miss"){d.append(el("h3","","⇢ NOVA MISSÃO"),el("b","",c.n),el("p","",c.r))}
+ else if(c.type=="hid"){d.append(el("h3","","✨ CLASSE OCULTA DESPERTA"),el("b","",c.n),el("p","","Vantagens permanentes: +2 em todos os testes, +1 de vida por turno, +25% de XP e habilidades mais fortes e rápidas."))}
+ else{d.append(el("h3","","⚔ VANTAGEM DE CLASSE"),el("p","","+"+c.n+" neste teste, pela afinidade da classe, habilidade ativa e poder oculto."))}
+ return d}
+const PT={escola:"petal",floresta:"firefly",caverna:"ember",castelo:"ember",ruinas:"ember",montanha:"snow",mar:"bubble",espaco:"star",deserto:"sand",cidade:"lantern",taverna:"lantern"};
+function pts(k,n){let h='<div class="pts">';for(let i=0;i<n;i++)h+='<span class="pt '+k+'" style="left:'+RI(2,96)+'%;top:'+RI(5,90)+'%;--s:'+(.6+Math.random()).toFixed(2)+';animation-delay:-'+(Math.random()*8).toFixed(1)+'s;animation-duration:'+(6+Math.random()*8).toFixed(1)+'s"></span>';return h+"</div>"}
+function postfx(){const msgs=S.log.filter(m=>m.role!="user"&&!m.sys);const svs=[...$("log").children].filter(n=>n.tagName&&n.tagName.toLowerCase()=="svg");
+ svs.forEach((sv,i)=>{const w=el("div","ani"+(i==svs.length-1?" enter":""));sv.before(w);w.appendChild(sv);w.insertAdjacentHTML("beforeend",'<div class="rays"></div>'+pts(PT[(msgs[i]||{}).scene]||"petal",14)+'<div class="lb t"></div><div class="lb b"></div><div class="sl"></div>')})}
+function toolbar(){const ps=[...$("log").querySelectorAll("p.n")].filter(p=>!p.classList.contains("me")&&!p.classList.contains("sy")),p=ps[ps.length-1];if(!p)return;
+ const t=el("div","tbr"),mk=(x,f)=>{const b=el("button","pill",x);b.onclick=f;t.appendChild(b)};
+ mk("🖼 Ilustrar",()=>$("bViz").click());mk("⏯",()=>$("bPlay").click());const s=el("span");s.style.flex="1";t.appendChild(s);mk("👍",()=>learn(1));mk("👎",()=>learn(-1));p.after(t)}
+let ADDN=0,sg=false;
+function buildUI(){
+ const top=$("s2").querySelector(".top"),bs=["bExit","bVoz","bPlay","bCfg","bMem"].map($);
+ top.innerHTML='<div id="av"></div><div class="who"><b id="ttl"></b><small id="sub"></small></div><div id="tbb"></div>';
+ top.prepend(bs[0]);bs.slice(1).forEach(b=>$("tbb").appendChild(b));bs[0].textContent="←";bs[4].textContent="📖";
+ $("act").insertAdjacentHTML("beforebegin",'<button id="bMap">🗺</button>');$("bMap").onclick=()=>$("bMem").click();$("send").textContent="➤";
+ $("ch").insertAdjacentHTML("beforebegin",'<div id="ab"></div><button id="sgb" class="ghost">SUGESTÕES ⌃</button>');
+ $("sgb").onclick=()=>{sg=!sg;upS()}}
+const upS=()=>{$("ch").classList.toggle("open",sg);$("sgb").textContent="SUGESTÕES "+(sg?"⌄":"⌃")};
+function fx(kind,txt){const b=el("div","burst "+kind);b.innerHTML="<i></i><b>"+esc(txt)+"</b>";document.body.appendChild(b);$("s2").classList.add("shk");setTimeout(()=>{b.remove();$("s2").classList.remove("shk")},950);if(navigator.vibrate)navigator.vibrate(kind=="hit"?[60,30,60]:[30,20,30])}
+T(buildUI);
+const _add=add;add=function(role,text,m){const r=_add(role,text,m);const i=ADDN++;if(S&&S.cards)S.cards.filter(c=>c.at==i).forEach(c=>$("log").appendChild(cardEl(c)));return r};
+const _r=render;
+render=function(){ADDN=0;_r();T(()=>{if(!S)return;const c=cl();
+ $("ttl").textContent=S.hero;$("sub").textContent=((S.race||"")+" · "+S.cls+(c.h?" · ✨ OCULTA":"")).toUpperCase();
+ $("av").innerHTML=S.look?'<svg viewBox="-40 -80 80 90">'+fig(0,0,1,S.look.sk,S.look.cl,S.look.w,S.race,"")+"</svg>":"";
+ const ab=$("ab");ab.innerHTML="";if(c.n){ab.appendChild(el("small","","HABILIDADES"));abils().forEach(a=>{const cd=(S.cd||{})[a[0]]||0,x=el("button","abb"+(a[6]?" sig":""),a[1]+" "+a[0]+(cd?" ("+cd+")":""));x.disabled=cd>0;x.onclick=()=>useAb(a);ab.appendChild(x)});
+  (CLX[arch()]||[]).forEach(([t,it])=>{const b=el("button","","✦ "+t);b.style.borderColor="#e8c46a";b.onclick=()=>{S.abIt=it;turn(t)};$("ch").insertBefore(b,$("ch").firstChild)})}
+ toolbar();postfx();upS()})};
+const _t=turn;
+turn=async function(text){if(!S)return _t(text);
+ const hp0=S.hp,lv0=S.lv||1,inv0=(S.inv||[]).slice(),mis0=(S.mis||[]).map(m=>m.n),t0=S.t||0,xp0=S.xp||0;T(()=>learnIn(text));
+ await _t(text);if(!S||(S.t||0)==t0)return;
+ T(()=>{const c=cl(),cd=S.cd||{};Object.keys(cd).forEach(k=>{if(cd[k]>0)cd[k]--});
+  if(c.h){S.hp=Math.min(20,S.hp+1);const dx=(S.xp||0)-xp0;if(dx>0)S.xp+=Math.ceil(dx/4)}
+  if(S.heal){S.hp=Math.min(20,S.hp+S.heal);S.heal=0}if(S.shield){if(S.hp<hp0)S.hp=Math.min(hp0,S.hp+2);S.shield=0}
+  if(S.scout){if(S.po)S.po.pistas=(S.po.pistas||0)+1;S.xp=(S.xp||0)+4;S.scout=0}if(S.sig){S.xp=(S.xp||0)+6;S.sig=0}
+  S.cards=S.cards||[];const at=S.log.length-1;
+  const nw=(S.inv||[]).filter(x=>!inv0.includes(x));if(nw.length)S.cards.push({at,type:"loot",items:nw});
+  (S.mis||[]).filter(m=>!mis0.includes(m.n)).forEach(m=>S.cards.push({at,type:"miss",n:m.n,r:m.r}));
+  if(c.h&&(S.t||0)==1)S.cards.push({at,type:"hid",n:c.n});if(S.lastBn>0)S.cards.push({at,type:"adv",n:S.lastBn});
+  const m=/d20\s*=\s*(\d+)/.exec(text),n=m?+m[1]:S.lastNat;S.lastBn=0;S.lastNat=null;S.abIt=null;if(S.cards.length>40)S.cards=S.cards.slice(-40);
+  save();render();
+  if(n==20)fx("crit","CRÍTICO!");else if(n==1)fx("hit","FALHA CRÍTICA!");else if(hp0-S.hp>=3)fx("hit","-"+(hp0-S.hp)+" HP");else if((S.lv||1)>lv0)fx("lvl","LEVEL UP!")})};
+
+/* ---------- Telas: história (estilo Fablia), estilo de jogo, herói animado ---------- */
+document.body.insertAdjacentHTML("beforeend",'<div id="s7" class="screen"></div>');
+const BL=["{d}. Em {l}, uma sombra cresce, e {v} já sabe o seu nome. Será que você muda o destino deste mundo, ou ele engole você? Agora, isso depende de você.","Todo mundo em {l} fala de {v} em voz baixa. {d}. Você chegou na hora errada, ou na certa, e a história está pronta para ser escrita por você.","{d}. Dizem que quem desafia {v} nunca volta o mesmo. Entre {l} e o desconhecido, uma única escolha separa a lenda do esquecimento."];
+let P=null;
+const roll=()=>{P={r:RI(0,RACES.length-1),b:RI(0,BGS.length-1),c:Math.random()<.25?R(CL.filter(c=>c.h)):R(CL.filter(c=>!c.h)),name:R(NM)}};
+const selW=i=>{world=i;[...$("worlds").children].forEach((c,k)=>c.classList.toggle("sel",k==i))};
+function quick(i){selW(i);$("nm").value=P.name;$("go").click();const at={FOR:10,DES:10,CON:11,INT:10,SAB:10,CAR:10},pri={espada:"FOR",cajado:"INT",adaga:"DES",alaude:"CAR",maca:"SAB",arco:"DES"}[P.c.w]||"FOR";
+ at[pri]=P.c.h?15:14;if(P.c.h)ATS.forEach(a=>at[a]=Math.max(at[a],14));W.race=P.r;W.bg=P.b;W.cl=P.c.n;W.fx=at;W.fs=P.c.h?{luz:2,sombra:2,caos:2,ordem:2}:{luz:1,sombra:0,caos:1,ordem:1};finish()}
+function drawStory(i){const s=$("s7"),w=WORLDS[i],wd=WD[w[0]]||WD["Fantasia medieval"];s.innerHTML="";
+ const hd=el("div","sthd");hd.append(el("span","","Mais popular"));const x=el("button","xb","✕");x.onclick=()=>show("s0");hd.appendChild(x);s.appendChild(hd);
+ const a=el("div","stban");a.style.background="linear-gradient(160deg,"+w[2][0]+","+w[2][1]+")";a.innerHTML="<b>"+esc(w[0])+"</b><small>"+esc(w[1])+"</small>";s.appendChild(a);
+ s.append(el("h2","cz","⇢ A história"),el("p","stt",fill(BL[i%3],{d:w[1],l:wd.L[0][0],v:wd.V[0]})),el("h2","cz","⇢ Visão geral do personagem"));
+ const t=el("div","ovw");[["RAÇA",RACES[P.r][0]],["CLASSE",P.c.n+(P.c.h?" ✨":"")],["ANTECEDENTE",BGS[P.b][0]]].forEach(([k,v])=>{const r=el("div","ovr");r.append(el("span","",k),el("b","",v));t.appendChild(r)});s.appendChild(t);
+ if(P.c.h)s.appendChild(el("p","stt","✨ O destino despertou uma classe oculta: vantagem em todos os testes e vida que se regenera."));
+ const g=el("button","redb","COMEÇAR A AVENTURA");g.onclick=()=>quick(i);const rr=el("button","ghost","🎲 Sortear outro herói");rr.style.width="100%";rr.onclick=()=>{roll();drawStory(i)};
+ const cu=el("button","ghost","Personalizar meu herói");cu.style.cssText="width:100%;margin-top:8px";cu.onclick=()=>{selW(i);show("s1")};s.append(g,rr,cu)}
+window.openStory=i=>{roll();show("s7");drawStory(i)};
+T(()=>{const tn=$("tone");tn.style.display="none";tn.previousElementSibling.textContent="Escolha seu estilo de jogo";const box=el("div","tcards");
+ [["IMERSIVO","Modo História","Uma aventura guiada em que a história, o mundo e as consequências moldam sua jornada.","linear-gradient(160deg,#8a3216,#1a0c08)","🐉"],["LIVRE","Modo Criativo","Uma aventura flexível em que você tem mais liberdade para moldar a história e o mundo.","linear-gradient(160deg,#7a5a44,#16110d)","🏔️"]].forEach((a,i)=>{const c=el("button","tc"+(i?"":" sel"));c.style.background=a[3];c.innerHTML="<i>"+a[4]+"</i><small>"+a[0]+"</small><b>"+a[1]+"</b><span>"+a[2]+"</span>";c.onclick=()=>{[...box.children].forEach(x=>x.classList.remove("sel"));c.classList.add("sel");tn.children[i].click()};box.appendChild(c)});tn.before(box)});
+function hero(){const bn=document.querySelector("#s0 .ban");if(!bn||bn.querySelector(".hsv"))return;let g="";
+ [[85,0,0],[150,1,1],[240,2,3],[315,3,5]].forEach(([x,ci,ri],k)=>{g+='<g transform="translate('+x+' 226)"><g class="bob" style="animation-delay:-'+k*.7+'s">'+fig(0,0,2.1,RACES[ri][3],CL[ci].c,CL[ci].w,RACES[ri][0],"")+"</g></g>"});
+ bn.insertAdjacentHTML("afterbegin",'<svg class="hsv" viewBox="0 0 400 230" preserveAspectRatio="xMidYMax slice"><defs><radialGradient id="hm"><stop offset="0" stop-color="#fff4c0"/><stop offset="1" stop-color="#fff4c000"/></radialGradient></defs><circle class="moon" cx="320" cy="62" r="74" fill="url(#hm)"/><circle cx="320" cy="62" r="24" fill="#fff4d0"/><polygon points="0,230 0,150 60,112 110,150 170,98 240,150 300,118 400,160 400,230" fill="#120d18"/>'+g+"</svg>"+pts("petal",16))}
+const _s=show;
+show=function(id){_s(id);if(id=="s0"){T(hero);const cs=[...document.querySelectorAll("#s0 #cards .cd")];cs.slice(8).forEach((c,i)=>{c.onclick=()=>window.openStory(i)})}if(id=="s5")T(brainUI)};
+function brainUI(){let p=$("brn");if(!p){$("pwaB").parentNode.insertAdjacentHTML("afterend",'<div class="panel" id="brn"><h2>🧠 O Mestre aprende com você</h2><p id="brt"></p><button class="ghost" id="brr">Esquecer o que aprendeu</button></div>');$("brr").onclick=()=>{B={cat:{combate:1,misterio:1,social:1,explor:1,perigo:1,humor:1},tpl:{},rec:[],n:0,it:{}};bsave();brainUI()}}
+ const L={combate:"combate",misterio:"mistério",social:"conversas",explor:"exploração",perigo:"perigo",humor:"humor"},tot=Object.values(B.cat).reduce((a,b)=>a+b,0),top=Object.entries(B.cat).sort((a,b)=>b[1]-a[1]).slice(0,3).map(x=>L[x[0]]+" "+Math.round(x[1]/tot*100)+"%").join(" · ");
+ $("brt").textContent="Ações aprendidas: "+B.n+". Histórias favoritas: "+top+". Use 👍 e 👎 abaixo das cenas para ensinar o que você gosta; o Mestre offline passa a criar mais disso."}
+
+/* ---------- Vozes: feminina e masculina ---------- */
+T(()=>{if(typeof TTS=="undefined"||!TTS)return;
+ $("vbest").insertAdjacentHTML("beforebegin",'<label>Voz do narrador</label><select id="vng"><option value="a">Automática</option><option value="f">Feminina</option><option value="m">Masculina</option></select><label>Vozes dos personagens</label><select id="vcg"><option value="x">Mistas (por personagem)</option><option value="f">Todas femininas</option><option value="m">Todas masculinas</option></select>');
+ $("vng").value=V.ng||"a";$("vcg").value=V.cg||"x";$("vng").onchange=()=>{V.ng=$("vng").value;vsave()};$("vcg").onchange=()=>{V.cg=$("vcg").value;vsave()};
+ const FEM=/francisca|thalita|luciana|joana|camila|maria|fernanda|vit[óo]ria|leila|helo[ií]sa|brenda|yara|giovanna|google/i,MAS=/antonio|ant[ôo]nio|felipe|daniel|ricardo|donato|jorge|valerio|humberto/i;
+ const NG={mercador:"m",sabio:"m",guarda:"m",nobre:"f",taverneiro:"m",aldeao:"f"};
+ window.VG=u=>{const vs=ptv(),dl=u.__d;let g=dl?(V.cg=="f"||V.cg=="m"?V.cg:(NG[u.__n]||"f")):(V.ng=="f"||V.ng=="m"?V.ng:null);if(!g)return;
+  const v=vs.find(x=>g=="f"?FEM.test(x.name)&&!MAS.test(x.name):MAS.test(x.name));
+  if(v&&(dl||V.ng!="a")){u.voice=v}else{u.pitch=Math.max(.5,Math.min(1.5,u.pitch+(g=="f"?.22:-.18)))}}});
+show("s0");
 })();
 </script>
 </body>
